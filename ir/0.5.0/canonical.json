@@ -1616,6 +1616,91 @@
     "description": "The label of the primary and the destructive button",
     "value": 500
   },
+  "line-height.body": {
+    "type": "dimension",
+    "description": "The line height of the body text",
+    "axes": [
+      "density"
+    ],
+    "values": {
+      "density=pointer": {
+        "value": 20,
+        "unit": "px"
+      },
+      "density=touch": {
+        "value": 22,
+        "unit": "px"
+      }
+    }
+  },
+  "line-height.caption": {
+    "type": "dimension",
+    "description": "The line height of the caption text",
+    "axes": [
+      "density"
+    ],
+    "values": {
+      "density=pointer": {
+        "value": 15,
+        "unit": "px"
+      },
+      "density=touch": {
+        "value": 16,
+        "unit": "px"
+      }
+    }
+  },
+  "line-height.small": {
+    "type": "dimension",
+    "description": "The line height of the small text",
+    "axes": [
+      "density"
+    ],
+    "values": {
+      "density=pointer": {
+        "value": 16,
+        "unit": "px"
+      },
+      "density=touch": {
+        "value": 20,
+        "unit": "px"
+      }
+    }
+  },
+  "line-height.title-2": {
+    "type": "dimension",
+    "description": "The line height of title-2",
+    "axes": [
+      "density"
+    ],
+    "values": {
+      "density=pointer": {
+        "value": 24,
+        "unit": "px"
+      },
+      "density=touch": {
+        "value": 28,
+        "unit": "px"
+      }
+    }
+  },
+  "line-height.title-3": {
+    "type": "dimension",
+    "description": "The line height of title-3",
+    "axes": [
+      "density"
+    ],
+    "values": {
+      "density=pointer": {
+        "value": 20,
+        "unit": "px"
+      },
+      "density=touch": {
+        "value": 22,
+        "unit": "px"
+      }
+    }
+  },
   "opacity.disabled": {
     "type": "number",
     "description": "A disabled control: 40 % opacity",
@@ -1625,6 +1710,11 @@
     "type": "number",
     "description": "A link button at pointer down: no scale",
     "value": 0.8
+  },
+  "opacity.pulse": {
+    "type": "number",
+    "description": "The low point of the pulse of a spinner with reduced motion",
+    "value": 0.4
   },
   "radius.full": {
     "type": "dimension",

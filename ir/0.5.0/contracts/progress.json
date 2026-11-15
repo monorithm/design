@@ -85,7 +85,8 @@
     "shimmer.color": "color.skeleton.shimmer",
     "shimmer.duration": "duration.shimmer",
     "shimmer.easing": "easing.linear",
-    "shimmer.limit": "duration.shimmer-limit"
+    "shimmer.limit": "duration.shimmer-limit",
+    "spinner.pulse.opacity": "opacity.pulse"
   },
   "geometry": {
     "track.height": {
@@ -93,6 +94,14 @@
       "unit": "px"
     },
     "label.gap": {
+      "value": 8,
+      "unit": "px"
+    },
+    "spinner.stroke": {
+      "value": 2,
+      "unit": "px"
+    },
+    "value.gap": {
       "value": 8,
       "unit": "px"
     }
