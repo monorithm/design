@@ -82,6 +82,14 @@
     "box.border": {
       "value": 1,
       "unit": "px"
+    },
+    "label.gap": {
+      "value": 6,
+      "unit": "px"
+    },
+    "error.gap": {
+      "value": 6,
+      "unit": "px"
     }
   },
   "moments": [

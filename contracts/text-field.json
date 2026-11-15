@@ -167,6 +167,18 @@
     "form.max-width": {
       "value": 560,
       "unit": "px"
+    },
+    "add-on.gap": {
+      "value": 6,
+      "unit": "px"
+    },
+    "hint.padding-inline": {
+      "value": 6,
+      "unit": "px"
+    },
+    "warning.icon": {
+      "value": 14,
+      "unit": "px"
     }
   },
   "moments": [
