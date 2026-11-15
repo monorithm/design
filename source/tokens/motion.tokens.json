@@ -29,6 +29,13 @@
         "unit": "ms"
       },
       "$description": "One turn of the spinner of a loading button"
+    },
+    "base": {
+      "$value": {
+        "value": 200,
+        "unit": "ms"
+      },
+      "$description": "dur-base: the text color of a segment, and the opacity of rows."
     }
   },
   "easing": {
@@ -50,6 +57,15 @@
         1
       ],
       "$description": "ease: the press scale and the change of color"
+    },
+    "in": {
+      "$value": [
+        0.4,
+        0,
+        1,
+        1
+      ],
+      "$description": "ease-in: exits, for example the exit of a menu or a select list."
     }
   },
   "spring": {

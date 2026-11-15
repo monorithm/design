@@ -12,7 +12,7 @@ import path from 'node:path'
 import Ajv2020Module from 'ajv/dist/2020.js'
 
 const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..')
-const COMPILER_VERSION = '0.2.0'
+const COMPILER_VERSION = '0.3.0'
 
 type Json = null | boolean | number | string | Json[] | { [k: string]: Json }
 interface Token {
@@ -92,8 +92,9 @@ export function plain(type: string, value: Json): Json {
     case 'cubicBezier':
       return value
     case 'shadow': {
-      const s = value as Record<string, Json>
-      return { ...s, color: plain('color', s.color as Json) }
+      // A shadow is one layer or a list of layers (DTCG 2025.10).
+      const layer = (s: Record<string, Json>): Json => ({ ...s, color: plain('color', s.color as Json) })
+      return Array.isArray(value) ? value.map((v) => layer(v as Record<string, Json>)) : layer(value as Record<string, Json>)
     }
     case 'transition':
       return value

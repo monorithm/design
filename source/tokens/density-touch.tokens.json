@@ -41,6 +41,20 @@
         "unit": "px"
       },
       "$description": "The size of an icon in a control"
+    },
+    "code-box-width": {
+      "$value": {
+        "value": 48,
+        "unit": "px"
+      },
+      "$description": "The width of a box of the code entry. Six touch boxes fit in a phone form"
+    },
+    "code-box-height": {
+      "$value": {
+        "value": 56,
+        "unit": "px"
+      },
+      "$description": "The height of a box of the code entry"
     }
   },
   "radius": {
@@ -75,6 +89,23 @@
         "unit": "px"
       },
       "$description": "The label of a small button"
+    },
+    "title-2": {
+      "$value": {
+        "value": 22,
+        "unit": "px"
+      },
+      "$description": "The title-2 size: statistic values and the digits of the code entry."
+    }
+  },
+  "space": {
+    "$type": "dimension",
+    "field-gap": {
+      "$value": {
+        "value": 20,
+        "unit": "px"
+      },
+      "$description": "The gap between the fields of a form"
     }
   }
 }

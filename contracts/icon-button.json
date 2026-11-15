@@ -60,7 +60,7 @@
     "container.target": "size.target-min",
     "icon.size": "size.icon",
     "icon.color": "color.role.fg",
-    "ghost.fill.hover": "color.role.selected",
+    "ghost.fill.hover": "color.role.hover",
     "outline.border": "color.role.line",
     "outline.border.hover": "color.role.line-strong",
     "outline.fill.hover": "color.role.selected",
