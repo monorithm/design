@@ -32,6 +32,10 @@
     "link-pressed": {
       "$value": 0.8,
       "$description": "A link button at pointer down: no scale"
+    },
+    "pulse": {
+      "$value": 0.4,
+      "$description": "The low point of the pulse of a spinner with reduced motion"
     }
   },
   "focus": {

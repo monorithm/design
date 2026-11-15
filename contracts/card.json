@@ -102,7 +102,9 @@
     "press.easing": "easing.standard",
     "color.duration": "duration.fast",
     "tv.focus.scale": "scale.tv-focus",
-    "tv.focus.motion": "spring.quick"
+    "tv.focus.motion": "spring.quick",
+    "title.line-height": "line-height.title-3",
+    "stat.value.line-height": "line-height.title-2"
   },
   "geometry": {
     "ring": {
@@ -123,6 +125,14 @@
     },
     "tv.focus.offset": {
       "value": 4,
+      "unit": "px"
+    },
+    "media.inset": {
+      "value": 8,
+      "unit": "px"
+    },
+    "media.badge.padding-inline": {
+      "value": 8,
       "unit": "px"
     }
   },

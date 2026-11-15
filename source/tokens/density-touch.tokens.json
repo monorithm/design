@@ -121,5 +121,43 @@
       },
       "$description": "The gap between the fields of a form"
     }
+  },
+  "line-height": {
+    "$type": "dimension",
+    "body": {
+      "$value": {
+        "value": 22,
+        "unit": "px"
+      },
+      "$description": "The line height of the body text"
+    },
+    "small": {
+      "$value": {
+        "value": 20,
+        "unit": "px"
+      },
+      "$description": "The line height of the small text"
+    },
+    "caption": {
+      "$value": {
+        "value": 16,
+        "unit": "px"
+      },
+      "$description": "The line height of the caption text"
+    },
+    "title-2": {
+      "$value": {
+        "value": 28,
+        "unit": "px"
+      },
+      "$description": "The line height of title-2"
+    },
+    "title-3": {
+      "$value": {
+        "value": 22,
+        "unit": "px"
+      },
+      "$description": "The line height of title-3"
+    }
   }
 }
