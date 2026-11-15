@@ -175,6 +175,10 @@
     "open.offset": {
       "value": 4,
       "unit": "px"
+    },
+    "option.padding-block": {
+      "value": 6,
+      "unit": "px"
     }
   },
   "moments": [
@@ -286,7 +290,7 @@
         "keyboard",
         "screen-reader"
       ],
-      "text": "While the list is open, the focus stays on the trigger, and the trigger tells assistive technology which option is active. The active option has the selected fill. With the keyboard, it also shows the focus ring of the language: 2 px in the ring color, 2 px from the option."
+      "text": "While the list is open, the active option has the focus, and the trigger keeps its focus look. Assistive technology reads the active option as an option of a list box. The active option has the selected fill. With the keyboard, it also shows the focus ring of the language: 2 px in the ring color, 2 px from the option."
     },
     {
       "id": "select/focus",
