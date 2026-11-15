@@ -98,6 +98,20 @@
         "unit": "px"
       },
       "$description": "The title-2 size: statistic values and the digits of the code entry."
+    },
+    "title-3": {
+      "$value": {
+        "value": 16,
+        "unit": "px"
+      },
+      "$description": "title-3: card titles. The line height is 20 px for pointer and 22 px for touch."
+    },
+    "caption": {
+      "$value": {
+        "value": 12,
+        "unit": "px"
+      },
+      "$description": "Labels and badges, the initials of a small avatar"
     }
   },
   "space": {

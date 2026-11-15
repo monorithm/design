@@ -3,7 +3,8 @@
   "base": [
     "tokens/palette.tokens.json",
     "tokens/shape.tokens.json",
-    "tokens/motion.tokens.json"
+    "tokens/motion.tokens.json",
+    "tokens/space.tokens.json"
   ],
   "axes": {
     "theme": {

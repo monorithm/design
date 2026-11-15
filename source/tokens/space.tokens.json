@@ -1,0 +1,27 @@
+{
+  "$description": "The space scale: the gaps and the paddings that the density does not change. Source: Foundations, Space.",
+  "space": {
+    "4": {
+      "$value": {
+        "value": 16,
+        "unit": "px"
+      },
+      "$description": "space-4: the padding of a card, and the gap between two cards."
+    },
+    "5": {
+      "$value": {
+        "value": 20,
+        "unit": "px"
+      },
+      "$description": "space-5: the padding of a large card."
+    },
+    "6": {
+      "$value": {
+        "value": 24,
+        "unit": "px"
+      },
+      "$description": "space-6: the gap between two sections in a card."
+    },
+    "$type": "dimension"
+  }
+}

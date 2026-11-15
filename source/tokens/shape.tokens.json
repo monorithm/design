@@ -107,5 +107,36 @@
       "$value": 1.06,
       "$description": "An item that has the focus on a TV, for example a field or a select."
     }
+  },
+  "size": {
+    "$type": "dimension",
+    "avatar-xs": {
+      "$value": {
+        "value": 24,
+        "unit": "px"
+      },
+      "$description": "The smallest avatar, for example in a table row and in a seller line."
+    },
+    "avatar-sm": {
+      "$value": {
+        "value": 32,
+        "unit": "px"
+      },
+      "$description": "An avatar of 32 px, for example in the shop switcher."
+    },
+    "avatar-md": {
+      "$value": {
+        "value": 40,
+        "unit": "px"
+      },
+      "$description": "An avatar of 40 px, for example in a list row."
+    },
+    "avatar-lg": {
+      "$value": {
+        "value": 56,
+        "unit": "px"
+      },
+      "$description": "The largest avatar."
+    }
   }
 }

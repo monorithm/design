@@ -124,6 +124,49 @@
       "warning-text": {
         "$value": "{color.amber.800}",
         "$description": "The warning as text, for example the warning of a field"
+      },
+      "success-text": {
+        "$value": "{color.green.650}",
+        "$description": "The success as text: the icon of a success alert"
+      },
+      "success-soft": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.0118,
+            0.6627,
+            0.4941
+          ],
+          "alpha": 0.12,
+          "hex": "#03a97e"
+        },
+        "$description": "The fill of a success alert"
+      },
+      "warning-soft": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.898,
+            0.6392,
+            0.2314
+          ],
+          "alpha": 0.16,
+          "hex": "#e5a33b"
+        },
+        "$description": "The fill of a warning alert"
+      },
+      "hover-on-fill": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.498,
+            0.498,
+            0.498
+          ],
+          "alpha": 0.15,
+          "hex": "#7f7f7f"
+        },
+        "$description": "The hover fill of an icon button on a color fill, for example the close button of a banner"
       }
     },
     "switch": {
@@ -142,6 +185,36 @@
       "track": {
         "$value": "{color.neutral.75}",
         "$description": "The track of a segmented control."
+      }
+    },
+    "avatar": {
+      "ring": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "alpha": 0.1,
+          "hex": "#000000"
+        },
+        "$description": "The ring of 1 px around an avatar and around an avatar button."
+      }
+    },
+    "skeleton": {
+      "shimmer": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "alpha": 0.04,
+          "hex": "#000000"
+        },
+        "$description": "The band of light that moves across the shapes of a skeleton."
       }
     }
   },
