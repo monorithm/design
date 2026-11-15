@@ -1,0 +1,335 @@
+{
+  "id": "code-entry",
+  "name": "Code entry",
+  "status": "draft",
+  "class": "M",
+  "purpose": "A code entry gets a one-time code in a row of six boxes, with one digit in each box. The system can fill the code, and the code goes to the app after the last digit.",
+  "anatomy": [
+    {
+      "part": "group",
+      "role": "The six boxes, with the name of the group, for example One-time code"
+    },
+    {
+      "part": "box",
+      "role": "A text field for one digit. It is the target"
+    },
+    {
+      "part": "digit",
+      "role": "The digit at the center of the box"
+    },
+    {
+      "part": "error-text",
+      "role": "The text below the boxes that tells how to correct the code",
+      "optional": true
+    },
+    {
+      "part": "timer",
+      "role": "The time until the user can get a new code, for example Send a new code in 0:42",
+      "optional": true
+    }
+  ],
+  "states": [
+    "default",
+    "hover",
+    "focus",
+    "error",
+    "disabled"
+  ],
+  "axes": [
+    "theme",
+    "density",
+    "direction",
+    "motion"
+  ],
+  "tokens": {
+    "unit": "size.control-md",
+    "box.target": "size.target-min",
+    "box.radius": "radius.md",
+    "box.fill": "color.role.surface",
+    "box.border": "color.role.field-line",
+    "box.border.hover": "color.role.fg-muted",
+    "digit.color": "color.role.fg",
+    "digit.size": "font-size.title-2",
+    "digit.weight": "font-weight.strong",
+    "focus.border": "color.role.ring",
+    "focus.field-ring.width": "focus.field-ring-width",
+    "focus.soft-ring.color": "color.role.accent-soft",
+    "error.border": "color.role.danger",
+    "error.focus.soft-ring.color": "color.role.danger-soft",
+    "error-text.color": "color.role.danger-text",
+    "error-text.size": "font-size.small",
+    "error-text.fade": "duration.fast",
+    "timer.color": "color.role.fg-muted",
+    "timer.size": "font-size.small",
+    "disabled.opacity": "opacity.disabled",
+    "color.duration": "duration.fast",
+    "color.easing": "easing.standard"
+  },
+  "geometry": {
+    "box.width": {
+      "value": 1,
+      "of": "size.code-box-width"
+    },
+    "box.height": {
+      "value": 1,
+      "of": "size.code-box-height"
+    },
+    "box.gap": {
+      "value": 8,
+      "unit": "px"
+    },
+    "box.border": {
+      "value": 1,
+      "unit": "px"
+    }
+  },
+  "moments": [
+    {
+      "moment": "success",
+      "when": "When the app accepts the complete code. The app examines the code, not the component"
+    },
+    {
+      "moment": "error",
+      "when": "When the app refuses the complete code, for example because the code is not correct. Not while the user types"
+    }
+  ],
+  "clauses": [
+    {
+      "id": "code-entry/role",
+      "level": "MUST",
+      "inputs": [
+        "screen-reader"
+      ],
+      "text": "The accessibility tree shows a group with its name. Each box in the group is a text field with its own name."
+    },
+    {
+      "id": "code-entry/name",
+      "level": "MUST",
+      "inputs": [
+        "screen-reader",
+        "voice"
+      ],
+      "text": "The group has a name, for example One-time code. The name of each box gives its position, for example Digit 2 of 6."
+    },
+    {
+      "id": "code-entry/boxes",
+      "level": "MUST",
+      "text": "The code entry has six boxes. Each box holds one digit."
+    },
+    {
+      "id": "code-entry/digits",
+      "level": "MUST",
+      "text": "A box accepts a Latin digit or a digit of the locale, for example 4 or ٤. It does not accept a letter or a sign. The app gets the code in Latin digits."
+    },
+    {
+      "id": "code-entry/input-mode",
+      "level": "MUST",
+      "inputs": [
+        "touch"
+      ],
+      "text": "Each box opens the numeric keyboard of the system."
+    },
+    {
+      "id": "code-entry/autofill",
+      "level": "MUST",
+      "text": "The first box tells the system that it holds a one-time code. Thus, the phone can fill the code from the text message. An autofill fills all six boxes."
+    },
+    {
+      "id": "code-entry/paste",
+      "level": "MUST",
+      "inputs": [
+        "pointer",
+        "touch",
+        "keyboard"
+      ],
+      "text": "A paste of the code in a box fills all six boxes, from the first box. The paste does not use the characters that are not digits, for example a space or a hyphen."
+    },
+    {
+      "id": "code-entry/no-paste-block",
+      "level": "NEVER",
+      "text": "The code entry stops a paste or the autofill of the system."
+    },
+    {
+      "id": "code-entry/next-box",
+      "level": "MUST",
+      "inputs": [
+        "keyboard",
+        "touch"
+      ],
+      "text": "When the user types a digit, the digit goes into the box, and the focus moves to the next box. A new digit replaces the digit of the box. In the last box, the focus stays."
+    },
+    {
+      "id": "code-entry/backspace",
+      "level": "MUST",
+      "inputs": [
+        "keyboard",
+        "touch"
+      ],
+      "text": "Backspace removes the digit of the box that has the focus. In an empty box, Backspace moves the focus to the previous box and removes its digit."
+    },
+    {
+      "id": "code-entry/arrows",
+      "level": "MUST",
+      "inputs": [
+        "keyboard"
+      ],
+      "text": "Left Arrow and Right Arrow move the focus to the box at the left or at the right. They do not change a digit. This is also true in a right-to-left layout."
+    },
+    {
+      "id": "code-entry/tab",
+      "level": "MUST",
+      "inputs": [
+        "keyboard",
+        "switch-access"
+      ],
+      "text": "Tab moves the focus into the group, to the first empty box, or to the last box when all boxes have a digit. The next Tab moves the focus out of the group."
+    },
+    {
+      "id": "code-entry/auto-send",
+      "level": "MUST",
+      "text": "When the last empty box gets its digit, the component gives the code to the app. The user does not select a button. A paste or an autofill of the full code also gives the code to the app."
+    },
+    {
+      "id": "code-entry/send-once",
+      "level": "MUST",
+      "text": "The component gives each code to the app one time. It does not give the code again until the app gives its result."
+    },
+    {
+      "id": "code-entry/result",
+      "level": "MUST",
+      "text": "The app examines the code and gives the result: correct or not correct. The component does not examine the code."
+    },
+    {
+      "id": "code-entry/target",
+      "level": "MUST",
+      "inputs": [
+        "pointer",
+        "touch"
+      ],
+      "text": "Each box is a target. On each axis, the box is the minimum target of the density or more: 24 px for pointer, 44 px for touch."
+    },
+    {
+      "id": "code-entry/density",
+      "level": "MUST",
+      "text": "A box is 40 px wide and 48 px high for pointer, 48 px wide and 56 px high for touch. The gap between the boxes is 8 px. Thus six touch boxes need 328 px."
+    },
+    {
+      "id": "code-entry/shape",
+      "level": "MUST",
+      "text": "A box has the surface fill and a border of 1 px in the field line color. Its radius is the medium radius of the density: 8 px for pointer, 10 px for touch."
+    },
+    {
+      "id": "code-entry/fit",
+      "level": "SHOULD",
+      "classes": [
+        "phone",
+        "foldable"
+      ],
+      "text": "The six boxes fit in the width of the form. On a narrow screen, the boxes get narrower, and each box stays at the minimum target or more."
+    },
+    {
+      "id": "code-entry/digit",
+      "level": "MUST",
+      "text": "The digit is at the center of the box, with tabular figures and the strong weight. Its size is title-2: 20 px for pointer, 22 px for touch."
+    },
+    {
+      "id": "code-entry/hover",
+      "level": "MUST",
+      "inputs": [
+        "pointer"
+      ],
+      "text": "Only a device with hover shows the hover state. The border of the box changes to the muted text color."
+    },
+    {
+      "id": "code-entry/focus",
+      "level": "MUST",
+      "inputs": [
+        "keyboard",
+        "pointer",
+        "touch",
+        "switch-access"
+      ],
+      "text": "The box with the focus has a border in the ring color and a soft ring of 3 px in the accent soft color. This is the focus of a field, for each input method."
+    },
+    {
+      "id": "code-entry/error-sign",
+      "level": "MUST",
+      "text": "In the error state, all six boxes have a border in the danger color, and the error text shows. The box with the focus has a soft ring in the danger soft color. Color is not the only sign of the error."
+    },
+    {
+      "id": "code-entry/error-text",
+      "level": "MUST",
+      "text": "The error text tells how to correct the code, for example to type the code again or to get a new code. It shows below the boxes, in the danger text color."
+    },
+    {
+      "id": "code-entry/error-time",
+      "level": "MUST",
+      "text": "The error shows only after the app refuses a code. The component shows no error while the user types."
+    },
+    {
+      "id": "code-entry/error-name",
+      "level": "MUST",
+      "inputs": [
+        "screen-reader"
+      ],
+      "text": "In the error state, each box tells assistive technology that its value is not valid. The error text is the description of each box. Thus, a screen reader reads it with the name of the box."
+    },
+    {
+      "id": "code-entry/error-read",
+      "level": "MUST",
+      "inputs": [
+        "screen-reader"
+      ],
+      "text": "When the error text shows, a screen reader reads it, also when the focus does not move."
+    },
+    {
+      "id": "code-entry/direction",
+      "level": "MUST",
+      "text": "In a right-to-left layout, the boxes stay in the order from left to right, and the first digit is in the box at the left. Digits and codes go from left to right in each script. The timer follows the direction of the layout."
+    },
+    {
+      "id": "code-entry/motion",
+      "level": "MUST",
+      "text": "The border and the soft ring change in 150 ms. The error text fades in with dur-fast, and it does not move the other regions of the screen. With reduced motion, these changes have no transition. The change of color stays."
+    },
+    {
+      "id": "code-entry/no-shake",
+      "level": "NEVER",
+      "text": "The boxes shake or move when the app refuses a code."
+    },
+    {
+      "id": "code-entry/moment",
+      "level": "MUST",
+      "text": "The component emits the moment success when the app accepts the code, and the moment error when the app refuses the code. A digit, a paste, and a move of the focus emit no moment. A disabled code entry emits no moment."
+    },
+    {
+      "id": "code-entry/no-direct-feedback",
+      "level": "NEVER",
+      "text": "The code entry starts a haptic or a sound directly."
+    },
+    {
+      "id": "code-entry/disabled",
+      "level": "MUST",
+      "text": "A disabled code entry has the disabled opacity on all boxes. The boxes do not accept a digit, a paste, or an autofill. The description of the group tells why the user cannot type a code."
+    },
+    {
+      "id": "code-entry/timer",
+      "level": "SHOULD",
+      "text": "Show a timer for a new code, for example Send a new code in 0:42, with tabular figures. At the end of the timer, the user can get a new code."
+    },
+    {
+      "id": "code-entry/change-number",
+      "level": "SHOULD",
+      "text": "Give the action Change number with the code entry. Then the user can correct the phone number."
+    },
+    {
+      "id": "code-entry/second-device",
+      "level": "SHOULD",
+      "classes": [
+        "tv",
+        "car"
+      ],
+      "text": "On a TV and in a car, the user does not type a one-time code. The screen shows a code, and the user signs in on a second device, for example a phone."
+    }
+  ]
+}

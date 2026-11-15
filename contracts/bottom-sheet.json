@@ -1,0 +1,722 @@
+{
+  "$schema": "../schemas/contract.schema.json",
+  "id": "bottom-sheet",
+  "name": "Bottom sheet",
+  "status": "draft",
+  "class": "L",
+  "purpose": "A bottom sheet is a surface that the user drags between snap points on a phone. Its content scrolls inside it. On a large screen, the same content opens in a side sheet or in a dialog.",
+  "variants": [
+    {
+      "name": "modal",
+      "use": "A short task on top of the screen, for example comments, filters, or the options of a product. It has a scrim and the snap points Half and Full, and it closes."
+    },
+    {
+      "name": "persistent",
+      "use": "A sheet on top of a map or a list of results. It has no scrim and the snap points Peek, Half, and Full. It never closes."
+    }
+  ],
+  "anatomy": [
+    {
+      "part": "sheet",
+      "role": "The surface: the raised fill, a radius of 16 px on the top corners, and the overlay shadow"
+    },
+    {
+      "part": "handle",
+      "role": "A bar of 36 × 4 px, 8 px from the top edge. It shows that the sheet moves. It is also a button for the keyboard and for assistive technology"
+    },
+    {
+      "part": "header",
+      "role": "The title, the count, and the close button. The handle and the header are the drag area at each snap point"
+    },
+    {
+      "part": "title",
+      "role": "The name of the sheet. Example: Comments"
+    },
+    {
+      "part": "count",
+      "role": "The number of items, after the title",
+      "optional": true
+    },
+    {
+      "part": "close-button",
+      "role": "An icon button at the end side of the header. It closes a modal sheet",
+      "optional": true
+    },
+    {
+      "part": "content",
+      "role": "A list or a form. It scrolls only at Full"
+    },
+    {
+      "part": "footer",
+      "role": "An input or one primary button. It stays at the bottom edge of the screen, above the keyboard and the safe area",
+      "optional": true
+    },
+    {
+      "part": "scrim",
+      "role": "Only for a modal sheet: a dark layer between the screen and the sheet. A tap on it closes the sheet",
+      "optional": true
+    },
+    {
+      "part": "top-gap",
+      "role": "At Full, the top safe area and 16 px of the screen above the sheet. They show that the sheet is on top of the screen"
+    }
+  ],
+  "states": [
+    "default",
+    "focus"
+  ],
+  "axes": [
+    "theme",
+    "density",
+    "direction",
+    "motion"
+  ],
+  "tokens": {
+    "sheet.fill": "color.role.raised",
+    "sheet.shadow": "shadow.overlay",
+    "sheet.radius": "radius.xl",
+    "sheet.max-width": "size.sheet-max-width",
+    "side-sheet.width": "size.sheet-side-width",
+    "handle.width": "size.sheet-handle-width",
+    "handle.height": "size.sheet-handle-height",
+    "handle.color": "color.role.line-strong",
+    "handle.radius": "radius.full",
+    "handle.target": "size.target-min",
+    "close-button.target": "size.target-min",
+    "control.target": "size.target-min",
+    "title.size": "font-size.title-3",
+    "title.weight": "font-weight.strong",
+    "title.color": "color.role.fg-strong",
+    "count.color": "color.role.fg-muted",
+    "content.color": "color.role.fg",
+    "top-gap.height": "size.sheet-gap",
+    "peek.height": "size.sheet-peek",
+    "half.ratio": "ratio.sheet-half",
+    "scrim.color": "color.role.scrim",
+    "disabled.opacity": "opacity.disabled",
+    "focus.width": "focus.ring-width",
+    "focus.offset": "focus.ring-offset",
+    "focus.color": "color.role.ring",
+    "release.motion": "spring.sheet",
+    "release.web.duration": "duration.sheet",
+    "release.web.easing": "easing.out",
+    "open.duration": "duration.sheet",
+    "open.easing": "easing.out",
+    "open.motion": "spring.sheet",
+    "close.duration": "duration.base",
+    "close.easing": "easing.in",
+    "drag-close.motion": "spring.sheet",
+    "side-sheet.in.duration": "duration.sheet",
+    "side-sheet.in.easing": "easing.out",
+    "side-sheet.out.duration": "duration.base",
+    "side-sheet.out.easing": "easing.in",
+    "reduced.in.duration": "duration.fast",
+    "reduced.out.duration": "duration.press"
+  },
+  "geometry": {
+    "handle.top": {
+      "value": 8,
+      "unit": "px"
+    },
+    "drag.slop": {
+      "value": 8,
+      "unit": "px"
+    },
+    "carousel.lock": {
+      "value": 8,
+      "unit": "px"
+    },
+    "web.side-sheet-from": {
+      "value": 768,
+      "unit": "px"
+    }
+  },
+  "moments": [
+    {
+      "moment": "drag-start",
+      "when": "At the first move past the slop of 8 px, at the first frame of the 1 : 1 tracking. Not at pointer down, and not for a tap"
+    },
+    {
+      "moment": "snap",
+      "when": "At the contact of the released sheet with its snap point, not at the settle time. A cancel gives no snap"
+    },
+    {
+      "moment": "open",
+      "when": "When the sheet opens, at the first frame of its entrance"
+    },
+    {
+      "moment": "close",
+      "when": "When the sheet closes, at the first frame of its exit. Also after a release that closes the sheet"
+    }
+  ],
+  "clauses": [
+    {
+      "id": "bottom-sheet/role",
+      "level": "MUST",
+      "inputs": [
+        "screen-reader"
+      ],
+      "text": "The accessibility tree shows a modal sheet as a modal dialog, with the title as its name. It shows a persistent sheet as a region with a name."
+    },
+    {
+      "id": "bottom-sheet/name",
+      "level": "MUST",
+      "text": "The header has a title. The title gives the name of the sheet, for example Comments."
+    },
+    {
+      "id": "bottom-sheet/closed-hidden",
+      "level": "MUST",
+      "inputs": [
+        "screen-reader",
+        "keyboard"
+      ],
+      "text": "A closed sheet is not in the accessibility tree, and it gets no focus."
+    },
+    {
+      "id": "bottom-sheet/trigger-state",
+      "level": "SHOULD",
+      "inputs": [
+        "screen-reader"
+      ],
+      "text": "The control that opens the sheet tells assistive technology if the sheet is open or closed."
+    },
+    {
+      "id": "bottom-sheet/alternatives",
+      "level": "MUST",
+      "inputs": [
+        "keyboard",
+        "screen-reader",
+        "voice",
+        "switch-access"
+      ],
+      "text": "Each gesture has an alternative with no drag: the handle button, the close button, Escape, and Back."
+    },
+    {
+      "id": "bottom-sheet/handle-role",
+      "level": "MUST",
+      "inputs": [
+        "keyboard",
+        "screen-reader"
+      ],
+      "text": "The handle is a button with the name Resize the sheet. It is in the focus order of the sheet."
+    },
+    {
+      "id": "bottom-sheet/handle-keys",
+      "level": "MUST",
+      "inputs": [
+        "keyboard"
+      ],
+      "text": "When the handle has the focus, Enter changes the sheet between Half and Full. The up arrow and the down arrow move the sheet to the next snap point in their direction. At Half, the down arrow closes a modal sheet."
+    },
+    {
+      "id": "bottom-sheet/handle-actions",
+      "level": "MUST",
+      "inputs": [
+        "screen-reader",
+        "voice",
+        "switch-access"
+      ],
+      "text": "In an app, the handle also gives assistive technology the actions Expand and Collapse. Expand moves the sheet up one snap point. Collapse moves it down one snap point."
+    },
+    {
+      "id": "bottom-sheet/keyboard",
+      "level": "MUST",
+      "inputs": [
+        "keyboard"
+      ],
+      "text": "Tab moves the focus through the handle and the controls of the sheet. Escape closes a modal sheet."
+    },
+    {
+      "id": "bottom-sheet/focus-trap",
+      "level": "MUST",
+      "inputs": [
+        "keyboard",
+        "screen-reader",
+        "switch-access"
+      ],
+      "text": "A modal sheet keeps the focus inside it while it is open. The screen behind it gets no focus."
+    },
+    {
+      "id": "bottom-sheet/focus-open",
+      "level": "MUST",
+      "inputs": [
+        "keyboard",
+        "screen-reader"
+      ],
+      "text": "When the sheet opens, the focus goes to the title. When the sheet closes, the focus goes back to the control that opened it."
+    },
+    {
+      "id": "bottom-sheet/persistent-focus",
+      "level": "MUST",
+      "inputs": [
+        "keyboard"
+      ],
+      "text": "A persistent sheet has no scrim, and it does not keep the focus inside it."
+    },
+    {
+      "id": "bottom-sheet/focus",
+      "level": "MUST",
+      "inputs": [
+        "keyboard",
+        "switch-access"
+      ],
+      "text": "Keyboard focus shows the focus ring of the language on the handle and on each control of the sheet. The ring is 2 px in the ring color, 2 px from the control. A pointer press shows no ring."
+    },
+    {
+      "id": "bottom-sheet/target",
+      "level": "MUST",
+      "inputs": [
+        "pointer",
+        "touch"
+      ],
+      "text": "The handle, the close button, and each control in the sheet have a target of 24 px or more on each axis for pointer. For touch, the target is 44 px or more. The target of the handle extends past the bar."
+    },
+    {
+      "id": "bottom-sheet/surface",
+      "level": "MUST",
+      "text": "The sheet has the raised fill and the overlay shadow, as menus and dialogs have. Its top corners have a radius of 16 px."
+    },
+    {
+      "id": "bottom-sheet/handle",
+      "level": "MUST",
+      "text": "The handle is a bar of 36 × 4 px in the strong line color, with round ends. It is at the center of the sheet, 8 px from the top edge."
+    },
+    {
+      "id": "bottom-sheet/header",
+      "level": "MUST",
+      "text": "The header has the title and the count at the start side, and the close button at the end side. The title has the title-3 size, the strong weight, and the strong text color. The count has the muted text color."
+    },
+    {
+      "id": "bottom-sheet/drag-area",
+      "level": "MUST",
+      "inputs": [
+        "touch",
+        "pointer"
+      ],
+      "text": "The handle and the header are the drag area. A drag on them moves the sheet at each snap point."
+    },
+    {
+      "id": "bottom-sheet/top-gap",
+      "level": "MUST",
+      "text": "At Full, the top safe area and 16 px of the screen stay above the sheet. Thus the user can see that the sheet is on top of the screen."
+    },
+    {
+      "id": "bottom-sheet/snap-only",
+      "level": "MUST",
+      "text": "The sheet stops only at its snap points. It opens at Half."
+    },
+    {
+      "id": "bottom-sheet/snap-values",
+      "level": "MUST",
+      "text": "Half is 50% of the screen height. Full is the screen height less the top safe area and 16 px. Peek is 140 px high: the header and one row."
+    },
+    {
+      "id": "bottom-sheet/modal-snaps",
+      "level": "MUST",
+      "text": "A modal sheet has the snap points Half and Full. When it is closed, it is out of view. A drag down from Half closes it."
+    },
+    {
+      "id": "bottom-sheet/persistent-snaps",
+      "level": "MUST",
+      "text": "A persistent sheet has the snap points Peek, Half, and Full. It never closes."
+    },
+    {
+      "id": "bottom-sheet/short-content",
+      "level": "MUST",
+      "text": "If the content is shorter than Half, the sheet has one snap point at the height of the content."
+    },
+    {
+      "id": "bottom-sheet/use",
+      "level": "SHOULD",
+      "text": "Use a modal sheet for comments, filters, and options, for example the options of a product. Use a persistent sheet on top of a map or a list of results."
+    },
+    {
+      "id": "bottom-sheet/slop",
+      "level": "MUST",
+      "inputs": [
+        "touch",
+        "pointer"
+      ],
+      "text": "A drag starts when the finger moves 8 px from its start point. A shorter move is a tap, and the buttons in the sheet continue to operate."
+    },
+    {
+      "id": "bottom-sheet/axis-lock",
+      "level": "MUST",
+      "inputs": [
+        "touch",
+        "pointer"
+      ],
+      "text": "The gesture locks to the axis of the larger move. A move that is more horizontal than vertical does not move the sheet."
+    },
+    {
+      "id": "bottom-sheet/tracking",
+      "level": "MUST",
+      "inputs": [
+        "touch",
+        "pointer"
+      ],
+      "text": "During a drag, the sheet moves the same distance as the finger, 1 : 1, with no easing and no delay. The tracking starts at the slop, thus the sheet does not move by the 8 px of the slop."
+    },
+    {
+      "id": "bottom-sheet/catch",
+      "level": "MUST",
+      "inputs": [
+        "touch"
+      ],
+      "text": "A touch during a motion of the sheet stops the sheet where it is. The user can then drag it again."
+    },
+    {
+      "id": "bottom-sheet/velocity",
+      "level": "MUST",
+      "inputs": [
+        "touch",
+        "pointer"
+      ],
+      "text": "The velocity of a release comes from the tracker of the language. The tracker calculates a curve through the samples of the last 40 ms, with 4 samples or more, but not past 100 ms. A pause of 40 ms before the release gives a velocity of 0. The limit is 8 px/ms."
+    },
+    {
+      "id": "bottom-sheet/projection",
+      "level": "MUST",
+      "inputs": [
+        "touch",
+        "pointer"
+      ],
+      "text": "At the release, the sheet calculates the projected point: P = x + v × 0.4995 s. The value x is the position of the sheet, and v is the velocity of the finger. The sheet goes to the snap point that is nearest to P."
+    },
+    {
+      "id": "bottom-sheet/fling",
+      "level": "MUST",
+      "inputs": [
+        "touch",
+        "pointer"
+      ],
+      "text": "A release faster than 0.5 px/ms is a fling. A fling goes to the next snap point in its direction, or farther when P is farther."
+    },
+    {
+      "id": "bottom-sheet/close-line",
+      "level": "MUST",
+      "inputs": [
+        "touch",
+        "pointer"
+      ],
+      "text": "The close line of a modal sheet is below Half, at 25% of the distance from Half to the bottom edge. When P is below the close line, the sheet closes. Example: with Half at 300 px, the close line is at 225 px."
+    },
+    {
+      "id": "bottom-sheet/gestures",
+      "level": "MUST",
+      "inputs": [
+        "touch",
+        "pointer"
+      ],
+      "text": "A drag or a fling up from Half goes to Full. A drag or a fling down from Full goes to Half. A drag or a fling down from Half closes a modal sheet."
+    },
+    {
+      "id": "bottom-sheet/rubber-band",
+      "level": "MUST",
+      "inputs": [
+        "touch",
+        "pointer"
+      ],
+      "text": "Past Full, a drag up on the handle or the header moves the sheet one third of the finger distance. After the release, the sheet goes back to Full with spring-sheet. The spring starts with one third of the velocity of the finger."
+    },
+    {
+      "id": "bottom-sheet/release",
+      "level": "MUST",
+      "text": "After a release, the sheet goes to the selected snap point with spring-sheet: stiffness 400, damping 40, mass 1, and no bounce. The spring starts with the velocity of the finger. On the web, the release uses 320 ms with ease-out."
+    },
+    {
+      "id": "bottom-sheet/cancel",
+      "level": "MUST",
+      "inputs": [
+        "touch",
+        "pointer"
+      ],
+      "text": "A cancel of the pointer during a drag takes the sheet back to its snap point from the start of the drag. The sheet emits no moment snap."
+    },
+    {
+      "id": "bottom-sheet/close-ways",
+      "level": "MUST",
+      "text": "A drag or a fling down from Half, a tap on the scrim, the close button, Back, and Escape close a modal sheet."
+    },
+    {
+      "id": "bottom-sheet/motion",
+      "level": "MUST",
+      "text": "A sheet that opens from a button comes up from the bottom edge in 320 ms with ease-out, or with spring-sheet. When the close button, the scrim, Escape, or Back closes the sheet, the exit is 200 ms with ease-in. After a drag, the sheet closes with spring-sheet."
+    },
+    {
+      "id": "bottom-sheet/scrim",
+      "level": "MUST",
+      "text": "Only a modal sheet has a scrim. Its opacity follows the position of the sheet: 0 when the sheet is closed, and the full scrim color at Half and at Full. The scrim is black at 60% in the dark theme, and #0a0a0a at 40% in the light theme."
+    },
+    {
+      "id": "bottom-sheet/handoff",
+      "level": "MUST",
+      "inputs": [
+        "touch",
+        "pointer"
+      ],
+      "text": "One vertical gesture moves the sheet or scrolls the content, but not the two at the same time. The position of the sheet and of the content selects which."
+    },
+    {
+      "id": "bottom-sheet/scroll-at-full",
+      "level": "MUST",
+      "inputs": [
+        "touch",
+        "pointer"
+      ],
+      "text": "The content scrolls only when the sheet is at Full. At the other snap points, a drag on the content moves the sheet, and the content does not scroll."
+    },
+    {
+      "id": "bottom-sheet/handoff-top",
+      "level": "MUST",
+      "inputs": [
+        "touch",
+        "pointer"
+      ],
+      "text": "At Full, a drag up on the content scrolls the content, and the sheet stays at Full. When the content is at its top, a drag down moves the sheet down and can close it."
+    },
+    {
+      "id": "bottom-sheet/handoff-scrolled",
+      "level": "MUST",
+      "inputs": [
+        "touch",
+        "pointer"
+      ],
+      "text": "At Full, when the content is not at its top, a drag down first scrolls the content to its top. Then, in the same gesture, the sheet moves down."
+    },
+    {
+      "id": "bottom-sheet/content-fling",
+      "level": "MUST",
+      "inputs": [
+        "touch"
+      ],
+      "text": "A fling of the content stops at the top of the content. It does not move the sheet."
+    },
+    {
+      "id": "bottom-sheet/carousel",
+      "level": "MUST",
+      "inputs": [
+        "touch",
+        "pointer"
+      ],
+      "text": "A horizontal carousel in the content locks to the horizontal axis after 8 px. It does not move the sheet."
+    },
+    {
+      "id": "bottom-sheet/wheel",
+      "level": "MUST",
+      "inputs": [
+        "pointer"
+      ],
+      "text": "At Half, a scroll with a mouse wheel or a trackpad moves the sheet to Full."
+    },
+    {
+      "id": "bottom-sheet/input-focus",
+      "level": "MUST",
+      "inputs": [
+        "touch",
+        "keyboard"
+      ],
+      "text": "When an input in the sheet gets the focus, the sheet goes to Full. When the keyboard closes, the sheet stays at Full."
+    },
+    {
+      "id": "bottom-sheet/footer",
+      "level": "MUST",
+      "text": "The footer stays at the bottom edge of the screen at each snap point. It is above the keyboard when the keyboard is open, and above the bottom safe area when the keyboard is closed."
+    },
+    {
+      "id": "bottom-sheet/keyboard-order",
+      "level": "MUST",
+      "inputs": [
+        "touch"
+      ],
+      "text": "From the bottom, the order is the keyboard, the footer, the content, and the header with the handle at the top gap. The content becomes shorter, and it never goes below the footer. It keeps the latest item in view."
+    },
+    {
+      "id": "bottom-sheet/width",
+      "level": "MUST",
+      "text": "A bottom sheet is 640 px wide or less, at the center of the screen. A side sheet is 400 px wide."
+    },
+    {
+      "id": "bottom-sheet/density",
+      "level": "MUST",
+      "text": "The handle, the radius, the top gap, the snap points, and the widths are the same in the two densities. The header and the controls follow the density. For example, the title is 16 px for pointer and 17 px for touch."
+    },
+    {
+      "id": "bottom-sheet/direction",
+      "level": "MUST",
+      "text": "In a right-to-left layout, the start side is the right side. The title is at the right of the header, and the close button is at the left. The sheet comes up from the bottom edge in each reading direction, and the drag does not mirror."
+    },
+    {
+      "id": "bottom-sheet/motion-reduced",
+      "level": "MUST",
+      "text": "With reduced motion, the sheet opens and closes with no slide. It fades in for 150 ms and fades out for 100 ms, and the scrim fades with it. The drag continues to follow the finger 1 : 1."
+    },
+    {
+      "id": "bottom-sheet/release-reduced",
+      "level": "MUST",
+      "text": "With reduced motion, the sheet has no spring. After the release, the sheet goes to its snap point immediately."
+    },
+    {
+      "id": "bottom-sheet/moment-drag-start",
+      "level": "MUST",
+      "inputs": [
+        "touch",
+        "pointer"
+      ],
+      "text": "A drag of the sheet emits the moment drag-start at the first move past the slop of 8 px. A tap emits no drag-start. After a scroll of the content in the same gesture, drag-start comes when the sheet starts to move."
+    },
+    {
+      "id": "bottom-sheet/moment-snap",
+      "level": "MUST",
+      "text": "A released sheet emits the moment snap at the contact with its snap point, not at the settle time, when the spring stops. For a move of 100 px with no start velocity, the contact is at 333 ms, and the settle time is 372 ms."
+    },
+    {
+      "id": "bottom-sheet/moment-snap-other",
+      "level": "MUST",
+      "text": "With reduced motion, the moment snap comes at the release. A change of the snap point with a key or with an action of assistive technology also emits snap at the contact."
+    },
+    {
+      "id": "bottom-sheet/moment-open-close",
+      "level": "MUST",
+      "text": "The sheet emits the moment open at the first frame of its entrance, and close at the first frame of its exit. A release that closes the sheet emits close, not snap."
+    },
+    {
+      "id": "bottom-sheet/no-direct-feedback",
+      "level": "NEVER",
+      "text": "The sheet starts a haptic or a sound directly."
+    },
+    {
+      "id": "bottom-sheet/disabled",
+      "level": "MUST",
+      "text": "A sheet has no disabled state. A disabled control in the sheet has the disabled opacity and emits no moment. The sheet tells why the action is not possible."
+    },
+    {
+      "id": "bottom-sheet/surfaces",
+      "level": "MUST",
+      "text": "The content and the actions are the same on each device class. Only the container changes with the width and the input."
+    },
+    {
+      "id": "bottom-sheet/phone",
+      "level": "MUST",
+      "classes": [
+        "phone"
+      ],
+      "text": "On a phone, the sheet is a bottom sheet at the full width of the screen, with the drag and the snap points. Its height at Full is the screen height less the top gap. On Android, the back gesture closes it."
+    },
+    {
+      "id": "bottom-sheet/tablet",
+      "level": "MUST",
+      "classes": [
+        "tablet"
+      ],
+      "text": "On a tablet in portrait, the sheet is a bottom sheet of 640 px or less at the center, with the drag. In landscape, it is a side sheet of 400 px with no drag. With a keyboard, Escape closes it."
+    },
+    {
+      "id": "bottom-sheet/desktop",
+      "level": "MUST",
+      "classes": [
+        "laptop",
+        "desktop"
+      ],
+      "text": "On a laptop or a desktop, the sheet is a side sheet of 400 px with no drag. The close button and Escape close it. The side sheet has the full height of the content area, and it scrolls by itself."
+    },
+    {
+      "id": "bottom-sheet/desktop-dialog",
+      "level": "SHOULD",
+      "classes": [
+        "laptop",
+        "desktop"
+      ],
+      "text": "On a laptop or a desktop, use a dialog for a short task."
+    },
+    {
+      "id": "bottom-sheet/side-sheet",
+      "level": "MUST",
+      "classes": [
+        "tablet",
+        "laptop",
+        "desktop"
+      ],
+      "text": "A side sheet is 400 px wide, next to the content. It has no scrim and no handle. The page behind it continues to operate."
+    },
+    {
+      "id": "bottom-sheet/side-sheet-motion",
+      "level": "MUST",
+      "classes": [
+        "tablet",
+        "laptop",
+        "desktop"
+      ],
+      "text": "A side sheet comes in from its edge in 320 ms with ease-out. It goes out in 200 ms with ease-in. With reduced motion, it fades in for 150 ms and fades out for 100 ms."
+    },
+    {
+      "id": "bottom-sheet/web",
+      "level": "MUST",
+      "text": "On the web, a window that is less than 768 px wide shows a bottom sheet. From 768 px, it shows a side sheet. The drag operates on the handle and the header."
+    },
+    {
+      "id": "bottom-sheet/web-back",
+      "level": "MUST",
+      "text": "On the web, the sheet adds a history entry. The Back button of the browser closes the sheet."
+    },
+    {
+      "id": "bottom-sheet/web-height",
+      "level": "MUST",
+      "text": "On the web, the sheet uses the height of the screen area in view, because the address bar changes its height. The page behind the sheet does not scroll."
+    },
+    {
+      "id": "bottom-sheet/tv",
+      "level": "MUST",
+      "inputs": [
+        "remote"
+      ],
+      "classes": [
+        "tv"
+      ],
+      "text": "On a TV, the sheet is a side panel from the right edge, with the full height of the safe area and no drag. Up and down move the focus in the panel, and the panel scrolls with the focus."
+    },
+    {
+      "id": "bottom-sheet/tv-close",
+      "level": "MUST",
+      "inputs": [
+        "remote"
+      ],
+      "classes": [
+        "tv"
+      ],
+      "text": "On a TV, Back closes the panel, and the focus goes back to its cause. The user can open and close the panel with only the directional pad of the remote control."
+    },
+    {
+      "id": "bottom-sheet/car",
+      "level": "MUST",
+      "classes": [
+        "car"
+      ],
+      "text": "On a car display, a list template replaces each sheet. Back goes back one template, and the rotary controller moves the focus in the list."
+    },
+    {
+      "id": "bottom-sheet/watch",
+      "level": "SHOULD",
+      "classes": [
+        "watch"
+      ],
+      "text": "On a watch, use a full-screen view, not a sheet. The view has no drag. The rotary input scrolls it, and the back gesture of the platform closes it."
+    },
+    {
+      "id": "bottom-sheet/xr",
+      "level": "MUST",
+      "classes": [
+        "xr"
+      ],
+      "text": "On an XR headset, use the sheet of the platform or a side panel in the window. It has no snap points. The panel has the height of its window or less, and it stays with its window at 1 m and at 2 m."
+    },
+    {
+      "id": "bottom-sheet/xr-close",
+      "level": "MUST",
+      "classes": [
+        "xr"
+      ],
+      "text": "On an XR headset, the close button closes the panel, and the focus goes back to its cause. The user moves the window with the window controls of the platform."
+    }
+  ]
+}

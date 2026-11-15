@@ -1,0 +1,580 @@
+{
+  "$schema": "../schemas/contract.schema.json",
+  "id": "toast",
+  "name": "Toast",
+  "status": "draft",
+  "class": "M",
+  "purpose": "A toast confirms a result that the user cannot see on the screen. It shows above the page, at the bottom edge of the window. Toasts show in a queue, with a maximum of three at the same time.",
+  "variants": [
+    {
+      "name": "info",
+      "use": "New content that comes while the user is in the product, for example a new order. It emits the moment notify."
+    },
+    {
+      "name": "success",
+      "use": "The result of an action that the user started, for example Product hidden."
+    },
+    {
+      "name": "warning",
+      "use": "A result with a condition that the user must see. No error occurred."
+    },
+    {
+      "name": "danger",
+      "use": "An action that did not complete, for example Changes not saved. It stays until the user closes it."
+    }
+  ],
+  "anatomy": [
+    {
+      "part": "region",
+      "role": "The area at the bottom edge of the window that holds the toasts and the queue"
+    },
+    {
+      "part": "container",
+      "role": "The surface of one toast: the raised fill, the overlay shadow, and the large radius"
+    },
+    {
+      "part": "disc",
+      "role": "A round disc in the soft color of the tone, at the start side. It holds the icon"
+    },
+    {
+      "part": "icon",
+      "role": "The sign of the tone, or the spinner of a loading toast. Assistive technology does not read it"
+    },
+    {
+      "part": "title",
+      "role": "The result, for example \"Product hidden\" or \"Changes not saved\""
+    },
+    {
+      "part": "text",
+      "role": "One line of detail below the title, for example the name of the product",
+      "optional": true
+    },
+    {
+      "part": "action",
+      "role": "One small outline button, for example Undo or Retry",
+      "optional": true
+    },
+    {
+      "part": "close",
+      "role": "A small ghost icon button at the end side that closes the toast",
+      "optional": true
+    }
+  ],
+  "states": [
+    "default",
+    "hover",
+    "focus",
+    "pressed",
+    "loading"
+  ],
+  "axes": [
+    "theme",
+    "density",
+    "direction",
+    "motion"
+  ],
+  "tokens": {
+    "region.offset": "space.4",
+    "container.fill": "color.role.raised",
+    "container.shadow": "shadow.overlay",
+    "container.radius": "radius.lg",
+    "title.size": "font-size.small",
+    "title.weight": "font-weight.strong",
+    "title.color": "color.role.fg-strong",
+    "text.size": "font-size.caption",
+    "text.color": "color.role.fg-2",
+    "disc.radius": "radius.full",
+    "info.disc": "color.role.accent-soft",
+    "info.icon": "color.role.accent-text",
+    "success.disc": "color.role.success-soft",
+    "success.icon": "color.role.success-text",
+    "warning.disc": "color.role.warning-soft",
+    "warning.icon": "color.role.warning-text",
+    "danger.disc": "color.role.danger-soft",
+    "danger.icon": "color.role.danger-text",
+    "loading.disc": "color.role.selected",
+    "loading.icon": "color.role.fg-2",
+    "spinner.turn": "duration.spin",
+    "spinner.easing": "easing.linear",
+    "spinner.motion.reduced": "duration.pulse",
+    "action.height": "size.control-sm",
+    "action.target": "size.target-min",
+    "action.radius": "radius.md",
+    "action.label.size": "font-size.small",
+    "action.label.color": "color.role.fg",
+    "action.border": "color.role.line",
+    "action.border.hover": "color.role.line-strong",
+    "action.fill.hover": "color.role.selected",
+    "action.press.scale": "scale.press",
+    "close.size": "size.control-sm",
+    "close.radius": "radius.md",
+    "close.target": "size.target-min",
+    "close.icon.size": "size.icon",
+    "close.icon.color": "color.role.fg",
+    "close.fill.hover": "color.role.selected",
+    "close.press.scale": "scale.press-icon",
+    "press.duration": "duration.press",
+    "press.easing": "easing.standard",
+    "color.duration": "duration.fast",
+    "disabled.opacity": "opacity.disabled",
+    "focus.width": "focus.ring-width",
+    "focus.offset": "focus.ring-offset",
+    "focus.color": "color.role.ring",
+    "timer.duration": "duration.toast",
+    "in.duration": "duration.base",
+    "in.easing": "easing.out",
+    "out.duration": "duration.fast",
+    "out.easing": "easing.in",
+    "stack.easing": "easing.in-out",
+    "reduced.in": "duration.fast",
+    "reduced.out": "duration.press"
+  },
+  "geometry": {
+    "container.width": {
+      "value": 340,
+      "unit": "px"
+    },
+    "container.padding-block": {
+      "value": 12,
+      "unit": "px"
+    },
+    "container.padding-start": {
+      "value": 14,
+      "unit": "px"
+    },
+    "container.padding-end": {
+      "value": 12,
+      "unit": "px"
+    },
+    "container.gap": {
+      "value": 12,
+      "unit": "px"
+    },
+    "text.gap": {
+      "value": 1,
+      "unit": "px"
+    },
+    "disc.size": {
+      "value": 28,
+      "unit": "px"
+    },
+    "icon.size": {
+      "value": 16,
+      "unit": "px"
+    },
+    "stack.gap": {
+      "value": 10,
+      "unit": "px"
+    },
+    "enter.distance": {
+      "value": 16,
+      "unit": "px"
+    }
+  },
+  "moments": [
+    {
+      "moment": "notify",
+      "when": "When an info toast shows. At the first frame of its entrance"
+    },
+    {
+      "moment": "success",
+      "when": "When a success toast shows, or when a loading toast changes to a success. At the first frame of the entrance or of the change"
+    },
+    {
+      "moment": "warning",
+      "when": "When a warning toast shows, or when a loading toast changes to a warning. At the first frame of the entrance or of the change"
+    },
+    {
+      "moment": "error",
+      "when": "When a danger toast shows, or when a loading toast changes to a danger toast. At the first frame of the entrance or of the change"
+    }
+  ],
+  "clauses": [
+    {
+      "id": "toast/role",
+      "level": "MUST",
+      "inputs": [
+        "screen-reader"
+      ],
+      "text": "The accessibility tree shows the area of the toasts as a region with a name, for example Notifications. Each toast is a status message. A danger toast is an alert."
+    },
+    {
+      "id": "toast/announce",
+      "level": "MUST",
+      "inputs": [
+        "screen-reader"
+      ],
+      "text": "When a toast shows, the live-region announcer speaks its title and its text one time. An info, a success, a warning, or a loading toast is polite. Its message waits until the current speech ends."
+    },
+    {
+      "id": "toast/announce-danger",
+      "level": "MUST",
+      "inputs": [
+        "screen-reader"
+      ],
+      "text": "A danger toast is assertive. Its message speaks immediately and stops the current speech. It does not stop a different assertive message."
+    },
+    {
+      "id": "toast/announce-action",
+      "level": "SHOULD",
+      "inputs": [
+        "screen-reader"
+      ],
+      "text": "When a toast has an action, write the action in the message, for example \"Product hidden. Undo is available.\""
+    },
+    {
+      "id": "toast/use",
+      "level": "SHOULD",
+      "text": "Use a toast only for a result that the user cannot see on the screen. If the screen changes and shows the result, do not show a toast."
+    },
+    {
+      "id": "toast/use-other",
+      "level": "SHOULD",
+      "text": "For a message about the page or the account, use a banner. For a message about one section or one field, use an inline alert."
+    },
+    {
+      "id": "toast/near-cause",
+      "level": "SHOULD",
+      "text": "Also show the result near its cause. A toast at the edge of the window can be out of the zoom view."
+    },
+    {
+      "id": "toast/title",
+      "level": "MUST",
+      "text": "The title tells the result, for example \"Product hidden\" or \"Changes not saved\". The title of a danger toast tells the action that did not complete. It is never only the word Error."
+    },
+    {
+      "id": "toast/wrap",
+      "level": "MUST",
+      "text": "The title and the text go onto more lines when they are long. They are never cut."
+    },
+    {
+      "id": "toast/tone-sign",
+      "level": "MUST",
+      "text": "Color is not the only sign of the tone. Each tone has its icon, and the title tells the result."
+    },
+    {
+      "id": "toast/icon",
+      "level": "MUST",
+      "text": "The info tone has the icon info, the success tone has success, the warning tone has warning, and the danger tone has error. A loading toast has the spinner."
+    },
+    {
+      "id": "toast/icon-style",
+      "level": "MUST",
+      "text": "The icon is 16 px, at the center of a round disc of 28 px. The disc has the soft color of the tone, and the icon has the text color of the tone. Assistive technology does not read the icon."
+    },
+    {
+      "id": "toast/contrast",
+      "level": "MUST",
+      "text": "In the two themes, the title and the text have a contrast of 4.5 : 1 or more on the raised fill. The icon has a contrast of 3 : 1 or more on its disc."
+    },
+    {
+      "id": "toast/surface",
+      "level": "MUST",
+      "text": "A toast has the raised fill, the overlay shadow, and the large radius: 12 px for pointer, 14 px for touch."
+    },
+    {
+      "id": "toast/padding",
+      "level": "MUST",
+      "text": "A toast has a padding of 12 px at the top, at the bottom, and at the end side. The padding at the start side is 14 px. The gap between the disc, the text, and the buttons is 12 px. The text is 1 px below the title."
+    },
+    {
+      "id": "toast/density",
+      "level": "MUST",
+      "text": "The title has the small size and the strong weight: 13 px for pointer, 14 px for touch. The text has the caption size: 12 px for pointer, 13 px for touch."
+    },
+    {
+      "id": "toast/text-color",
+      "level": "MUST",
+      "text": "The title has the strong text color. The text has the secondary text color."
+    },
+    {
+      "id": "toast/width",
+      "level": "MUST",
+      "text": "On the web, a toast is 340 px wide. On a phone, a toast is 16 px from each side of the screen."
+    },
+    {
+      "id": "toast/position",
+      "level": "MUST",
+      "classes": [
+        "laptop",
+        "desktop"
+      ],
+      "text": "On the web, on a laptop, and on a desktop, the toasts are at the bottom right corner of the window. They are 16 px from the bottom edge and from the right edge. In a window less than 768 px wide, they are 16 px above the tab bar."
+    },
+    {
+      "id": "toast/position-phone",
+      "level": "MUST",
+      "classes": [
+        "phone"
+      ],
+      "text": "On a phone, the toasts are 16 px above the tab bar. On a screen with no tab bar, they are 16 px above the bottom safe area. A toast stays in the safe area."
+    },
+    {
+      "id": "toast/position-keyboard",
+      "level": "MUST",
+      "inputs": [
+        "touch"
+      ],
+      "text": "When the on-screen keyboard is open, the toasts are 16 px above the keyboard."
+    },
+    {
+      "id": "toast/position-tablet",
+      "level": "SHOULD",
+      "classes": [
+        "tablet"
+      ],
+      "text": "On a tablet, put the toasts at the bottom right corner, as on the web."
+    },
+    {
+      "id": "toast/not-obscured",
+      "level": "NEVER",
+      "inputs": [
+        "keyboard",
+        "switch-access"
+      ],
+      "text": "A toast fully covers the control that has the focus."
+    },
+    {
+      "id": "toast/queue-max",
+      "level": "MUST",
+      "text": "A maximum of three toasts show at the same time. The newest toast is at the bottom. The older toasts are above it, with a gap of 10 px between two toasts."
+    },
+    {
+      "id": "toast/queue-full",
+      "level": "MUST",
+      "text": "When three toasts show and a new toast comes, the oldest toast that closes after a time goes out. If no toast on the screen closes after a time, the new toast waits in the queue."
+    },
+    {
+      "id": "toast/queue-order",
+      "level": "MUST",
+      "text": "The queue keeps the toasts in the sequence in which they come. The first toast in the queue shows when a different toast closes."
+    },
+    {
+      "id": "toast/no-repeat",
+      "level": "SHOULD",
+      "text": "Do not show a toast that is the same as a toast on the screen or in the queue."
+    },
+    {
+      "id": "toast/time",
+      "level": "MUST",
+      "text": "A toast with no action closes after 5 s. A toast with an action stays until the user does the action or closes the toast."
+    },
+    {
+      "id": "toast/time-danger",
+      "level": "MUST",
+      "text": "A danger toast stays until the user closes it, also when it has no action."
+    },
+    {
+      "id": "toast/pause",
+      "level": "MUST",
+      "inputs": [
+        "pointer",
+        "keyboard"
+      ],
+      "text": "The timer stops while the pointer is on the toast, and while the focus is in the toast. It continues when the pointer and the focus go away."
+    },
+    {
+      "id": "toast/loading",
+      "level": "MUST",
+      "text": "A loading toast shows the spinner in the neutral disc, and its title tells the activity, for example \"Uploading 3 photos\". It does not close after a time while the task continues."
+    },
+    {
+      "id": "toast/loading-result",
+      "level": "MUST",
+      "text": "When the task ends, the loading toast changes to the result in the same position. The timer of the result then starts."
+    },
+    {
+      "id": "toast/action",
+      "level": "MUST",
+      "text": "A toast has one action or no action. The action is a small outline button at the end side. Its label is a verb, for example Undo or Retry."
+    },
+    {
+      "id": "toast/action-press",
+      "level": "MUST",
+      "inputs": [
+        "pointer",
+        "touch",
+        "keyboard"
+      ],
+      "text": "A press on the action starts the action and closes the toast."
+    },
+    {
+      "id": "toast/close",
+      "level": "MUST",
+      "text": "A toast that stays until the user closes it has a close button at the end side. A loading toast also has a close button. The close button is a small ghost icon button."
+    },
+    {
+      "id": "toast/close-press",
+      "level": "MUST",
+      "inputs": [
+        "pointer",
+        "touch",
+        "keyboard"
+      ],
+      "text": "A press on the close button closes the toast. On a loading toast, it does not stop the task."
+    },
+    {
+      "id": "toast/close-name",
+      "level": "MUST",
+      "inputs": [
+        "screen-reader",
+        "voice"
+      ],
+      "text": "The close button has an accessible name that tells the action, for example Close. The icon is not the name."
+    },
+    {
+      "id": "toast/no-focus-move",
+      "level": "NEVER",
+      "inputs": [
+        "keyboard",
+        "screen-reader",
+        "switch-access",
+        "remote"
+      ],
+      "text": "A toast moves the focus when it shows."
+    },
+    {
+      "id": "toast/keyboard",
+      "level": "MUST",
+      "inputs": [
+        "keyboard"
+      ],
+      "text": "The action and the close button are in the focus order. Tab moves the focus to them. Enter and Space press them."
+    },
+    {
+      "id": "toast/focus",
+      "level": "MUST",
+      "inputs": [
+        "keyboard",
+        "switch-access"
+      ],
+      "text": "Keyboard focus shows the focus ring of the language on the action and on the close button. The ring is 2 px in the ring color, 2 px from the button."
+    },
+    {
+      "id": "toast/focus-return",
+      "level": "MUST",
+      "inputs": [
+        "keyboard",
+        "screen-reader",
+        "switch-access"
+      ],
+      "text": "When a toast closes while it has the focus, the focus goes back to its cause: the control that started the action. If that control is not on the screen, the focus goes to the start of the page content."
+    },
+    {
+      "id": "toast/target",
+      "level": "MUST",
+      "inputs": [
+        "pointer",
+        "touch"
+      ],
+      "text": "On each axis, the target of the action and of the close button is 24 px or more for pointer. For touch, it is 44 px or more."
+    },
+    {
+      "id": "toast/hover",
+      "level": "MUST",
+      "inputs": [
+        "pointer"
+      ],
+      "text": "Only a device with hover shows the hover state. At hover, the action gets the selected fill and a border in the strong line color. The close button gets the selected fill."
+    },
+    {
+      "id": "toast/press",
+      "level": "MUST",
+      "inputs": [
+        "pointer",
+        "touch"
+      ],
+      "text": "At pointer down, the action scales to 0.97 and the close button scales to 0.96, in 100 ms."
+    },
+    {
+      "id": "toast/disabled",
+      "level": "MUST",
+      "text": "A toast has no disabled state. A disabled action has the disabled opacity, and the text of the toast tells why the action is not possible."
+    },
+    {
+      "id": "toast/direction",
+      "level": "MUST",
+      "text": "In a right-to-left layout, the toasts are at the bottom left corner. The disc is at the right, and the action and the close button are at the left. The entrance from the bottom edge does not mirror."
+    },
+    {
+      "id": "toast/motion",
+      "level": "MUST",
+      "text": "A toast comes in from the bottom edge. It moves 16 px up and fades in, for 200 ms with ease-out. It goes out for 150 ms with ease-in. Only the opacity and the transform change."
+    },
+    {
+      "id": "toast/motion-stack",
+      "level": "MUST",
+      "text": "When a toast comes in or goes out, the other toasts move to their new positions with ease-in-out. The parts of a toast do not move during its transition."
+    },
+    {
+      "id": "toast/reduced-motion",
+      "level": "MUST",
+      "text": "With reduced motion, a toast does not move. It fades in for 150 ms and fades out for 100 ms. The other toasts go to their new positions immediately. The spinner does not turn, and it pulses its opacity."
+    },
+    {
+      "id": "toast/moment",
+      "level": "MUST",
+      "text": "A toast emits the moment of its tone at the first frame of its entrance. The moments are notify for info, success for success, warning for warning, and error for danger."
+    },
+    {
+      "id": "toast/moment-queue",
+      "level": "MUST",
+      "text": "A toast that waits in the queue emits its moment when it shows, not when it goes into the queue. Its message goes to the announcer at the same time."
+    },
+    {
+      "id": "toast/moment-loading",
+      "level": "MUST",
+      "text": "A loading toast emits no moment. When it changes to its result, it emits the moment of the result tone at the first frame of the change."
+    },
+    {
+      "id": "toast/no-open-close",
+      "level": "MUST",
+      "text": "A toast emits no open moment and no close moment."
+    },
+    {
+      "id": "toast/button-moment",
+      "level": "MUST",
+      "text": "The action and the close button emit the moment press, as each button does."
+    },
+    {
+      "id": "toast/no-direct-feedback",
+      "level": "NEVER",
+      "text": "The toast starts a haptic or a sound directly."
+    },
+    {
+      "id": "toast/tv",
+      "level": "MUST",
+      "inputs": [
+        "remote"
+      ],
+      "classes": [
+        "tv"
+      ],
+      "text": "On a TV, a toast does not take the focus. Thus it has no action and no close button, and it closes after 5 s. It stays in the safe area."
+    },
+    {
+      "id": "toast/car",
+      "level": "MUST",
+      "classes": [
+        "car"
+      ],
+      "text": "In a car, the product shows no toast. It shows a message in the template, or an alert of the platform."
+    },
+    {
+      "id": "toast/watch",
+      "level": "SHOULD",
+      "classes": [
+        "watch"
+      ],
+      "text": "On a watch, show a short confirmation of the platform with a haptic, in place of a toast."
+    },
+    {
+      "id": "toast/xr",
+      "level": "MUST",
+      "classes": [
+        "xr"
+      ],
+      "text": "On an XR headset, a toast is at the bottom of its window. It does not move with the head."
+    }
+  ]
+}

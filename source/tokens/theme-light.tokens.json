@@ -167,6 +167,23 @@
           "hex": "#7f7f7f"
         },
         "$description": "The hover fill of an icon button on a color fill, for example the close button of a banner"
+      },
+      "scrim": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.0392,
+            0.0392,
+            0.0392
+          ],
+          "alpha": 0.4,
+          "hex": "#0a0a0a"
+        },
+        "$description": "scrim: the dark layer behind a dialog and a modal sheet."
+      },
+      "line-subtle": {
+        "$value": "{color.neutral.100}",
+        "$description": "line-subtle: dividers and the grid lines of a chart, for example the separator of a menu."
       }
     },
     "switch": {

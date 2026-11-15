@@ -1,0 +1,420 @@
+{
+  "id": "tabs",
+  "name": "Tabs",
+  "status": "draft",
+  "class": "M",
+  "purpose": "Tabs change the view in one page. Each tab shows its panel. A line of 2 px moves to the tab that the user selects.",
+  "anatomy": [
+    {
+      "part": "list",
+      "role": "The container of the tabs, with a line of 1 px at its bottom edge. The list has a name, for example Storefront"
+    },
+    {
+      "part": "tab",
+      "role": "The target of one view. It has a label, and it can have a count"
+    },
+    {
+      "part": "label",
+      "role": "The name of the view, for example Products"
+    },
+    {
+      "part": "count",
+      "role": "The number of items in the view, after the label, for example 24",
+      "optional": true
+    },
+    {
+      "part": "indicator",
+      "role": "The sign of the selected tab: a line of 2 px at the bottom edge of the tab. It moves to the tab that the user selects"
+    },
+    {
+      "part": "panel",
+      "role": "The content of the selected tab. Only the panel of the selected tab shows"
+    }
+  ],
+  "states": [
+    "default",
+    "selected",
+    "hover",
+    "focus",
+    "disabled"
+  ],
+  "axes": [
+    "theme",
+    "density",
+    "direction",
+    "motion"
+  ],
+  "tokens": {
+    "list.line": "color.role.line",
+    "list.gap": "space.6",
+    "tab.height": "size.control-lg",
+    "tab.target": "size.target-min",
+    "label.size": "font-size.body",
+    "label.color": "color.role.fg-muted",
+    "label.color.hover": "color.role.fg",
+    "selected.label.color": "color.role.fg-strong",
+    "selected.label.weight": "font-weight.strong",
+    "indicator.color": "color.role.fg-strong",
+    "count.fill": "color.role.selected",
+    "count.color": "color.role.fg-2",
+    "count.size": "font-size.caption",
+    "count.weight": "font-weight.strong",
+    "count.radius": "radius.full",
+    "disabled.opacity": "opacity.disabled",
+    "focus.width": "focus.ring-width",
+    "focus.offset": "focus.ring-offset",
+    "focus.color": "color.role.ring",
+    "indicator.motion": "spring.control",
+    "indicator.motion.keyboard": "spring.quick",
+    "indicator.duration": "duration.slide",
+    "indicator.easing": "easing.out",
+    "label.duration": "duration.fast",
+    "label.easing": "easing.standard",
+    "panel.fade": "duration.fast",
+    "panel.swipe.out.easing": "easing.in",
+    "panel.swipe.in.easing": "easing.out"
+  },
+  "geometry": {
+    "list.line": {
+      "value": 1,
+      "unit": "px"
+    },
+    "tab.padding-inline": {
+      "value": 2,
+      "unit": "px"
+    },
+    "indicator.height": {
+      "value": 2,
+      "unit": "px"
+    },
+    "indicator.radius": {
+      "value": 2,
+      "unit": "px"
+    },
+    "indicator.overlap": {
+      "value": 1,
+      "unit": "px"
+    },
+    "count.gap": {
+      "value": 6,
+      "unit": "px"
+    },
+    "count.height": {
+      "value": 18,
+      "unit": "px"
+    },
+    "count.min-width": {
+      "value": 20,
+      "unit": "px"
+    },
+    "count.padding-inline": {
+      "value": 6,
+      "unit": "px"
+    },
+    "panel.swipe.distance": {
+      "value": 30,
+      "unit": "px"
+    },
+    "tv.indicator.height": {
+      "value": 4,
+      "unit": "px"
+    },
+    "tv.label.size": {
+      "value": 24,
+      "unit": "px"
+    },
+    "tv.label.line-height": {
+      "value": 32,
+      "unit": "px"
+    }
+  },
+  "moments": [
+    {
+      "moment": "select",
+      "when": "At the change of the selection, not at the end of the indicator motion"
+    }
+  ],
+  "clauses": [
+    {
+      "id": "tabs/role",
+      "level": "MUST",
+      "inputs": [
+        "screen-reader"
+      ],
+      "text": "The accessibility tree shows a tab list with its name. Each tab is a tab, with its name, its selected state, and its position, for example 1 of 3. The panel is a tab panel with the name of its tab."
+    },
+    {
+      "id": "tabs/name",
+      "level": "MUST",
+      "inputs": [
+        "screen-reader",
+        "voice"
+      ],
+      "text": "The tab list has a name, for example Storefront. Each tab has a short label that tells its view, for example Products."
+    },
+    {
+      "id": "tabs/use",
+      "level": "SHOULD",
+      "text": "Use tabs for two to six views of one page. To move through a long list, use pagination. To show the position in a flow, use steps."
+    },
+    {
+      "id": "tabs/panel",
+      "level": "MUST",
+      "inputs": [
+        "screen-reader"
+      ],
+      "text": "One tab is selected at all times, and only its panel shows. The panels of the other tabs are not in the accessibility tree."
+    },
+    {
+      "id": "tabs/keyboard",
+      "level": "MUST",
+      "inputs": [
+        "keyboard"
+      ],
+      "text": "The tab list is one tab stop. The Tab key moves the focus into the tab list, to the selected tab. The Tab key then moves the focus from the tab list into the panel."
+    },
+    {
+      "id": "tabs/arrow-keys",
+      "level": "MUST",
+      "inputs": [
+        "keyboard"
+      ],
+      "text": "The left and right arrow keys move the focus to the previous or the next tab. The selection follows the focus. The tab that gets the focus is selected, and its panel shows."
+    },
+    {
+      "id": "tabs/home-end",
+      "level": "MUST",
+      "inputs": [
+        "keyboard"
+      ],
+      "text": "Home moves the focus and the selection to the first tab. End moves the focus and the selection to the last tab."
+    },
+    {
+      "id": "tabs/panel-focus",
+      "level": "MUST",
+      "inputs": [
+        "keyboard"
+      ],
+      "text": "From the tab list, the Tab key moves the focus to the first item of the panel that can get the focus. If the panel has no item that can get the focus, the panel gets the focus."
+    },
+    {
+      "id": "tabs/target",
+      "level": "MUST",
+      "inputs": [
+        "pointer",
+        "touch"
+      ],
+      "text": "Each tab is a target with the full height of the tab. On each axis, the target is the minimum target of the density or more: 24 px for pointer, 44 px for touch. A narrow tab extends its target into the gap next to it."
+    },
+    {
+      "id": "tabs/focus",
+      "level": "MUST",
+      "inputs": [
+        "keyboard",
+        "switch-access"
+      ],
+      "text": "Keyboard focus shows the focus ring of the language on the tab: 2 px in the ring color, 2 px from the tab. A pointer press shows no ring."
+    },
+    {
+      "id": "tabs/selected-sign",
+      "level": "MUST",
+      "text": "The selected tab has the indicator: a line of 2 px in the strong text color at its bottom edge. Its label has the strong text color and the strong weight. Color is not the only sign of the state."
+    },
+    {
+      "id": "tabs/indicator",
+      "level": "MUST",
+      "text": "The indicator has the full width of the selected tab, with its count. The indicator has a radius of 2 px. It is on the bottom line of the tab list, and the line does not show below it."
+    },
+    {
+      "id": "tabs/list",
+      "level": "MUST",
+      "text": "The tab list has a line of 1 px in the line color at its bottom edge, for the full width of the list. The gap between two tabs is 24 px. Each tab has a padding of 2 px at the start side and at the end side."
+    },
+    {
+      "id": "tabs/label",
+      "level": "MUST",
+      "text": "The label of a tab that is not selected has the muted text color and the normal weight. Each label stays on one line, and no part of a label is cut."
+    },
+    {
+      "id": "tabs/density",
+      "level": "MUST",
+      "text": "A tab is 40 px high for pointer and 52 px high for touch. The label is 14 px for pointer and 16 px for touch. The text of a count is 12 px for pointer and 13 px for touch."
+    },
+    {
+      "id": "tabs/count",
+      "level": "MUST",
+      "text": "A tab can have a count after its label, for example Products 24. The count uses the number format of the locale. Its digits go from left to right in each script."
+    },
+    {
+      "id": "tabs/count-shape",
+      "level": "MUST",
+      "text": "A count is a pill 18 px high and 20 px wide or more, with a padding of 6 px at each side. It has the selected fill, the secondary text color, and the strong weight. The gap from the label to the count is 6 px."
+    },
+    {
+      "id": "tabs/count-name",
+      "level": "MUST",
+      "inputs": [
+        "screen-reader",
+        "voice"
+      ],
+      "text": "The accessible name of a tab starts with its label, and the count comes after the label, for example Products 24. When the user speaks the label, the tab is selected."
+    },
+    {
+      "id": "tabs/overflow",
+      "level": "MUST",
+      "text": "When the width of the list is too small for all of the tabs, the list scrolls on the horizontal axis. The tabs stay on one line, and they do not become smaller. This occurs with long labels, large text, or a narrow window."
+    },
+    {
+      "id": "tabs/overflow-focus",
+      "level": "MUST",
+      "inputs": [
+        "keyboard",
+        "pointer",
+        "touch"
+      ],
+      "text": "When a tab gets the focus or the selection, the list scrolls until all of the tab shows. No part of the focused tab is behind the edge of the list or behind a sticky header."
+    },
+    {
+      "id": "tabs/hover",
+      "level": "MUST",
+      "inputs": [
+        "pointer"
+      ],
+      "text": "Only a device with hover shows the hover state. At hover, the label of a tab that is not selected changes to the body text color."
+    },
+    {
+      "id": "tabs/direction",
+      "level": "MUST",
+      "text": "In a right-to-left layout, the first tab is at the right, and the next tabs are at its left. For the next tab, the indicator moves to the left. The count is at the left of its label. The scroll of the list starts at the right edge."
+    },
+    {
+      "id": "tabs/direction-keys",
+      "level": "MUST",
+      "inputs": [
+        "keyboard",
+        "remote"
+      ],
+      "text": "An arrow key moves the focus in the direction of the key, also in a right-to-left layout. Thus, in a right-to-left layout, the right arrow key moves to the previous tab. Home and End do not mirror: Home moves to the first tab."
+    },
+    {
+      "id": "tabs/motion",
+      "level": "MUST",
+      "text": "The indicator moves to the selected tab with spring-control, and its width changes to the width of that tab. Where no spring applies, the indicator moves in 280 ms with ease-out. The label color changes in 150 ms."
+    },
+    {
+      "id": "tabs/motion-keyboard",
+      "level": "MUST",
+      "inputs": [
+        "keyboard",
+        "remote"
+      ],
+      "text": "When the keyboard or a remote moves the selection, the indicator moves with spring-quick. Home and End also use spring-quick."
+    },
+    {
+      "id": "tabs/reduced-motion",
+      "level": "MUST",
+      "text": "With reduced motion, the indicator goes to the selected tab with no movement and no scale. The panel changes with a cross-fade of 150 ms. The change of color stays."
+    },
+    {
+      "id": "tabs/panel-motion",
+      "level": "MUST",
+      "text": "When the user cannot swipe the panels, the panel does not slide. The panel changes with a cross-fade of 150 ms."
+    },
+    {
+      "id": "tabs/swipe",
+      "level": "MUST",
+      "inputs": [
+        "touch"
+      ],
+      "text": "When the user can swipe the panels, the panels move on the horizontal axis. The panel that goes out moves 30 px to the start side, and its opacity goes to 0 in 90 ms with ease-in. The next panel moves 30 px from the end side in 210 ms with ease-out."
+    },
+    {
+      "id": "tabs/swipe-direction",
+      "level": "MUST",
+      "inputs": [
+        "touch"
+      ],
+      "text": "A swipe to the start side shows the next tab. In a left-to-right layout, this is a swipe to the left. In a right-to-left layout, the motion mirrors, and a swipe to the right shows the next tab. For the previous tab, the motion goes in the opposite direction."
+    },
+    {
+      "id": "tabs/moment",
+      "level": "MUST",
+      "text": "A change of the selection emits the moment select, at the change. A press on the selected tab emits no moment. A disabled tab emits no moment."
+    },
+    {
+      "id": "tabs/no-direct-feedback",
+      "level": "NEVER",
+      "text": "The tabs start a haptic or a sound directly."
+    },
+    {
+      "id": "tabs/disabled",
+      "level": "MUST",
+      "text": "A disabled tab has the disabled opacity, and the user cannot select it. Its description tells assistive technology why it is not available, for example Not available at this time."
+    },
+    {
+      "id": "tabs/disabled-focus",
+      "level": "MUST",
+      "inputs": [
+        "keyboard",
+        "screen-reader"
+      ],
+      "text": "The arrow keys also move the focus to a disabled tab, and assistive technology reads its cause. The selection, the indicator, and the panel do not change."
+    },
+    {
+      "id": "tabs/disabled-cause",
+      "level": "SHOULD",
+      "text": "The screen shows the cause of a disabled tab near the tab list."
+    },
+    {
+      "id": "tabs/tv",
+      "level": "MUST",
+      "inputs": [
+        "remote"
+      ],
+      "classes": [
+        "tv"
+      ],
+      "text": "On a TV, each tab is a focus target. Left and right on the remote move the focus and the selection. The indicator is 4 px high on the layout area."
+    },
+    {
+      "id": "tabs/tv-label",
+      "level": "SHOULD",
+      "classes": [
+        "tv"
+      ],
+      "text": "On a TV, the label of a tab is 24 px, with a line height of 32 px and the weight 500."
+    },
+    {
+      "id": "tabs/car",
+      "level": "MUST",
+      "classes": [
+        "car"
+      ],
+      "text": "On a car display, the tabs change to the tab bar template of the platform, where the platform has one."
+    },
+    {
+      "id": "tabs/watch",
+      "level": "MUST",
+      "classes": [
+        "watch"
+      ],
+      "text": "On a watch, the tabs change to a list of the views, or to pages that the user swipes."
+    },
+    {
+      "id": "tabs/foldable",
+      "level": "MUST",
+      "classes": [
+        "foldable"
+      ],
+      "text": "A change of posture keeps the selected tab and the scroll position."
+    },
+    {
+      "id": "tabs/xr",
+      "level": "MUST",
+      "classes": [
+        "xr"
+      ],
+      "text": "In an XR headset, each tab has a hit region of 60 pt or more and the hover effect of the system. The pinch selects the tab."
+    }
+  ]
+}
