@@ -1,4 +1,20 @@
 {
+  "breakpoint.lg": {
+    "type": "dimension",
+    "description": "From this width, the layout is the layout of a desktop",
+    "value": {
+      "value": 1024,
+      "unit": "px"
+    }
+  },
+  "breakpoint.md": {
+    "type": "dimension",
+    "description": "Below this width, the layout is the layout of a phone: a dialog becomes a bottom sheet",
+    "value": {
+      "value": 768,
+      "unit": "px"
+    }
+  },
   "color.amber.400": {
     "type": "color",
     "description": "The warning fill and the warning text of the dark theme",
@@ -1615,6 +1631,21 @@
     "type": "fontWeight",
     "description": "The label of the primary and the destructive button",
     "value": 500
+  },
+  "layer.dialog": {
+    "type": "number",
+    "description": "The layer of a modal: a dialog and its scrim, a modal bottom sheet",
+    "value": 60
+  },
+  "layer.popover": {
+    "type": "number",
+    "description": "The layer of a popover: the list of a select, a menu",
+    "value": 50
+  },
+  "layer.toast": {
+    "type": "number",
+    "description": "The layer of the toasts: above a dialog",
+    "value": 70
   },
   "line-height.body": {
     "type": "dimension",
