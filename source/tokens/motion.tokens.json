@@ -64,6 +64,20 @@
         "unit": "ms"
       },
       "$description": "One cycle of the opacity pulse of the spinner with reduced motion, from 1 to 0.4 and back."
+    },
+    "sheet": {
+      "$value": {
+        "value": 320,
+        "unit": "ms"
+      },
+      "$description": "dur-sheet: the entrance of a bottom sheet and of a side sheet, with ease-out. On the web, also the release of a drag."
+    },
+    "toast": {
+      "$value": {
+        "value": 5000,
+        "unit": "ms"
+      },
+      "$description": "The time that a toast with no action stays on the screen. The timer stops at hover and at focus."
     }
   },
   "easing": {
@@ -167,6 +181,34 @@
           "spring": {
             "stiffness": 1600,
             "damping": 80,
+            "mass": 1
+          }
+        }
+      }
+    },
+    "sheet": {
+      "$value": {
+        "duration": {
+          "value": 372,
+          "unit": "ms"
+        },
+        "delay": {
+          "value": 0,
+          "unit": "ms"
+        },
+        "timingFunction": [
+          0.3,
+          0.7,
+          0.2,
+          1
+        ]
+      },
+      "$description": "spring-sheet: each release of a drag, and the entrance of a modal sheet. The contact is at 333 ms. The transition value is the fallback: the settle time and ease-out.",
+      "$extensions": {
+        "dev.monorithm": {
+          "spring": {
+            "stiffness": 400,
+            "damping": 40,
             "mass": 1
           }
         }

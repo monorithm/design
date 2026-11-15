@@ -1,0 +1,634 @@
+{
+  "$schema": "../schemas/contract.schema.json",
+  "id": "menu",
+  "name": "Menu",
+  "status": "draft",
+  "class": "M",
+  "purpose": "A menu lists the actions of an item, for example the actions of a row or a card. A button opens it 4 px from the button. On a phone, the same menu opens as an action sheet from the bottom edge.",
+  "anatomy": [
+    {
+      "part": "trigger",
+      "role": "The button that opens the menu. It tells that it opens a menu, and it tells if the menu is open"
+    },
+    {
+      "part": "menu",
+      "role": "The raised surface with the items, 4 px from the trigger"
+    },
+    {
+      "part": "group",
+      "role": "Items that go together. A separator divides two groups",
+      "optional": true
+    },
+    {
+      "part": "group-label",
+      "role": "The name of a group, at its top. Example: the name of the product",
+      "optional": true
+    },
+    {
+      "part": "item",
+      "role": "One action of the menu. The full item is the target"
+    },
+    {
+      "part": "icon",
+      "role": "An icon at the start side of the label. Assistive technology does not read it",
+      "optional": true
+    },
+    {
+      "part": "label",
+      "role": "The action, as a verb. Example: Edit"
+    },
+    {
+      "part": "shortcut",
+      "role": "The key of the action, in a key cap at the end side of the item. Example: E",
+      "optional": true
+    },
+    {
+      "part": "separator",
+      "role": "A line of 1 px between two groups",
+      "optional": true
+    },
+    {
+      "part": "destructive-item",
+      "role": "An item that removes data, in the danger text color. It is the last item, after a separator. Example: Delete product",
+      "optional": true
+    },
+    {
+      "part": "action-sheet",
+      "role": "The container of the menu on a phone: a modal bottom sheet with the same items"
+    },
+    {
+      "part": "handle",
+      "role": "The sign at the top of the action sheet that the sheet moves"
+    },
+    {
+      "part": "scrim",
+      "role": "The dark layer behind the action sheet. The menu on a larger screen has no scrim"
+    }
+  ],
+  "states": [
+    "default",
+    "hover",
+    "focus",
+    "pressed",
+    "disabled"
+  ],
+  "axes": [
+    "theme",
+    "density",
+    "direction",
+    "motion"
+  ],
+  "tokens": {
+    "trigger.target": "size.target-min",
+    "menu.fill": "color.role.raised",
+    "menu.shadow": "shadow.overlay",
+    "menu.radius": "radius.lg",
+    "item.height": "size.control-md",
+    "item.target": "size.target-min",
+    "item.radius": "radius.sm",
+    "item.color": "color.role.fg",
+    "item.fill.active": "color.role.selected",
+    "item.fill.pressed": "color.role.pressed",
+    "label.size": "font-size.body",
+    "icon.size": "size.icon",
+    "icon.color": "color.role.fg-muted",
+    "shortcut.fill": "color.role.selected",
+    "shortcut.line": "color.role.line-strong",
+    "shortcut.color": "color.role.fg-2",
+    "group-label.size": "font-size.caption",
+    "group-label.color": "color.role.fg-muted",
+    "separator.color": "color.role.line-subtle",
+    "destructive.color": "color.role.danger-text",
+    "destructive.fill.active": "color.role.danger-soft",
+    "disabled.opacity": "opacity.disabled",
+    "focus.width": "focus.ring-width",
+    "focus.offset": "focus.ring-offset",
+    "focus.color": "color.role.ring",
+    "color.duration": "duration.fast",
+    "color.easing": "easing.standard",
+    "open.duration": "duration.fast",
+    "open.easing": "easing.out",
+    "open.scale": "scale.menu-in",
+    "close.duration": "duration.press",
+    "close.easing": "easing.in",
+    "sheet.fill": "color.role.raised",
+    "sheet.shadow": "shadow.overlay",
+    "sheet.radius": "radius.xl",
+    "sheet.scrim": "color.role.scrim",
+    "sheet.handle": "color.role.line-strong",
+    "sheet.item.height": "size.control-md",
+    "sheet.open.duration": "duration.sheet",
+    "sheet.open.easing": "easing.out",
+    "sheet.close.duration": "duration.base",
+    "sheet.close.easing": "easing.in",
+    "reduced.in.duration": "duration.fast",
+    "reduced.out.duration": "duration.press",
+    "tv.focus.motion": "spring.quick",
+    "tv.focus.scale": "scale.tv-focus"
+  },
+  "geometry": {
+    "menu.offset": {
+      "value": 4,
+      "unit": "px"
+    },
+    "menu.padding": {
+      "value": 4,
+      "unit": "px"
+    },
+    "menu.min-width": {
+      "value": 236,
+      "unit": "px"
+    },
+    "item.padding": {
+      "value": 8,
+      "unit": "px"
+    },
+    "icon.gap": {
+      "value": 6,
+      "unit": "px"
+    },
+    "shortcut.gap": {
+      "value": 8,
+      "unit": "px"
+    },
+    "shortcut.height": {
+      "value": 18,
+      "unit": "px"
+    },
+    "shortcut.min-width": {
+      "value": 18,
+      "unit": "px"
+    },
+    "shortcut.padding": {
+      "value": 4,
+      "unit": "px"
+    },
+    "shortcut.radius": {
+      "value": 4,
+      "unit": "px"
+    },
+    "shortcut.line": {
+      "value": 1,
+      "unit": "px"
+    },
+    "shortcut.text": {
+      "value": 10.5,
+      "unit": "px"
+    },
+    "group-label.padding-top": {
+      "value": 6,
+      "unit": "px"
+    },
+    "group-label.padding-side": {
+      "value": 8,
+      "unit": "px"
+    },
+    "group-label.padding-bottom": {
+      "value": 4,
+      "unit": "px"
+    },
+    "separator.height": {
+      "value": 1,
+      "unit": "px"
+    },
+    "separator.margin": {
+      "value": 4,
+      "unit": "px"
+    },
+    "open.offset": {
+      "value": 4,
+      "unit": "px"
+    },
+    "sheet.padding": {
+      "value": 8,
+      "unit": "px"
+    },
+    "sheet.gap": {
+      "value": 2,
+      "unit": "px"
+    },
+    "sheet.handle.width": {
+      "value": 36,
+      "unit": "px"
+    },
+    "sheet.handle.height": {
+      "value": 4,
+      "unit": "px"
+    },
+    "sheet.handle.top": {
+      "value": 8,
+      "unit": "px"
+    },
+    "sheet.handle.gap": {
+      "value": 8,
+      "unit": "px"
+    }
+  },
+  "moments": [
+    {
+      "moment": "open",
+      "when": "When the menu opens, at the first frame of its entrance. On a phone, when the action sheet opens"
+    },
+    {
+      "moment": "select",
+      "when": "When the user selects an item, before the moment close. Not when the focus moves to an item"
+    },
+    {
+      "moment": "close",
+      "when": "When the menu or the action sheet closes, with a selection or with no selection"
+    }
+  ],
+  "clauses": [
+    {
+      "id": "menu/role",
+      "level": "MUST",
+      "inputs": [
+        "screen-reader"
+      ],
+      "text": "The accessibility tree shows the trigger as a button with its name. The trigger tells that it opens a menu, and it tells if the menu is open. The menu has the menu role and the name of the trigger. Each item is a menu item, with its label as its name."
+    },
+    {
+      "id": "menu/item-name",
+      "level": "MUST",
+      "inputs": [
+        "screen-reader",
+        "voice"
+      ],
+      "text": "Assistive technology reads the label of an item and its shortcut as one item. It does not read the icon. The accessibility tree shows a group with its label as its name."
+    },
+    {
+      "id": "menu/name",
+      "level": "MUST",
+      "text": "The label of an item tells the action with a verb, for example Edit, Duplicate, or Share link. The trigger has a name, for example Product actions. A trigger with only an icon has a text name for assistive technology."
+    },
+    {
+      "id": "menu/use",
+      "level": "SHOULD",
+      "text": "Use a menu for a list of actions. To select one value from a list, use a select. To name a control, use a tooltip. For a small task with no page change, use a popover."
+    },
+    {
+      "id": "menu/trigger",
+      "level": "MUST",
+      "text": "The trigger is a button or an icon button, for example an icon button with three dots. While the menu is open, the trigger keeps its hover look."
+    },
+    {
+      "id": "menu/position",
+      "level": "MUST",
+      "text": "The menu opens 4 px below the trigger, and its start edge aligns with the start edge of the trigger. If the menu does not fit below the trigger, it opens 4 px above it."
+    },
+    {
+      "id": "menu/position-flip",
+      "level": "MUST",
+      "text": "If the menu does not fit at the start edge of the trigger, its end edge aligns with the end edge of the trigger. The menu stays inside the window."
+    },
+    {
+      "id": "menu/surface",
+      "level": "MUST",
+      "text": "The menu has the raised fill, the overlay shadow, the large radius, and a padding of 4 px. It has no scrim, and the page behind it does not become darker. It is 236 px wide or more."
+    },
+    {
+      "id": "menu/item",
+      "level": "MUST",
+      "text": "An item is as wide as the menu, with a padding of 8 px at the two sides and the small radius. The icon is at the start side, 6 px from the label. The icon has the muted text color."
+    },
+    {
+      "id": "menu/density",
+      "level": "MUST",
+      "text": "Each item has the medium height of the density: 32 px for pointer, 44 px for touch. The label is 14 px for pointer and 16 px for touch. The icon is 16 px for pointer and 20 px for touch. The radius of the menu is 12 px for pointer and 14 px for touch."
+    },
+    {
+      "id": "menu/target",
+      "level": "MUST",
+      "inputs": [
+        "pointer",
+        "touch"
+      ],
+      "text": "The full item is the target: 32 px high for pointer, 44 px for touch. The trigger has the target of a button: 24 px or more for pointer, 44 px or more for touch. A separator and a group label are not targets."
+    },
+    {
+      "id": "menu/wrap",
+      "level": "MUST",
+      "text": "A long label goes to a second line, and the item becomes higher. The menu has a minimum width only, and it becomes wider for a long label until the edge of the window."
+    },
+    {
+      "id": "menu/no-truncate",
+      "level": "NEVER",
+      "text": "A menu item truncates its label."
+    },
+    {
+      "id": "menu/shortcut",
+      "level": "MUST",
+      "text": "An item can show its shortcut at the end side, 8 px or more from the label, for example Edit with the key E. The shortcut is in a key cap. The key cap is 18 px high and 18 px wide or more, with a padding of 4 px and a radius of 4 px."
+    },
+    {
+      "id": "menu/shortcut-look",
+      "level": "MUST",
+      "text": "The key cap has the selected fill and a line of 1 px in the strong line color at its bottom edge. Its text is the mono font at 10.5 px, in the secondary text color."
+    },
+    {
+      "id": "menu/shortcut-desktop",
+      "level": "MUST",
+      "classes": [
+        "laptop",
+        "desktop"
+      ],
+      "text": "The shortcut shows only in the Desktop layout, at a width of 1024 px or more. The action sheet on a phone shows no shortcut."
+    },
+    {
+      "id": "menu/group",
+      "level": "MUST",
+      "text": "A group label names the items below it, for example the name of a product. It has the caption size and the muted text color. Its padding is 6 px at the top, 8 px at the sides, and 4 px at the bottom."
+    },
+    {
+      "id": "menu/separator",
+      "level": "MUST",
+      "inputs": [
+        "screen-reader"
+      ],
+      "text": "A separator divides two groups. It is a line of 1 px in the subtle line color, with 4 px above it and 4 px below it. It goes across the full width of the menu, to its edges. The accessibility tree shows it as a separator."
+    },
+    {
+      "id": "menu/destructive",
+      "level": "MUST",
+      "text": "The destructive item is the last item, after a separator. Its label and its icon have the danger text color. At hover and with the focus, it has the danger soft fill."
+    },
+    {
+      "id": "menu/destructive-sign",
+      "level": "MUST",
+      "text": "Color is not the only sign of a destructive item. It is the last item, it is after a separator, and its label tells the destructive action with a verb, for example Delete product."
+    },
+    {
+      "id": "menu/confirm",
+      "level": "SHOULD",
+      "text": "If the user cannot undo the action of a destructive item, open a dialog to confirm the action."
+    },
+    {
+      "id": "menu/keyboard",
+      "level": "MUST",
+      "inputs": [
+        "keyboard"
+      ],
+      "text": "Tab moves the focus to the trigger. Enter, Space, and the down arrow open the menu and move the focus to the first item. The up arrow opens the menu and moves the focus to the last item."
+    },
+    {
+      "id": "menu/arrow-keys",
+      "level": "MUST",
+      "inputs": [
+        "keyboard"
+      ],
+      "text": "In the menu, the down arrow moves the focus to the next item, and the up arrow moves it to the previous item. From the last item, the down arrow moves the focus to the first item. From the first item, the up arrow moves it to the last item."
+    },
+    {
+      "id": "menu/skip",
+      "level": "MUST",
+      "inputs": [
+        "keyboard",
+        "switch-access"
+      ],
+      "text": "A separator and a group label do not get the focus. The arrow keys move the focus over them to the next item."
+    },
+    {
+      "id": "menu/home-end",
+      "level": "MUST",
+      "inputs": [
+        "keyboard"
+      ],
+      "text": "In the menu, Home moves the focus to the first item, and End moves the focus to the last item."
+    },
+    {
+      "id": "menu/typeahead",
+      "level": "MUST",
+      "inputs": [
+        "keyboard"
+      ],
+      "text": "In the menu, typeahead moves the focus to the next item with a label that starts with the typed characters. The menu does not filter its items."
+    },
+    {
+      "id": "menu/activate",
+      "level": "MUST",
+      "inputs": [
+        "keyboard"
+      ],
+      "text": "Enter and Space start the action of the item with the focus, and close the menu. The focus then goes back to the trigger. If the action opens a dialog, the focus goes into the dialog."
+    },
+    {
+      "id": "menu/escape",
+      "level": "MUST",
+      "inputs": [
+        "keyboard"
+      ],
+      "text": "Escape closes the menu with no action, and the focus goes back to the trigger. Tab closes the menu with no action, and moves the focus to the next control after the trigger."
+    },
+    {
+      "id": "menu/focus",
+      "level": "MUST",
+      "inputs": [
+        "keyboard",
+        "switch-access"
+      ],
+      "text": "When the menu opens, the focus goes into the menu. The item with the focus has the selected fill. With the keyboard, it also shows the focus ring of the language: 2 px in the ring color, 2 px from the item."
+    },
+    {
+      "id": "menu/trigger-focus",
+      "level": "MUST",
+      "inputs": [
+        "keyboard",
+        "switch-access"
+      ],
+      "text": "Keyboard focus on the trigger shows the focus ring of a button: 2 px in the ring color, 2 px from the trigger. A pointer press shows no ring."
+    },
+    {
+      "id": "menu/pointer",
+      "level": "MUST",
+      "inputs": [
+        "pointer",
+        "touch"
+      ],
+      "text": "A press on the trigger opens the menu, and a second press closes it. A press on an item starts its action and closes the menu. A press out of the menu closes it with no action."
+    },
+    {
+      "id": "menu/hover",
+      "level": "MUST",
+      "inputs": [
+        "pointer"
+      ],
+      "text": "Only a device with hover shows the hover state. An item at hover gets the selected fill in 150 ms. With touch, an item has no hover state, and it gets the pressed fill at pointer down."
+    },
+    {
+      "id": "menu/disabled",
+      "level": "MUST",
+      "text": "A disabled item has the disabled opacity and does not start its action. The arrow keys can move the focus to it. Its description tells assistive technology why the action is not possible."
+    },
+    {
+      "id": "menu/disabled-trigger",
+      "level": "MUST",
+      "text": "A disabled trigger has the disabled opacity, and its menu does not open. It stays in the focus order, and its description tells why the actions are not available."
+    },
+    {
+      "id": "menu/action-sheet",
+      "level": "MUST",
+      "inputs": [
+        "touch"
+      ],
+      "classes": [
+        "phone"
+      ],
+      "text": "On a phone, the menu opens as an action sheet: a modal bottom sheet from the bottom edge. On the web at a width of less than 768 px, the menu also opens as an action sheet."
+    },
+    {
+      "id": "menu/action-sheet-items",
+      "level": "MUST",
+      "classes": [
+        "phone"
+      ],
+      "text": "The action sheet has the same items, in the same order, with the same labels and icons. The destructive item stays last, after a separator."
+    },
+    {
+      "id": "menu/action-sheet-look",
+      "level": "MUST",
+      "classes": [
+        "phone"
+      ],
+      "text": "The action sheet has the raised fill, the overlay shadow, and a radius of 16 px at the top corners. Its handle is 36 px wide and 4 px high, in the strong line color, 8 px from the top edge."
+    },
+    {
+      "id": "menu/action-sheet-rows",
+      "level": "MUST",
+      "inputs": [
+        "touch"
+      ],
+      "classes": [
+        "phone"
+      ],
+      "text": "Each item of the action sheet is 44 px high, with a gap of 2 px. The sheet has a padding of 8 px. The last item is above the bottom safe area, for example 34 px."
+    },
+    {
+      "id": "menu/action-sheet-role",
+      "level": "MUST",
+      "inputs": [
+        "screen-reader"
+      ],
+      "classes": [
+        "phone"
+      ],
+      "text": "The accessibility tree shows the action sheet as a modal dialog, with the name of the menu. The focus goes into the sheet and stays inside it. When the sheet closes, the focus goes back to the trigger."
+    },
+    {
+      "id": "menu/action-sheet-close",
+      "level": "MUST",
+      "inputs": [
+        "touch",
+        "keyboard"
+      ],
+      "classes": [
+        "phone"
+      ],
+      "text": "The scrim is behind the action sheet. A tap on an item starts its action and closes the sheet. A tap on the scrim, a drag down, the back gesture of the system, and Escape close the sheet with no action."
+    },
+    {
+      "id": "menu/action-sheet-motion",
+      "level": "MUST",
+      "classes": [
+        "phone"
+      ],
+      "text": "The action sheet comes up from the bottom edge in 320 ms with ease-out. It goes down in 200 ms with ease-in. With reduced motion, it has no slide. It fades in for 150 ms and fades out for 100 ms."
+    },
+    {
+      "id": "menu/tablet",
+      "level": "MUST",
+      "inputs": [
+        "touch"
+      ],
+      "classes": [
+        "tablet"
+      ],
+      "text": "On a tablet, the menu opens 4 px from its trigger, not as an action sheet. Its items have the touch density: 44 px high."
+    },
+    {
+      "id": "menu/direction",
+      "level": "MUST",
+      "text": "In a right-to-left layout, the start side is the right side. The icon is at the right of the label, and the shortcut is at the left. The menu aligns with the right edge of the trigger and opens from its right corner."
+    },
+    {
+      "id": "menu/direction-motion",
+      "level": "MUST",
+      "text": "In a right-to-left layout, the 4 px offset of the entrance stays vertical. The action sheet comes up from the bottom edge in each reading direction."
+    },
+    {
+      "id": "menu/motion",
+      "level": "MUST",
+      "text": "The menu opens from the corner of the trigger. It starts 4 px nearer to the trigger at scale 0.98, and it moves into place and fades in for 150 ms with ease-out. It fades out for 100 ms with ease-in."
+    },
+    {
+      "id": "menu/motion-reduced",
+      "level": "MUST",
+      "text": "With reduced motion, the menu has no move and no scale. It fades in for 150 ms and fades out for 100 ms. The change of color stays."
+    },
+    {
+      "id": "menu/moment",
+      "level": "MUST",
+      "text": "The menu or the action sheet emits the moment open when it opens, and close when it closes. A selected item emits the moment select before close. A move of the focus emits no moment."
+    },
+    {
+      "id": "menu/moment-trigger",
+      "level": "MUST",
+      "text": "A press on the trigger emits only the moment open, not the moment press. A disabled trigger and a disabled item emit no moment."
+    },
+    {
+      "id": "menu/no-direct-feedback",
+      "level": "NEVER",
+      "text": "The menu starts a haptic or a sound directly."
+    },
+    {
+      "id": "menu/surfaces",
+      "level": "MUST",
+      "text": "The items, their order, their labels, and their actions stay the same on each device class. Only the container, the input, and the place change."
+    },
+    {
+      "id": "menu/tv",
+      "level": "MUST",
+      "inputs": [
+        "remote"
+      ],
+      "classes": [
+        "tv"
+      ],
+      "text": "On a TV, the menu opens as a side panel from the right edge, not as a popover. The directional pad moves the focus. Back closes the panel, and the focus goes back to the trigger."
+    },
+    {
+      "id": "menu/tv-focus",
+      "level": "MUST",
+      "inputs": [
+        "remote"
+      ],
+      "classes": [
+        "tv"
+      ],
+      "text": "On a TV, the item with the focus grows to scale 1.06 with spring-quick and gets the ring. With reduced motion, the scale stays at 1."
+    },
+    {
+      "id": "menu/car",
+      "level": "MUST",
+      "classes": [
+        "car"
+      ],
+      "text": "On a car display, the menu is a list template of the platform."
+    },
+    {
+      "id": "menu/watch",
+      "level": "SHOULD",
+      "classes": [
+        "watch"
+      ],
+      "text": "On a watch, the menu is a full-screen list in one column, and the rotary input scrolls it. Each target is 48 dp or more on Wear OS."
+    },
+    {
+      "id": "menu/xr",
+      "level": "MUST",
+      "classes": [
+        "xr"
+      ],
+      "text": "On an XR headset, the menu opens next to its trigger, inside the window. The system hover shows on each item. Each target is 60 pt or more on visionOS, with a margin of 16 pt or more."
+    }
+  ]
+}

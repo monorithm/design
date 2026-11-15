@@ -1,0 +1,445 @@
+{
+  "id": "tab-bar",
+  "name": "Tab bar",
+  "status": "draft",
+  "class": "M",
+  "purpose": "A tab bar is the primary navigation of a phone. It stays at the bottom of each primary screen and shows three to five destinations, each with an icon and a label.",
+  "anatomy": [
+    {
+      "part": "bar",
+      "role": "The container of the destinations at the bottom of the screen. It is a navigation landmark with a name, for example Main"
+    },
+    {
+      "part": "destination",
+      "role": "The target of one destination. All destinations have the same width"
+    },
+    {
+      "part": "icon",
+      "role": "The sign of the destination, above the label. Assistive technology does not read it"
+    },
+    {
+      "part": "label",
+      "role": "The name of the destination, for example Orders. It always shows"
+    },
+    {
+      "part": "primary-mark",
+      "role": "The primary fill behind the icon of the destination with more weight, for example Create",
+      "optional": true
+    },
+    {
+      "part": "count",
+      "role": "The number of new items, at the top of the icon on the end side, for example 12",
+      "optional": true
+    },
+    {
+      "part": "dot",
+      "role": "The sign of new items when no count applies",
+      "optional": true
+    },
+    {
+      "part": "safe-area",
+      "role": "The space below the destinations for the bottom safe area of the device. The fill of the bar continues in it"
+    }
+  ],
+  "states": [
+    "default",
+    "selected",
+    "hover",
+    "focus",
+    "pressed",
+    "disabled"
+  ],
+  "axes": [
+    "theme",
+    "density",
+    "direction",
+    "motion"
+  ],
+  "tokens": {
+    "bar.height": "size.tab-bar",
+    "bar.fill": "color.role.bg",
+    "bar.line": "color.role.line-subtle",
+    "destination.target": "size.target-min",
+    "icon.size": "size.icon-nav",
+    "icon.color": "color.role.fg-2",
+    "label.color": "color.role.fg-2",
+    "label.size": "font-size.tab-label",
+    "hover.color": "color.role.fg-strong",
+    "selected.icon.color": "color.role.fg-strong",
+    "selected.label.color": "color.role.fg-strong",
+    "selected.label.weight": "font-weight.strong",
+    "primary-mark.fill": "color.role.primary",
+    "primary-mark.radius": "radius.md",
+    "primary-mark.icon.color": "color.role.primary-fg",
+    "primary-mark.icon.size": "size.icon",
+    "count.fill": "color.role.accent",
+    "count.color": "color.role.accent-fg",
+    "count.size": "font-size.tab-label",
+    "count.weight": "font-weight.strong",
+    "count.radius": "radius.full",
+    "count.ring": "color.role.bg",
+    "dot.fill": "color.role.accent",
+    "dot.radius": "radius.full",
+    "dot.ring": "color.role.bg",
+    "disabled.opacity": "opacity.disabled",
+    "focus.width": "focus.ring-width",
+    "focus.offset": "focus.ring-offset",
+    "focus.color": "color.role.ring",
+    "press.scale": "scale.press",
+    "press.duration": "duration.press",
+    "press.easing": "easing.standard",
+    "color.duration": "duration.fast",
+    "color.easing": "easing.standard",
+    "content.fade": "duration.fast"
+  },
+  "geometry": {
+    "bar.line": {
+      "value": 1,
+      "unit": "px"
+    },
+    "safe-area.home-indicator": {
+      "value": 34,
+      "unit": "px"
+    },
+    "destination.gap": {
+      "value": 3,
+      "unit": "px"
+    },
+    "icon.stroke": {
+      "value": 1.75,
+      "unit": "px"
+    },
+    "primary-mark.width": {
+      "value": 38,
+      "unit": "px"
+    },
+    "primary-mark.height": {
+      "value": 28,
+      "unit": "px"
+    },
+    "count.min-height": {
+      "value": 17,
+      "unit": "px"
+    },
+    "count.min-width": {
+      "value": 17,
+      "unit": "px"
+    },
+    "count.padding-inline": {
+      "value": 4,
+      "unit": "px"
+    },
+    "count.offset-top": {
+      "value": 5,
+      "unit": "px"
+    },
+    "count.offset-inline": {
+      "value": 6,
+      "unit": "px"
+    },
+    "count.ring": {
+      "value": 2,
+      "unit": "px"
+    },
+    "dot.size": {
+      "value": 8,
+      "unit": "px"
+    },
+    "dot.ring": {
+      "value": 2,
+      "unit": "px"
+    }
+  },
+  "moments": [
+    {
+      "moment": "select",
+      "when": "When the user selects a destination that is not the current destination, at the start of the change. Not at the end of the motion"
+    }
+  ],
+  "clauses": [
+    {
+      "id": "tab-bar/role",
+      "level": "MUST",
+      "inputs": [
+        "screen-reader"
+      ],
+      "text": "The accessibility tree shows the tab bar as a navigation landmark with its name. Each destination is a link, or a tab bar item of the platform, with its label as its name."
+    },
+    {
+      "id": "tab-bar/name",
+      "level": "MUST",
+      "inputs": [
+        "screen-reader",
+        "voice"
+      ],
+      "text": "The landmark has a name, for example Main. The name of each destination starts with the label that the user sees, for example Orders."
+    },
+    {
+      "id": "tab-bar/current",
+      "level": "MUST",
+      "inputs": [
+        "screen-reader"
+      ],
+      "text": "The current destination tells assistive technology that it is the current page. The screen reader reads it as current."
+    },
+    {
+      "id": "tab-bar/count",
+      "level": "MUST",
+      "text": "A tab bar has three to five destinations. On a primary screen, one destination is the current destination."
+    },
+    {
+      "id": "tab-bar/sequence",
+      "level": "SHOULD",
+      "text": "Keep the same destinations in the same sequence on each screen and on each device class. Only the container of the navigation changes."
+    },
+    {
+      "id": "tab-bar/label",
+      "level": "MUST",
+      "text": "Each destination shows its icon and its label at all times. The labels also show on the destinations that are not current."
+    },
+    {
+      "id": "tab-bar/label-wrap",
+      "level": "MUST",
+      "text": "A long label, for example a translation, wraps. The tab bar never cuts a label."
+    },
+    {
+      "id": "tab-bar/height",
+      "level": "MUST",
+      "text": "The bar is 56 px high, and the bottom safe area of the device adds to this height. On a phone with a home indicator, the bottom safe area is 34 px."
+    },
+    {
+      "id": "tab-bar/safe-area",
+      "level": "MUST",
+      "text": "The destinations stay above the bottom safe area. The fill of the bar continues to the bottom edge of the screen, behind the home indicator."
+    },
+    {
+      "id": "tab-bar/bar",
+      "level": "MUST",
+      "text": "The bar has the background fill and a line of 1 px in the subtle line color at its top edge."
+    },
+    {
+      "id": "tab-bar/layout",
+      "level": "MUST",
+      "text": "The destinations have the same width and fill the width of the bar. In each destination, the icon is above the label, at the center, with a gap of 3 px."
+    },
+    {
+      "id": "tab-bar/icon",
+      "level": "MUST",
+      "text": "The icon is 24 px, with a stroke of 1.75 px. It has the color of its label. Assistive technology does not read the icon."
+    },
+    {
+      "id": "tab-bar/target",
+      "level": "MUST",
+      "inputs": [
+        "pointer",
+        "touch"
+      ],
+      "text": "Each destination is a target with the full height of the bar. On each axis, the target is the minimum target of the density or more: 24 px for pointer, 44 px for touch."
+    },
+    {
+      "id": "tab-bar/density",
+      "level": "MUST",
+      "text": "The phone layout uses the touch density. The bar height of 56 px, the icon of 24 px, and the label of 11 px do not change with the density."
+    },
+    {
+      "id": "tab-bar/color",
+      "level": "MUST",
+      "text": "A destination that is not current has the secondary text color on its icon and its label."
+    },
+    {
+      "id": "tab-bar/selected-sign",
+      "level": "MUST",
+      "text": "The current destination has the strong text color on its icon and its label, and its label has the strong weight. The icon is not filled. Color is not the only sign of the state."
+    },
+    {
+      "id": "tab-bar/primary-destination",
+      "level": "MUST",
+      "text": "One destination can have more weight, for example Create. Its icon is on the primary fill, in a shape of 38 by 28 px. It keeps its label, and it is not a floating button."
+    },
+    {
+      "id": "tab-bar/count-badge",
+      "level": "MUST",
+      "text": "A count shows the number of new items at the top of the icon, on the end side. It has the accent fill, the accent foreground text, a full radius, and a height of 17 px or more."
+    },
+    {
+      "id": "tab-bar/count-position",
+      "level": "MUST",
+      "text": "The count is 5 px from the top edge of the destination. Its start edge is 6 px from the center of the icon, on the end side. A ring of 2 px in the background color goes around it."
+    },
+    {
+      "id": "tab-bar/count-name",
+      "level": "MUST",
+      "inputs": [
+        "screen-reader",
+        "voice"
+      ],
+      "text": "A destination with a count has the label and the count in its name, for example Orders, 12 new."
+    },
+    {
+      "id": "tab-bar/dot",
+      "level": "MUST",
+      "text": "When new items wait and no count applies, a dot of 8 px shows at the top of the icon, on the end side. The dot has the accent color. The name of the destination also tells that new items wait."
+    },
+    {
+      "id": "tab-bar/keyboard",
+      "level": "MUST",
+      "inputs": [
+        "keyboard"
+      ],
+      "text": "With a hardware keyboard, for example on a tablet, Tab and Shift+Tab move the focus to each destination in the visual sequence. Enter opens the focused destination."
+    },
+    {
+      "id": "tab-bar/focus",
+      "level": "MUST",
+      "inputs": [
+        "keyboard",
+        "switch-access"
+      ],
+      "text": "With a hardware keyboard, switch access, or full keyboard access, the focus ring shows on the destination. On the web, the ring is 2 px in the ring color, 2 px from the destination. A touch shows no ring."
+    },
+    {
+      "id": "tab-bar/not-obscured",
+      "level": "SHOULD",
+      "inputs": [
+        "keyboard"
+      ],
+      "text": "The tab bar never covers all of a focused item of the content. The screen scrolls the focused item to a position above the tab bar."
+    },
+    {
+      "id": "tab-bar/hover",
+      "level": "MUST",
+      "inputs": [
+        "pointer"
+      ],
+      "text": "Only a device with hover shows the hover state. At hover, the icon and the label change from the secondary text color to the strong text color."
+    },
+    {
+      "id": "tab-bar/press",
+      "level": "MUST",
+      "inputs": [
+        "pointer",
+        "touch"
+      ],
+      "text": "At pointer down, the destination scales to 0.97 in 100 ms. At the release, it goes back to its size."
+    },
+    {
+      "id": "tab-bar/reselect",
+      "level": "SHOULD",
+      "text": "A press on the current destination does not change the destination. It shows the first level of the destination again, at the top of its content."
+    },
+    {
+      "id": "tab-bar/direction",
+      "level": "MUST",
+      "text": "In a right-to-left layout, the first destination is at the right, and the sequence mirrors. The count and the dot are at the top left of the icon."
+    },
+    {
+      "id": "tab-bar/direction-icons",
+      "level": "MUST",
+      "text": "In a right-to-left layout, an icon that points forward or back mirrors. An icon of a real object keeps its form."
+    },
+    {
+      "id": "tab-bar/direction-focus",
+      "level": "MUST",
+      "inputs": [
+        "keyboard"
+      ],
+      "text": "In a right-to-left layout, the focus follows the visual sequence. Tab moves the focus from the first destination at the right to the next destination at its left."
+    },
+    {
+      "id": "tab-bar/text-size",
+      "level": "MUST",
+      "text": "The label grows with the text size of the system to 130%, and then it stops. Where the platform has a large content viewer, a long press on a destination shows it."
+    },
+    {
+      "id": "tab-bar/motion",
+      "level": "MUST",
+      "text": "When the current destination changes, the color and the weight change in 150 ms. The content of the new destination does not slide. It changes with a cross-fade of 150 ms."
+    },
+    {
+      "id": "tab-bar/reduced-motion",
+      "level": "MUST",
+      "text": "With reduced motion, the press has no scale, and a fade replaces each movement. The change of color stays."
+    },
+    {
+      "id": "tab-bar/moment",
+      "level": "MUST",
+      "text": "A change of the current destination emits the moment select, at the start of the change. A press on the current destination emits no moment select. A disabled destination emits no moment."
+    },
+    {
+      "id": "tab-bar/no-direct-feedback",
+      "level": "NEVER",
+      "text": "The tab bar starts a haptic or a sound directly."
+    },
+    {
+      "id": "tab-bar/disabled",
+      "level": "MUST",
+      "text": "A disabled destination has the disabled opacity, and a press on it opens no screen. Its description tells assistive technology why the destination is not available."
+    },
+    {
+      "id": "tab-bar/disabled-cause",
+      "level": "SHOULD",
+      "text": "The screen shows the cause of a disabled destination near the tab bar."
+    },
+    {
+      "id": "tab-bar/primary-screens",
+      "level": "SHOULD",
+      "text": "Keep the tab bar on all primary screens. A detail screen shows the app bar with Back, and it does not show the tab bar."
+    },
+    {
+      "id": "tab-bar/toast",
+      "level": "SHOULD",
+      "classes": [
+        "phone"
+      ],
+      "text": "On a phone, show a toast above the tab bar."
+    },
+    {
+      "id": "tab-bar/layouts",
+      "level": "MUST",
+      "text": "The tab bar shows only in the phone layout, in a window with a width of 320 to 767 px. From 768 px, a rail of 72 px with the same destinations replaces it. From 1024 px, the sidebar replaces it."
+    },
+    {
+      "id": "tab-bar/foldable",
+      "level": "SHOULD",
+      "classes": [
+        "foldable"
+      ],
+      "text": "On a folded foldable, show the tab bar of the phone. A change of posture keeps the current destination and the scroll position."
+    },
+    {
+      "id": "tab-bar/tv",
+      "level": "MUST",
+      "inputs": [
+        "remote"
+      ],
+      "classes": [
+        "tv"
+      ],
+      "text": "On a TV, the product shows no bottom tab bar. A top tab bar of 2 to 6 destinations, or a side navigation that opens on focus, replaces it."
+    },
+    {
+      "id": "tab-bar/car",
+      "level": "MUST",
+      "classes": [
+        "car"
+      ],
+      "text": "On a car display, the tab bar template of the platform replaces the tab bar. The car draws it."
+    },
+    {
+      "id": "tab-bar/watch",
+      "level": "MUST",
+      "classes": [
+        "watch"
+      ],
+      "text": "On a watch, the product shows no tab bar. A list of destinations replaces it, with one level at a time."
+    },
+    {
+      "id": "tab-bar/xr",
+      "level": "MUST",
+      "classes": [
+        "xr"
+      ],
+      "text": "In an XR headset, the tab bar goes outside the window, at its leading edge, in the form of the platform. Each target is 60 pt or more."
+    }
+  ]
+}

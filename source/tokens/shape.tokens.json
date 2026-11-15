@@ -14,6 +14,13 @@
         "unit": "px"
       },
       "$description": "r-sm: badges, segments, rows, and the options of a list."
+    },
+    "xl": {
+      "$value": {
+        "value": 16,
+        "unit": "px"
+      },
+      "$description": "r-xl: the top corners of a bottom sheet, and the cards of a phone. 16 px in the two densities."
     }
   },
   "opacity": {
@@ -106,6 +113,10 @@
     "tv-focus": {
       "$value": 1.06,
       "$description": "An item that has the focus on a TV, for example a field or a select."
+    },
+    "dialog-in": {
+      "$value": 0.96,
+      "$description": "A dialog at the start of its entrance and at the end of its exit. The scale starts at the center of the dialog."
     }
   },
   "size": {
@@ -137,6 +148,79 @@
         "unit": "px"
       },
       "$description": "The largest avatar."
+    },
+    "sheet-handle-width": {
+      "$value": {
+        "value": 36,
+        "unit": "px"
+      },
+      "$description": "sheet-handle-w: the width of the bar of the handle of a bottom sheet."
+    },
+    "sheet-handle-height": {
+      "$value": {
+        "value": 4,
+        "unit": "px"
+      },
+      "$description": "sheet-handle-h: the height of the bar of the handle of a bottom sheet."
+    },
+    "sheet-gap": {
+      "$value": {
+        "value": 16,
+        "unit": "px"
+      },
+      "$description": "sheet-gap: the top gap of a bottom sheet at Full, below the top safe area."
+    },
+    "sheet-peek": {
+      "$value": {
+        "value": 140,
+        "unit": "px"
+      },
+      "$description": "sheet-peek: the height of a persistent sheet at Peek. It shows the header and one row."
+    },
+    "sheet-max-width": {
+      "$value": {
+        "value": 640,
+        "unit": "px"
+      },
+      "$description": "sheet-max-w: the maximum width of a bottom sheet, for example on a tablet in portrait."
+    },
+    "sheet-side-width": {
+      "$value": {
+        "value": 400,
+        "unit": "px"
+      },
+      "$description": "sheet-side-w: the width of a side sheet on a tablet in landscape, a desktop, and a wide web page."
+    },
+    "tab-bar": {
+      "$value": {
+        "value": 56,
+        "unit": "px"
+      },
+      "$description": "The height of the tab bar, with no safe area. The bottom safe area of the device adds to it."
+    },
+    "icon-nav": {
+      "$value": {
+        "value": 24,
+        "unit": "px"
+      },
+      "$description": "icon-nav: the icon in the tab bar, the navigation rail, the app bars, and the controls on media."
+    }
+  },
+  "ratio": {
+    "$type": "number",
+    "sheet-half": {
+      "$value": 0.5,
+      "$description": "sheet-half: the height of a bottom sheet at Half, as a part of the screen height. The sheet opens here."
+    }
+  },
+  "font-size": {
+    "$type": "dimension",
+    "tab-label": {
+      "$value": {
+        "value": 11,
+        "unit": "px"
+      },
+      "$description": "The label of a destination in the tab bar, and the count on its icon. It does not change with the density."
     }
   }
 }

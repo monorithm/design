@@ -1,0 +1,598 @@
+{
+  "id": "text-field",
+  "name": "Text field",
+  "status": "draft",
+  "class": "M",
+  "purpose": "A text field collects one value that the user types. It has a label, an input, and one line of help. The error replaces the help when the system refuses the value.",
+  "variants": [
+    {
+      "name": "single-line",
+      "use": "One line of text, for example a name, an amount, or a search. The default."
+    },
+    {
+      "name": "multi-line",
+      "use": "A long text, for example a description. The user can make the input higher."
+    }
+  ],
+  "anatomy": [
+    {
+      "part": "field",
+      "role": "The group of the label, the input, and the help text, the warning, or the error"
+    },
+    {
+      "part": "label",
+      "role": "The name of the field, above the input. It shows at all times"
+    },
+    {
+      "part": "optional-mark",
+      "role": "The word optional after the label of an optional field",
+      "optional": true
+    },
+    {
+      "part": "input",
+      "role": "The target: the border, the fill, and the value"
+    },
+    {
+      "part": "placeholder",
+      "role": "A sample value in the empty input. It is not the label",
+      "optional": true
+    },
+    {
+      "part": "add-on",
+      "role": "A leading icon, a prefix, or a keyboard hint, inside the border of the input",
+      "optional": true
+    },
+    {
+      "part": "help",
+      "role": "One line of help text below the input. It is the description of the input",
+      "optional": true
+    },
+    {
+      "part": "error",
+      "role": "An icon and the error text. In the error state, it replaces the help text",
+      "optional": true
+    },
+    {
+      "part": "warning",
+      "role": "An icon and the warning text. It replaces the help text, and the value stays valid",
+      "optional": true
+    },
+    {
+      "part": "counter",
+      "role": "The count and the limit of a multi-line field, at the end of the label row",
+      "optional": true
+    }
+  ],
+  "states": [
+    "default",
+    "hover",
+    "focus",
+    "disabled",
+    "error"
+  ],
+  "axes": [
+    "theme",
+    "density",
+    "direction",
+    "motion"
+  ],
+  "tokens": {
+    "input.height": "size.control-md",
+    "input.target": "size.target-min",
+    "input.radius": "radius.md",
+    "input.fill": "color.role.surface",
+    "input.border": "color.role.field-line",
+    "input.border.hover": "color.role.fg-muted",
+    "input.text.color": "color.role.fg",
+    "input.text.size": "font-size.body",
+    "placeholder.color": "color.role.fg-muted",
+    "label.color": "color.role.fg-2",
+    "label.size": "font-size.small",
+    "label.weight": "font-weight.strong",
+    "optional-mark.color": "color.role.fg-muted",
+    "help.color": "color.role.fg-muted",
+    "help.size": "font-size.small",
+    "counter.color": "color.role.fg-muted",
+    "counter.size": "font-size.small",
+    "add-on.color": "color.role.fg-muted",
+    "add-on.icon.size": "size.icon",
+    "prefix.separator": "color.role.line",
+    "hint.fill": "color.role.selected",
+    "hint.color": "color.role.fg-2",
+    "hint.edge": "color.role.line-strong",
+    "focus.border": "color.role.ring",
+    "focus.ring": "color.role.accent-soft",
+    "focus.ring.width": "focus.field-ring-width",
+    "error.color": "color.role.danger-text",
+    "error.size": "font-size.small",
+    "invalid.border": "color.role.danger",
+    "invalid.focus.ring": "color.role.danger-soft",
+    "warning.color": "color.role.warning-text",
+    "warning.size": "font-size.small",
+    "disabled.opacity": "opacity.disabled",
+    "disabled.fill": "color.role.bg",
+    "color.duration": "duration.fast",
+    "color.easing": "easing.standard",
+    "error.fade": "duration.fast",
+    "form.field-gap": "space.field-gap",
+    "tv.focus.scale": "scale.tv-focus",
+    "tv.focus.motion": "spring.quick"
+  },
+  "geometry": {
+    "input.border": {
+      "value": 1,
+      "unit": "px"
+    },
+    "input.padding-inline": {
+      "value": 12,
+      "unit": "px"
+    },
+    "label.gap": {
+      "value": 6,
+      "unit": "px"
+    },
+    "error.icon": {
+      "value": 14,
+      "unit": "px"
+    },
+    "error.icon-gap": {
+      "value": 6,
+      "unit": "px"
+    },
+    "prefix.separator": {
+      "value": 1,
+      "unit": "px"
+    },
+    "hint.height": {
+      "value": 20,
+      "unit": "px"
+    },
+    "hint.radius": {
+      "value": 5,
+      "unit": "px"
+    },
+    "multi-line.min-height": {
+      "value": 96,
+      "unit": "px"
+    },
+    "multi-line.padding-block": {
+      "value": 8,
+      "unit": "px"
+    },
+    "multi-line.line-height": {
+      "value": 1.45,
+      "of": "font-size.body"
+    },
+    "form.max-width": {
+      "value": 560,
+      "unit": "px"
+    }
+  },
+  "moments": [
+    {
+      "moment": "error",
+      "when": "In the frame in which the error shows. That is after the user moves away from the field or sends the form, and the system refuses the value. Never at each key"
+    },
+    {
+      "moment": "warning",
+      "when": "In the frame in which the warning text shows, at the validation of the field. The value is valid, but the user must see a condition. Never at each key"
+    },
+    {
+      "moment": "success",
+      "when": "When the value saves. In a form, the form emits one success when it saves, and its fields emit none"
+    }
+  ],
+  "clauses": [
+    {
+      "id": "text-field/role",
+      "level": "MUST",
+      "inputs": [
+        "screen-reader"
+      ],
+      "text": "The accessibility tree shows the input as a text field, with the label as its name. It also shows the disabled, the read-only, the necessary, and the invalid states."
+    },
+    {
+      "id": "text-field/name",
+      "level": "MUST",
+      "inputs": [
+        "screen-reader",
+        "voice"
+      ],
+      "text": "Each input has a label that the user can see. The accessible name starts with the label. Thus a voice user can speak the label to go to the field."
+    },
+    {
+      "id": "text-field/label",
+      "level": "MUST",
+      "text": "The label is above the input at all times. It does not go into the input, and it does not go away when the user types."
+    },
+    {
+      "id": "text-field/placeholder",
+      "level": "NEVER",
+      "text": "The placeholder is the only label of the field."
+    },
+    {
+      "id": "text-field/help",
+      "level": "MUST",
+      "inputs": [
+        "screen-reader"
+      ],
+      "text": "The help text is one line below the input. It is the description of the input. Thus assistive technology reads it as a part of the input."
+    },
+    {
+      "id": "text-field/help-text",
+      "level": "SHOULD",
+      "text": "Write help text that gives the value to write in the field. Do not write the name of the field again."
+    },
+    {
+      "id": "text-field/optional",
+      "level": "MUST",
+      "text": "The label of an optional field ends with the word optional, in the regular weight and the muted text color. Example: Delivery instructions (optional)."
+    },
+    {
+      "id": "text-field/necessary-mark",
+      "level": "NEVER",
+      "text": "The label of a necessary field has a mark, for example an asterisk."
+    },
+    {
+      "id": "text-field/spacing",
+      "level": "MUST",
+      "text": "The gap between the label and the input is 6 px. The gap between the input and the help text or the error is also 6 px."
+    },
+    {
+      "id": "text-field/keyboard",
+      "level": "MUST",
+      "inputs": [
+        "keyboard"
+      ],
+      "text": "Tab moves the focus to the input, and Shift and Tab move it back. The tab order is the visual order of the fields."
+    },
+    {
+      "id": "text-field/target",
+      "level": "MUST",
+      "inputs": [
+        "pointer",
+        "touch"
+      ],
+      "text": "The input is the target. In the touch density, it is 44 px high or more. A press on the label also moves the focus to the input."
+    },
+    {
+      "id": "text-field/density",
+      "level": "MUST",
+      "text": "The input is 32 px high for pointer and 44 px high for touch. The text in the input is 14 px for pointer and 16 px for touch."
+    },
+    {
+      "id": "text-field/no-zoom",
+      "level": "NEVER",
+      "inputs": [
+        "touch"
+      ],
+      "text": "The text in an input of the touch density is smaller than 16 px. A smaller text makes the phone zoom the page."
+    },
+    {
+      "id": "text-field/border",
+      "level": "MUST",
+      "text": "The input has a border of 1 px in the field line color. The border has a contrast of 3 : 1 or more with the fill and with the background."
+    },
+    {
+      "id": "text-field/hover",
+      "level": "MUST",
+      "inputs": [
+        "pointer"
+      ],
+      "text": "Only a device with hover shows the hover state. At hover, the border takes the muted text color, and its contrast stays at 3 : 1 or more."
+    },
+    {
+      "id": "text-field/focus",
+      "level": "MUST",
+      "inputs": [
+        "pointer",
+        "touch",
+        "keyboard",
+        "switch-access"
+      ],
+      "text": "When the input has the focus, its border takes the ring color. A soft ring of 3 px in the accent tint goes around the border. Each input method shows it."
+    },
+    {
+      "id": "text-field/focus-group",
+      "level": "MUST",
+      "text": "When the input has add-ons, the full group shows the border, the hover, the focus, and the error. The add-ons are inside the border."
+    },
+    {
+      "id": "text-field/error-timing",
+      "level": "MUST",
+      "text": "The field shows an error only after the user moves the focus away from the field, or sends the form. It never shows an error at each key."
+    },
+    {
+      "id": "text-field/error-sign",
+      "level": "MUST",
+      "text": "In the error state, the error text replaces the help text. The border takes the danger color, and an error icon comes before the text. Color is not the only sign."
+    },
+    {
+      "id": "text-field/error-link",
+      "level": "MUST",
+      "inputs": [
+        "screen-reader"
+      ],
+      "text": "The error is the description of the input, and the input has the invalid state. Assistive technology reads the error together with the label."
+    },
+    {
+      "id": "text-field/error-focus",
+      "level": "MUST",
+      "text": "An invalid input that has the focus keeps the danger border. Its soft ring of 3 px takes the danger tint."
+    },
+    {
+      "id": "text-field/error-text",
+      "level": "SHOULD",
+      "text": "Write an error that tells how to correct the value. Example: Use only letters, numbers, and underscores."
+    },
+    {
+      "id": "text-field/warning-sign",
+      "level": "MUST",
+      "text": "A warning text replaces the help text, with a warning icon, in the warning text color. The border does not change, and the value stays valid."
+    },
+    {
+      "id": "text-field/send-errors",
+      "level": "SHOULD",
+      "inputs": [
+        "keyboard",
+        "screen-reader"
+      ],
+      "text": "When the user sends a form with errors, move the focus to the error summary of the form."
+    },
+    {
+      "id": "text-field/composition",
+      "level": "MUST",
+      "inputs": [
+        "keyboard"
+      ],
+      "text": "During the composition of an input method editor, the field does not validate, format, or send the value. Enter confirms the candidate and does not send the form."
+    },
+    {
+      "id": "text-field/input-type",
+      "level": "MUST",
+      "text": "The field tells the platform the type of its value. Then the keyboard shows the correct keys, the enter key shows the correct action, and autofill gives the correct value."
+    },
+    {
+      "id": "text-field/keyboards",
+      "level": "MUST",
+      "inputs": [
+        "touch"
+      ],
+      "text": "Email: letters with the at sign and the period, and Next. Phone number: a number pad with a plus key, and Next. Code: a number pad, and Done."
+    },
+    {
+      "id": "text-field/keyboards-2",
+      "level": "MUST",
+      "inputs": [
+        "touch"
+      ],
+      "text": "Password: letters, and Go. Amount: a number pad with a decimal key, and Done. Search: letters, and Search. Message: letters with a capital at the start of a sentence, and Send."
+    },
+    {
+      "id": "text-field/autofill",
+      "level": "MUST",
+      "text": "The autofill type follows the value. Examples are the user name on a sign-in form, the national phone number, the one-time code, and the new password."
+    },
+    {
+      "id": "text-field/autofill-group",
+      "level": "SHOULD",
+      "text": "Put the fields of one form in one autofill group."
+    },
+    {
+      "id": "text-field/paste",
+      "level": "NEVER",
+      "text": "The field blocks paste, or it stops autofill on a field of user data. Only a shared kiosk can stop autofill."
+    },
+    {
+      "id": "text-field/server-check",
+      "level": "SHOULD",
+      "text": "The input type changes only the keyboard. The system also examines the value on the server."
+    },
+    {
+      "id": "text-field/digits",
+      "level": "MUST",
+      "text": "The input accepts the Latin digits and the digits of the locale, for example 45 and ٤٥."
+    },
+    {
+      "id": "text-field/amount",
+      "level": "MUST",
+      "text": "An amount field shows the currency of the price, not the currency of the locale. The locale sets the position of the symbol and the decimal sign."
+    },
+    {
+      "id": "text-field/amount-store",
+      "level": "MUST",
+      "text": "The system stores an amount as an integer of the minor unit, with its ISO 4217 currency code."
+    },
+    {
+      "id": "text-field/prefix",
+      "level": "MUST",
+      "text": "A prefix, for example a currency symbol, is inside the border at the start side. A line of 1 px separates it from the value."
+    },
+    {
+      "id": "text-field/search",
+      "level": "MUST",
+      "text": "A search field has a leading search icon in the icon size of the density. It can show a keyboard hint at the end, for example the slash key."
+    },
+    {
+      "id": "text-field/hint",
+      "level": "MUST",
+      "inputs": [
+        "keyboard"
+      ],
+      "text": "The keyboard hint shows only on a laptop or a desktop. It is 20 px high, with a radius of 5 px."
+    },
+    {
+      "id": "text-field/other-fields",
+      "level": "SHOULD",
+      "text": "For a phone number, use the phone field with country. For a choice from a list, use a select. For files, use the file add area."
+    },
+    {
+      "id": "text-field/multi-line",
+      "level": "MUST",
+      "text": "A multi-line input is 96 px high or more, and the user can make it higher. It has 8 px of padding at the top and at the bottom."
+    },
+    {
+      "id": "text-field/counter",
+      "level": "MUST",
+      "text": "A multi-line field with a limit shows a counter only when the limit is near, for example 1,930 / 2,000. The counter is at the end of the label row."
+    },
+    {
+      "id": "text-field/counter-count",
+      "level": "MUST",
+      "text": "The counter counts grapheme clusters after the composition ends, not code units. The count and the limit use the number format of the locale."
+    },
+    {
+      "id": "text-field/disabled",
+      "level": "MUST",
+      "text": "A disabled input has the disabled opacity and the background fill, and the user cannot change it. Its help text tells why, for example To change your number, go to Account recovery."
+    },
+    {
+      "id": "text-field/read-only",
+      "level": "MUST",
+      "text": "A read-only input shows its value at the full opacity. The user can move the focus to it, and select and copy the value, but cannot change it."
+    },
+    {
+      "id": "text-field/direction",
+      "level": "MUST",
+      "text": "In a right-to-left layout, the label, the help text, and the error align to the right edge. The leading icon and the prefix are at the right."
+    },
+    {
+      "id": "text-field/direction-end",
+      "level": "MUST",
+      "text": "In a right-to-left layout, the keyboard hint and the counter are at the left. Digits, phone numbers, and codes keep their left-to-right order."
+    },
+    {
+      "id": "text-field/motion",
+      "level": "MUST",
+      "text": "The border and the soft ring change color in 150 ms with the standard easing. The error text fades in with dur-fast. The field never shakes."
+    },
+    {
+      "id": "text-field/reduced-motion",
+      "level": "MUST",
+      "text": "With reduced motion, the field does not move and does not scale. The changes of color and the fade of the error text stay."
+    },
+    {
+      "id": "text-field/moment-error",
+      "level": "MUST",
+      "text": "The field emits the moment error in the frame in which the error shows. That is after the user moves away from the field or sends the form."
+    },
+    {
+      "id": "text-field/moment-warning",
+      "level": "MUST",
+      "text": "The field emits the moment warning in the frame in which the warning text shows, at the validation of the field."
+    },
+    {
+      "id": "text-field/moment-success",
+      "level": "MUST",
+      "text": "When a form saves, the form emits one moment success, and its fields emit none. A field that saves its own value emits success when the value saves."
+    },
+    {
+      "id": "text-field/no-key-moment",
+      "level": "NEVER",
+      "text": "The field emits a moment at each key."
+    },
+    {
+      "id": "text-field/moment-disabled",
+      "level": "MUST",
+      "text": "A disabled or a read-only field emits no moment."
+    },
+    {
+      "id": "text-field/no-direct-feedback",
+      "level": "NEVER",
+      "text": "The text field starts a haptic or a sound directly."
+    },
+    {
+      "id": "text-field/voice",
+      "level": "MUST",
+      "inputs": [
+        "voice"
+      ],
+      "text": "Each text field accepts the dictation and the voice input of the platform. The field does not block them."
+    },
+    {
+      "id": "text-field/form-layout",
+      "level": "SHOULD",
+      "text": "Put a form in one column, 560 px wide or less. The gap between fields is 16 px for pointer and 20 px for touch."
+    },
+    {
+      "id": "text-field/not-obscured",
+      "level": "SHOULD",
+      "inputs": [
+        "keyboard",
+        "touch"
+      ],
+      "text": "Do not let the keyboard or a sticky header fully hide the input that has the focus. On a phone, keep the primary action above the keyboard."
+    },
+    {
+      "id": "text-field/foldable",
+      "level": "MUST",
+      "classes": [
+        "foldable"
+      ],
+      "text": "A change of posture keeps the value and the focus of the field."
+    },
+    {
+      "id": "text-field/tv",
+      "level": "MUST",
+      "inputs": [
+        "remote",
+        "voice"
+      ],
+      "classes": [
+        "tv"
+      ],
+      "text": "On a TV, the input opens the on-screen keyboard of the platform, or voice input. The field that has the focus grows to scale 1.06 with spring-quick."
+    },
+    {
+      "id": "text-field/tv-reduced-motion",
+      "level": "MUST",
+      "classes": [
+        "tv"
+      ],
+      "text": "On a TV with reduced motion, the field that has the focus stays at scale 1. Only the ring shows the focus."
+    },
+    {
+      "id": "text-field/tv-fields",
+      "level": "SHOULD",
+      "classes": [
+        "tv"
+      ],
+      "text": "On a TV, use few fields. Show the value in large text. For a long entry, for example a sign-in, show a code and a QR code. Then the user types on a phone."
+    },
+    {
+      "id": "text-field/car",
+      "level": "NEVER",
+      "classes": [
+        "car"
+      ],
+      "text": "The car display shows a text field while the car moves."
+    },
+    {
+      "id": "text-field/watch",
+      "level": "SHOULD",
+      "classes": [
+        "watch"
+      ],
+      "text": "On a watch, show one field on each screen. The field opens voice, preset values, or the keyboard of the platform. Continue a long form on the phone."
+    },
+    {
+      "id": "text-field/watch-target",
+      "level": "MUST",
+      "inputs": [
+        "touch"
+      ],
+      "classes": [
+        "watch"
+      ],
+      "text": "On Wear OS, the target of the field is 48 dp or more."
+    },
+    {
+      "id": "text-field/xr-target",
+      "level": "MUST",
+      "classes": [
+        "xr"
+      ],
+      "text": "On visionOS, the target of the field is 60 pt or more, with a margin of 16 pt or more around it."
+    }
+  ]
+}

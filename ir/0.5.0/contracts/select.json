@@ -1,0 +1,440 @@
+{
+  "id": "select",
+  "name": "Select",
+  "status": "draft",
+  "class": "M",
+  "purpose": "A select gives one option from a short list. When it is closed, it looks like a text field and shows the selected option. On a phone, it opens the picker of the system.",
+  "anatomy": [
+    {
+      "part": "field",
+      "role": "The label, the trigger, and the help text or the error"
+    },
+    {
+      "part": "label",
+      "role": "The name of the select, above the trigger. Example: Category"
+    },
+    {
+      "part": "trigger",
+      "role": "The target. It looks like the input of a text field, and it opens the list"
+    },
+    {
+      "part": "value",
+      "role": "The name of the selected option, or the placeholder when no option is selected"
+    },
+    {
+      "part": "chevron",
+      "role": "A down chevron at the end side of the trigger. Assistive technology does not read it"
+    },
+    {
+      "part": "help",
+      "role": "One line of help text below the trigger",
+      "optional": true
+    },
+    {
+      "part": "error",
+      "role": "The error text with an error icon. It replaces the help text",
+      "optional": true
+    },
+    {
+      "part": "list",
+      "role": "The listbox: the raised surface with the options, 4 px from the trigger"
+    },
+    {
+      "part": "option",
+      "role": "One item of the list: its name, and a check when it is the selected option"
+    },
+    {
+      "part": "check",
+      "role": "The mark of the selected option, at the end side of the option"
+    },
+    {
+      "part": "description",
+      "role": "A second line of an option: the cause when the option is disabled",
+      "optional": true
+    }
+  ],
+  "states": [
+    "default",
+    "hover",
+    "focus",
+    "selected",
+    "disabled",
+    "error"
+  ],
+  "axes": [
+    "theme",
+    "density",
+    "direction",
+    "motion"
+  ],
+  "tokens": {
+    "sm.height": "size.control-sm",
+    "md.height": "size.control-md",
+    "lg.height": "size.control-lg",
+    "trigger.target": "size.target-min",
+    "trigger.fill": "color.role.surface",
+    "trigger.border": "color.role.field-line",
+    "trigger.border.hover": "color.role.fg-muted",
+    "trigger.radius": "radius.md",
+    "value.size": "font-size.body",
+    "value.color": "color.role.fg",
+    "placeholder.color": "color.role.fg-muted",
+    "chevron.size": "size.icon",
+    "chevron.color": "color.role.fg-muted",
+    "label.size": "font-size.small",
+    "label.weight": "font-weight.strong",
+    "label.color": "color.role.fg-2",
+    "help.size": "font-size.small",
+    "help.color": "color.role.fg-muted",
+    "error.size": "font-size.small",
+    "error.color": "color.role.danger-text",
+    "error.border": "color.role.danger",
+    "error.focus.ring": "color.role.danger-soft",
+    "error.fade": "duration.fast",
+    "focus.border": "color.role.ring",
+    "focus.ring": "color.role.accent-soft",
+    "focus.ring.width": "focus.field-ring-width",
+    "focus.width": "focus.ring-width",
+    "focus.offset": "focus.ring-offset",
+    "focus.color": "color.role.ring",
+    "list.fill": "color.role.raised",
+    "list.shadow": "shadow.overlay",
+    "list.radius": "radius.lg",
+    "option.height": "size.control-md",
+    "option.radius": "radius.sm",
+    "option.size": "font-size.body",
+    "option.color": "color.role.fg",
+    "option.fill.active": "color.role.selected",
+    "selected.color": "color.role.fg-strong",
+    "selected.weight": "font-weight.strong",
+    "check.size": "size.icon",
+    "check.color": "color.role.accent",
+    "description.size": "font-size.small",
+    "description.color": "color.role.fg-muted",
+    "disabled.opacity": "opacity.disabled",
+    "disabled.fill": "color.role.bg",
+    "color.duration": "duration.fast",
+    "color.easing": "easing.standard",
+    "open.duration": "duration.fast",
+    "open.easing": "easing.out",
+    "open.scale": "scale.menu-in",
+    "close.duration": "duration.press",
+    "close.easing": "easing.in",
+    "tv.focus.motion": "spring.quick",
+    "tv.focus.scale": "scale.tv-focus"
+  },
+  "geometry": {
+    "trigger.padding": {
+      "value": 12,
+      "unit": "px"
+    },
+    "trigger.border": {
+      "value": 1,
+      "unit": "px"
+    },
+    "chevron.inset": {
+      "value": 12,
+      "unit": "px"
+    },
+    "chevron.gap": {
+      "value": 6,
+      "unit": "px"
+    },
+    "field.gap": {
+      "value": 6,
+      "unit": "px"
+    },
+    "error.icon": {
+      "value": 14,
+      "unit": "px"
+    },
+    "error.gap": {
+      "value": 6,
+      "unit": "px"
+    },
+    "list.gap": {
+      "value": 4,
+      "unit": "px"
+    },
+    "list.padding": {
+      "value": 4,
+      "unit": "px"
+    },
+    "list.max-height": {
+      "value": 8,
+      "of": "size.control-md"
+    },
+    "option.padding": {
+      "value": 8,
+      "unit": "px"
+    },
+    "option.gap": {
+      "value": 8,
+      "unit": "px"
+    },
+    "open.offset": {
+      "value": 4,
+      "unit": "px"
+    }
+  },
+  "moments": [
+    {
+      "moment": "open",
+      "when": "When the list opens, at the first frame of its entrance. On a phone, when the picker of the system opens"
+    },
+    {
+      "moment": "select",
+      "when": "At the change of the value, before the moment close. Not when the active option moves"
+    },
+    {
+      "moment": "close",
+      "when": "When the list closes, with a change of the value or with no change"
+    }
+  ],
+  "clauses": [
+    {
+      "id": "select/role",
+      "level": "MUST",
+      "inputs": [
+        "screen-reader"
+      ],
+      "text": "The accessibility tree shows the trigger as a combobox, with the label as its name and the selected option as its value. The trigger tells if the list is open. The list is a listbox. Each option has its name and its selected state."
+    },
+    {
+      "id": "select/name",
+      "level": "MUST",
+      "text": "The select has a label above the trigger, 6 px from it. The placeholder is not the label. The label of an optional select ends with the word optional. A necessary select has no mark."
+    },
+    {
+      "id": "select/use",
+      "level": "SHOULD",
+      "text": "Use a select for one option from a short list. For a long list, for example cities, time zones, or contacts, use a combobox."
+    },
+    {
+      "id": "select/no-filter",
+      "level": "NEVER",
+      "text": "The select has a text input, or it filters its options while the user types."
+    },
+    {
+      "id": "select/trigger",
+      "level": "MUST",
+      "text": "The trigger looks like the input of a text field. It has the surface fill, the medium radius, and a border of 1 px in the field line color. The value is at the start side, and a down chevron is at the end side. When no option is selected, the value is a placeholder in the muted text color."
+    },
+    {
+      "id": "select/size",
+      "level": "MUST",
+      "text": "The size and the density set the height of the trigger. Pointer: small 28 px, medium 32 px, large 40 px. Touch: small 36 px, medium 44 px, large 52 px."
+    },
+    {
+      "id": "select/density",
+      "level": "MUST",
+      "text": "The text of the trigger and of the options is 14 px for pointer and 16 px for touch. The chevron and the check are 16 px for pointer and 20 px for touch. The radius of the trigger is 8 px for pointer and 10 px for touch."
+    },
+    {
+      "id": "select/target",
+      "level": "MUST",
+      "inputs": [
+        "pointer",
+        "touch"
+      ],
+      "text": "The full trigger is the target. Each option has the medium height: 32 px for pointer, 44 px for touch. A small select in the touch density extends its target past its edges to 44 px."
+    },
+    {
+      "id": "select/help",
+      "level": "MUST",
+      "inputs": [
+        "screen-reader"
+      ],
+      "text": "The help text is one line below the trigger, 6 px from it. Assistive technology reads the help text and the error as part of the select."
+    },
+    {
+      "id": "select/keyboard",
+      "level": "MUST",
+      "inputs": [
+        "keyboard"
+      ],
+      "text": "Tab moves the focus to the trigger. When the list is closed, Enter, Space, the down arrow, and the up arrow open it. The active option is then the selected option, or the first option if no option is selected."
+    },
+    {
+      "id": "select/list-keys",
+      "level": "MUST",
+      "inputs": [
+        "keyboard"
+      ],
+      "text": "When the list is open, the down arrow and the up arrow move the active option. At the first and at the last option, the active option stays. Enter and Space select the active option and close the list."
+    },
+    {
+      "id": "select/escape",
+      "level": "MUST",
+      "inputs": [
+        "keyboard"
+      ],
+      "text": "Escape closes the list and does not change the value. After Escape and after a selection, the focus is on the trigger. Tab closes the list, does not change the value, and moves the focus to the next control."
+    },
+    {
+      "id": "select/typeahead",
+      "level": "MUST",
+      "inputs": [
+        "keyboard"
+      ],
+      "text": "When the trigger has the focus, typeahead moves the active option to the next option with a name that starts with the typed characters. If the list is closed, it opens. The list does not filter."
+    },
+    {
+      "id": "select/active-option",
+      "level": "MUST",
+      "inputs": [
+        "keyboard",
+        "screen-reader"
+      ],
+      "text": "While the list is open, the focus stays on the trigger, and the trigger tells assistive technology which option is active. The active option has the selected fill. With the keyboard, it also shows the focus ring of the language: 2 px in the ring color, 2 px from the option."
+    },
+    {
+      "id": "select/focus",
+      "level": "MUST",
+      "inputs": [
+        "keyboard",
+        "switch-access",
+        "pointer"
+      ],
+      "text": "When the trigger has the focus, its border changes to the ring color. It also gets a soft ring of 3 px in the accent tint, as on a text field."
+    },
+    {
+      "id": "select/hover",
+      "level": "MUST",
+      "inputs": [
+        "pointer"
+      ],
+      "text": "Only a device with hover shows the hover state. The border of the trigger changes to the muted text color in 150 ms. An option at hover gets the selected fill."
+    },
+    {
+      "id": "select/pointer",
+      "level": "MUST",
+      "inputs": [
+        "pointer",
+        "touch"
+      ],
+      "text": "A press on the trigger opens the list, and a second press closes it. A press on an option selects it and closes the list. A press out of the list closes it and does not change the value."
+    },
+    {
+      "id": "select/selected-sign",
+      "level": "MUST",
+      "text": "The selected option has a check in the accent color at the end side. Its name has the strong weight and the strong text color. The trigger shows the name of the selected option. Color is not the only sign of the state."
+    },
+    {
+      "id": "select/list",
+      "level": "MUST",
+      "text": "The list opens 4 px below the trigger, or 4 px above it if it does not fit below. It has the raised fill, the overlay shadow, the large radius, and a padding of 4 px. It is as wide as the trigger or wider."
+    },
+    {
+      "id": "select/max-height",
+      "level": "MUST",
+      "text": "The list shows a maximum of eight options, and the other options scroll. The maximum height is eight options and the padding: 264 px for pointer, 360 px for touch. When the list opens, the selected option is in view."
+    },
+    {
+      "id": "select/system-picker",
+      "level": "MUST",
+      "inputs": [
+        "touch"
+      ],
+      "classes": [
+        "phone"
+      ],
+      "text": "On a phone, the select uses the select of the system. A tap on the trigger opens the picker of the system, not the list of the language. The trigger keeps its look."
+    },
+    {
+      "id": "select/direction",
+      "level": "MUST",
+      "text": "In a right-to-left layout, the start side is the right side. The value is at the right of the trigger, and the chevron is at the left. The check of an option is at the left. The list opens from the right corner of the trigger."
+    },
+    {
+      "id": "select/motion",
+      "level": "MUST",
+      "text": "The list opens from the edge of the trigger. It starts 4 px nearer to the trigger at scale 0.98, and it moves into place and fades in for 150 ms with ease-out. It fades out for 100 ms with ease-in."
+    },
+    {
+      "id": "select/motion-reduced",
+      "level": "MUST",
+      "text": "With reduced motion, the list has no move and no scale. It fades in for 150 ms and fades out for 100 ms. The change of color stays."
+    },
+    {
+      "id": "select/moment",
+      "level": "MUST",
+      "text": "The list or the picker of the system emits the moment open when it opens, and close when it closes. A change of the value emits the moment select before close. A move of the active option emits no moment. A disabled select emits no moment."
+    },
+    {
+      "id": "select/no-direct-feedback",
+      "level": "NEVER",
+      "text": "The select starts a haptic or a sound directly."
+    },
+    {
+      "id": "select/disabled",
+      "level": "MUST",
+      "text": "A disabled select has the disabled opacity and the background fill, and its list does not open. It stays in the focus order. Its help text tells why the select is not available."
+    },
+    {
+      "id": "select/disabled-option",
+      "level": "MUST",
+      "text": "A disabled option has the disabled opacity, and the user cannot select it. The arrow keys can move to it. Its description tells why it is not available, for example Not available in your area at this time."
+    },
+    {
+      "id": "select/error",
+      "level": "MUST",
+      "text": "The error replaces the help text. It has an error icon of 14 px and the danger text color, and the border changes to the danger color. The error tells how to correct the value. Assistive technology reads the error together with the label."
+    },
+    {
+      "id": "select/error-motion",
+      "level": "MUST",
+      "text": "The error text fades in for 150 ms, with no shake. With the focus, a select with an error has a soft ring of 3 px in the danger tint."
+    },
+    {
+      "id": "select/error-time",
+      "level": "SHOULD",
+      "text": "Show an error only after the user moves away from the select or sends the form."
+    },
+    {
+      "id": "select/form",
+      "level": "MUST",
+      "text": "The form sends the value of the selected option with the name of the select."
+    },
+    {
+      "id": "select/surfaces",
+      "level": "MUST",
+      "text": "The label, the help text, the error, and the stored value stay the same on each device class. Only the input and the container change."
+    },
+    {
+      "id": "select/tv",
+      "level": "MUST",
+      "inputs": [
+        "remote"
+      ],
+      "classes": [
+        "tv"
+      ],
+      "text": "On a TV, the directional pad moves the focus. The focused select grows to scale 1.06 with spring-quick, and with reduced motion the scale stays at 1. The list opens as a side panel from the right edge, and Back closes it."
+    },
+    {
+      "id": "select/car",
+      "level": "MUST",
+      "classes": [
+        "car"
+      ],
+      "text": "On a car display, the list is a list template of the platform."
+    },
+    {
+      "id": "select/watch",
+      "level": "SHOULD",
+      "classes": [
+        "watch"
+      ],
+      "text": "On a watch, the list is a full-screen list in one column, and the rotary input scrolls it. Each target is 48 dp or more on Wear OS."
+    },
+    {
+      "id": "select/xr",
+      "level": "MUST",
+      "classes": [
+        "xr"
+      ],
+      "text": "On an XR headset, the list opens next to its trigger, inside the window. The system hover shows on each option. Each target is 60 pt or more on visionOS, with a margin of 16 pt or more."
+    }
+  ]
+}

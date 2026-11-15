@@ -1,0 +1,467 @@
+{
+  "$schema": "../schemas/contract.schema.json",
+  "id": "dialog",
+  "name": "Dialog",
+  "status": "draft",
+  "class": "M",
+  "purpose": "A dialog stops the task for a choice. Use it only to confirm an action that the user cannot undo. It keeps the focus until it closes.",
+  "variants": [
+    {
+      "name": "confirm",
+      "use": "An action that the user cannot undo, for example Mark as shipped. The confirm action is a primary button."
+    },
+    {
+      "name": "destructive",
+      "use": "An action that removes data, for example Delete product. The confirm action is a destructive button."
+    }
+  ],
+  "anatomy": [
+    {
+      "part": "scrim",
+      "role": "The color that covers the page behind the dialog"
+    },
+    {
+      "part": "container",
+      "role": "The raised surface of the dialog, in the center of the window. On a phone, it is a bottom sheet"
+    },
+    {
+      "part": "handle",
+      "role": "On a phone only: the handle of the bottom sheet. It shows that a drag down closes the dialog",
+      "optional": true
+    },
+    {
+      "part": "title",
+      "role": "The name of the dialog. It names the action and the item. Example: Delete this product?"
+    },
+    {
+      "part": "description",
+      "role": "The text below the title. It tells the result of the action"
+    },
+    {
+      "part": "footer",
+      "role": "The two actions, below the text"
+    },
+    {
+      "part": "safe-action",
+      "role": "A ghost button that closes the dialog with no change. Example: Cancel or Keep file"
+    },
+    {
+      "part": "confirm-action",
+      "role": "A primary or a destructive button with the verb of the title. Example: Delete product"
+    }
+  ],
+  "states": [
+    "default",
+    "focus"
+  ],
+  "axes": [
+    "theme",
+    "density",
+    "direction",
+    "motion"
+  ],
+  "tokens": {
+    "scrim.color": "color.role.scrim",
+    "container.fill": "color.role.raised",
+    "container.shadow": "shadow.overlay",
+    "container.radius": "radius.lg",
+    "container.padding": "space.5",
+    "container.gap": "space.4",
+    "title.size": "font-size.title-3",
+    "title.weight": "font-weight.strong",
+    "title.color": "color.role.fg-strong",
+    "description.size": "font-size.small",
+    "description.color": "color.role.fg-2",
+    "action.height": "size.control-md",
+    "action.target": "size.target-min",
+    "phone.action.height": "size.control-lg",
+    "phone.radius": "radius.xl",
+    "phone.padding": "space.4",
+    "handle.color": "color.role.line-strong",
+    "focus.width": "focus.ring-width",
+    "focus.offset": "focus.ring-offset",
+    "focus.color": "color.role.ring",
+    "disabled.opacity": "opacity.disabled",
+    "open.duration": "duration.base",
+    "open.easing": "easing.out",
+    "open.scale": "scale.dialog-in",
+    "close.duration": "duration.fast",
+    "close.easing": "easing.in",
+    "phone.open.duration": "duration.sheet",
+    "phone.open.easing": "easing.out",
+    "phone.close.duration": "duration.base",
+    "phone.close.easing": "easing.in",
+    "reduced.in.duration": "duration.fast",
+    "reduced.out.duration": "duration.press"
+  },
+  "geometry": {
+    "container.width": {
+      "value": 440,
+      "unit": "px"
+    },
+    "title.gap": {
+      "value": 6,
+      "unit": "px"
+    },
+    "footer.gap": {
+      "value": 8,
+      "unit": "px"
+    },
+    "phone.footer.gap": {
+      "value": 12,
+      "unit": "px"
+    },
+    "phone.below-width": {
+      "value": 768,
+      "unit": "px"
+    },
+    "handle.width": {
+      "value": 36,
+      "unit": "px"
+    },
+    "handle.height": {
+      "value": 4,
+      "unit": "px"
+    },
+    "handle.inset": {
+      "value": 8,
+      "unit": "px"
+    }
+  },
+  "moments": [
+    {
+      "moment": "open",
+      "when": "When the dialog opens, at the first frame of its entrance. With reduced motion, at the first frame of the fade"
+    },
+    {
+      "moment": "close",
+      "when": "When the dialog closes, at the first frame of its exit. After the safe action, the confirm action, Escape, or Back. On a phone, also after a drag down or a tap on the scrim"
+    }
+  ],
+  "clauses": [
+    {
+      "id": "dialog/role",
+      "level": "MUST",
+      "inputs": [
+        "screen-reader"
+      ],
+      "text": "The accessibility tree shows the dialog as a modal alert dialog. The title is its name, and the text is its description."
+    },
+    {
+      "id": "dialog/use",
+      "level": "SHOULD",
+      "text": "Use a dialog only to confirm an action that the user cannot undo. For detail or a short task, use a sheet."
+    },
+    {
+      "id": "dialog/title",
+      "level": "MUST",
+      "text": "The title names the action and the item, for example \"Delete this product?\". The title \"Are you sure?\" is not correct, because it does not name the action."
+    },
+    {
+      "id": "dialog/action-name",
+      "level": "MUST",
+      "text": "The confirm action has the verb of the title, for example Delete product or Delete message. Its label is never OK or Yes. Each action names its result, for example Keep file and Delete file."
+    },
+    {
+      "id": "dialog/description",
+      "level": "MUST",
+      "inputs": [
+        "screen-reader"
+      ],
+      "text": "The text tells the result of the action, for example \"The file goes to the trash.\" Assistive technology reads the text as the description of the dialog."
+    },
+    {
+      "id": "dialog/two-actions",
+      "level": "SHOULD",
+      "text": "A dialog has two actions: the safe action and the confirm action."
+    },
+    {
+      "id": "dialog/variant",
+      "level": "MUST",
+      "text": "The safe action is a ghost button. The confirm action is a primary button. For an action that removes data, the confirm action is a destructive button."
+    },
+    {
+      "id": "dialog/destructive-sign",
+      "level": "MUST",
+      "text": "Color is not the only sign of a destructive action. The title and the label of the confirm action name the action."
+    },
+    {
+      "id": "dialog/initial-focus",
+      "level": "MUST",
+      "inputs": [
+        "keyboard",
+        "screen-reader",
+        "switch-access"
+      ],
+      "text": "When the dialog opens, the focus moves to the safe action. Assistive technology then reads the name and the description of the dialog."
+    },
+    {
+      "id": "dialog/focus-stays",
+      "level": "MUST",
+      "inputs": [
+        "keyboard",
+        "switch-access"
+      ],
+      "text": "While the dialog is open, Tab and Shift Tab move the focus only to the controls of the dialog. The focus does not go to the page behind."
+    },
+    {
+      "id": "dialog/inert",
+      "level": "MUST",
+      "inputs": [
+        "screen-reader",
+        "keyboard",
+        "pointer",
+        "touch"
+      ],
+      "text": "While the dialog is open, all other parts of the page are inert. Assistive technology does not read it, and the user cannot operate it."
+    },
+    {
+      "id": "dialog/scroll-lock",
+      "level": "MUST",
+      "inputs": [
+        "pointer",
+        "touch"
+      ],
+      "text": "While the dialog is open, the page behind does not scroll."
+    },
+    {
+      "id": "dialog/escape",
+      "level": "MUST",
+      "inputs": [
+        "keyboard"
+      ],
+      "text": "Escape closes the dialog with no change, as the safe action does."
+    },
+    {
+      "id": "dialog/safe-action",
+      "level": "MUST",
+      "text": "The safe action closes the dialog with no change."
+    },
+    {
+      "id": "dialog/confirm-action",
+      "level": "MUST",
+      "text": "The confirm action starts the action and closes the dialog."
+    },
+    {
+      "id": "dialog/return-focus",
+      "level": "MUST",
+      "inputs": [
+        "keyboard",
+        "screen-reader",
+        "switch-access"
+      ],
+      "text": "When the dialog closes, the focus goes back to the control that opened it."
+    },
+    {
+      "id": "dialog/lost-origin",
+      "level": "MUST",
+      "inputs": [
+        "keyboard",
+        "screen-reader"
+      ],
+      "text": "If the control that opened the dialog is not there after the close, the focus goes to the next item. If no next item is there, it goes to the previous item, then to the container. An example is a deleted row. The focus never goes to the top of the page."
+    },
+    {
+      "id": "dialog/scrim",
+      "level": "MUST",
+      "text": "The scrim covers the page behind the dialog. In the dark theme, it is black at 60%. In the light theme, it is #0a0a0a at 40%."
+    },
+    {
+      "id": "dialog/container",
+      "level": "MUST",
+      "text": "The dialog has the raised fill, the overlay shadow, and the large radius: 12 px for pointer, 14 px for touch. The 1 px ring of the overlay shadow is its edge."
+    },
+    {
+      "id": "dialog/layer",
+      "level": "MUST",
+      "text": "The dialog is on the modal layer, above the page, the menus, and the popovers. A toast shows above the dialog."
+    },
+    {
+      "id": "dialog/width",
+      "level": "MUST",
+      "text": "From a window of 768 px wide, the dialog is in the center of the window, and it is 440 px wide. Its width is never more than the width of the window."
+    },
+    {
+      "id": "dialog/spacing",
+      "level": "MUST",
+      "text": "The dialog has a padding of 20 px. The gap between the title and the text is 6 px. The gap between the text and the footer is 16 px."
+    },
+    {
+      "id": "dialog/type",
+      "level": "MUST",
+      "text": "The title has the size title-3 and the strong weight, in the strong text color. The text has the small size, in the secondary text color."
+    },
+    {
+      "id": "dialog/density",
+      "level": "MUST",
+      "text": "Pointer: the title is 16 px, the text is 13 px, and the buttons are 32 px high. Touch: the title is 17 px, the text is 14 px, and the buttons are 44 px high."
+    },
+    {
+      "id": "dialog/overflow",
+      "level": "MUST",
+      "text": "The dialog stays inside the window. When the height of its content is more than the height of the window, for example at a text size of 200%, the content scrolls. No text is cut."
+    },
+    {
+      "id": "dialog/footer",
+      "level": "MUST",
+      "text": "From a window of 768 px wide, the actions are at the end side of the footer. The confirm action is last, and the gap between the buttons is 8 px."
+    },
+    {
+      "id": "dialog/footer-phone",
+      "level": "MUST",
+      "inputs": [
+        "touch"
+      ],
+      "classes": [
+        "phone"
+      ],
+      "text": "On a phone, and in a window less than 768 px wide, the actions are large buttons, stacked at full width. The confirm action is first, at the top. The gap between the buttons is 12 px."
+    },
+    {
+      "id": "dialog/phone",
+      "level": "MUST",
+      "inputs": [
+        "touch"
+      ],
+      "classes": [
+        "phone"
+      ],
+      "text": "On a phone, and in a window less than 768 px wide, the dialog is a modal bottom sheet. It has the handle, a radius of 16 px on the top corners, and a padding of 16 px. It stays above the bottom safe area."
+    },
+    {
+      "id": "dialog/phone-close",
+      "level": "MUST",
+      "inputs": [
+        "touch"
+      ],
+      "classes": [
+        "phone"
+      ],
+      "text": "On a phone, a drag down, a tap on the scrim, and Back close the dialog with no change, as the safe action does."
+    },
+    {
+      "id": "dialog/tablet",
+      "level": "MUST",
+      "classes": [
+        "tablet"
+      ],
+      "text": "On a tablet, the dialog is in the center of the window, and the footer is as on the web."
+    },
+    {
+      "id": "dialog/target",
+      "level": "MUST",
+      "inputs": [
+        "pointer",
+        "touch"
+      ],
+      "text": "Each action has a target of the minimum target of the density or more: 24 px for pointer, 44 px for touch."
+    },
+    {
+      "id": "dialog/focus",
+      "level": "MUST",
+      "inputs": [
+        "keyboard",
+        "switch-access"
+      ],
+      "text": "The focus ring of the language shows on the focused action: 2 px in the ring color, 2 px from the button."
+    },
+    {
+      "id": "dialog/direction",
+      "level": "MUST",
+      "text": "In a right-to-left layout, the start side is the right side. The title and the text start at the right. The actions are at the left end of the footer, and the confirm action is last, at the left."
+    },
+    {
+      "id": "dialog/direction-motion",
+      "level": "MUST",
+      "text": "The motion does not mirror. The scale starts at the center. On a phone, the sheet comes up from the bottom edge in each reading direction."
+    },
+    {
+      "id": "dialog/motion",
+      "level": "MUST",
+      "text": "At the open, the dialog scales from 0.96 to 1 from its center and fades in, for 200 ms with ease-out. At the close, it scales back to 0.96 and fades out, for 150 ms with ease-in. The scrim fades with the dialog."
+    },
+    {
+      "id": "dialog/motion-phone",
+      "level": "MUST",
+      "inputs": [
+        "touch"
+      ],
+      "classes": [
+        "phone"
+      ],
+      "text": "On a phone, the sheet comes up from the bottom edge for 320 ms with ease-out. It goes down for 200 ms with ease-in. The scrim follows the sheet."
+    },
+    {
+      "id": "dialog/motion-reduced",
+      "level": "MUST",
+      "text": "With reduced motion, the dialog and the sheet have no scale and no move. They fade in for 150 ms and fade out for 100 ms. The scrim fades with them."
+    },
+    {
+      "id": "dialog/moment",
+      "level": "MUST",
+      "text": "The dialog emits the moment open at the first frame of its entrance, and the moment close at the first frame of its exit. Each action emits its own moment press. A disabled action emits no moment."
+    },
+    {
+      "id": "dialog/no-direct-feedback",
+      "level": "NEVER",
+      "text": "The dialog starts a haptic or a sound directly."
+    },
+    {
+      "id": "dialog/disabled",
+      "level": "MUST",
+      "text": "A disabled action has the disabled opacity, and it does not start its action. The dialog tells why the action is not possible."
+    },
+    {
+      "id": "dialog/surfaces",
+      "level": "MUST",
+      "text": "The title, the text, and the actions stay the same on each device class. Only the container, the place, and the input change."
+    },
+    {
+      "id": "dialog/tv",
+      "level": "MUST",
+      "inputs": [
+        "remote"
+      ],
+      "classes": [
+        "tv"
+      ],
+      "text": "On a TV, the dialog fades in, and the focus goes to the safe action first. The directional pad moves the focus only between the actions. Back closes the dialog, and the focus goes back to its cause."
+    },
+    {
+      "id": "dialog/car",
+      "level": "MUST",
+      "inputs": [
+        "touch",
+        "voice"
+      ],
+      "classes": [
+        "car"
+      ],
+      "text": "On a car display, the dialog is an alert template of the platform, with the actions that the car accepts. The user can do each alert by touch and by voice."
+    },
+    {
+      "id": "dialog/watch",
+      "level": "SHOULD",
+      "classes": [
+        "watch"
+      ],
+      "text": "On a watch, the dialog is a full-screen alert of the platform, with two actions or less."
+    },
+    {
+      "id": "dialog/xr",
+      "level": "MUST",
+      "classes": [
+        "xr"
+      ],
+      "text": "On an XR headset, the dialog is the alert of the platform, in front of its window. It does not move with the head."
+    },
+    {
+      "id": "dialog/foldable",
+      "level": "MUST",
+      "classes": [
+        "foldable"
+      ],
+      "text": "On a foldable, the dialog stays on one side of the fold."
+    }
+  ]
+}
