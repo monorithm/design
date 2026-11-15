@@ -1,0 +1,80 @@
+{
+  "$description": "The touch density: phone, foldable, tablet. Source: Foundations (Web and phones), Components (Buttons, Forms).",
+  "size": {
+    "$type": "dimension",
+    "control-unit": {
+      "$value": {
+        "value": 20,
+        "unit": "px"
+      }
+    },
+    "target-min": {
+      "$value": {
+        "value": 44,
+        "unit": "px"
+      }
+    },
+    "control-sm": {
+      "$value": {
+        "value": 36,
+        "unit": "px"
+      },
+      "$description": "The height of a small button: tables and dense toolbars"
+    },
+    "control-md": {
+      "$value": {
+        "value": 44,
+        "unit": "px"
+      },
+      "$description": "The height of a medium button: most actions"
+    },
+    "control-lg": {
+      "$value": {
+        "value": 52,
+        "unit": "px"
+      },
+      "$description": "The height of a large button: a primary action on its own"
+    },
+    "icon": {
+      "$value": {
+        "value": 20,
+        "unit": "px"
+      },
+      "$description": "The size of an icon in a control"
+    }
+  },
+  "radius": {
+    "$type": "dimension",
+    "md": {
+      "$value": {
+        "value": 10,
+        "unit": "px"
+      },
+      "$description": "Buttons, inputs, items"
+    },
+    "lg": {
+      "$value": {
+        "value": 14,
+        "unit": "px"
+      },
+      "$description": "Cards, dialogs, menus, option cards"
+    }
+  },
+  "font-size": {
+    "$type": "dimension",
+    "body": {
+      "$value": {
+        "value": 16,
+        "unit": "px"
+      },
+      "$description": "Text and control labels"
+    },
+    "small": {
+      "$value": {
+        "value": 14,
+        "unit": "px"
+      },
+      "$description": "The label of a small button"
+    }
+  }
+}

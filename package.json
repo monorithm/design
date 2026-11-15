@@ -1,0 +1,31 @@
+{
+  "name": "@monorithm/design",
+  "version": "0.2.0",
+  "private": true,
+  "license": "Apache-2.0",
+  "description": "The source of the Monorithm Experience Language: tokens, icons, moments, contracts, and the compiler of its intermediate form.",
+  "type": "module",
+  "packageManager": "yarn@4.18.1+sha512.b2e1e7524f654f2749d32b4ebcb4622473cb5bcbc485df2007e12a154e50162a4d795526768bc5f5b8f81717bfd79deb2472813d86fb5ae2eb551fa9c872b08f",
+  "engines": {
+    "node": ">=26.13.0"
+  },
+  "exports": {
+    "./ir/*": "./ir/*",
+    "./schemas/*": "./schemas/*"
+  },
+  "files": [
+    "ir",
+    "schemas"
+  ],
+  "scripts": {
+    "build": "node compiler/compile.ts",
+    "check": "node compiler/compile.ts --check",
+    "test": "node --test compiler/",
+    "typecheck": "tsc"
+  },
+  "devDependencies": {
+    "@types/node": "26",
+    "ajv": "8.20.0",
+    "typescript": "7.0.2"
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "$description": "The axes of the language. Each context of an axis adds its token files to the base files. The first context is the default.",
+  "base": [
+    "tokens/palette.tokens.json",
+    "tokens/shape.tokens.json",
+    "tokens/motion.tokens.json"
+  ],
+  "axes": {
+    "theme": {
+      "contexts": {
+        "dark": [
+          "tokens/theme-dark.tokens.json"
+        ],
+        "light": [
+          "tokens/theme-light.tokens.json"
+        ]
+      }
+    },
+    "density": {
+      "contexts": {
+        "pointer": [
+          "tokens/density-pointer.tokens.json"
+        ],
+        "touch": [
+          "tokens/density-touch.tokens.json"
+        ]
+      }
+    }
+  }
+}

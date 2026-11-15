@@ -1,0 +1,126 @@
+{
+  "$description": "The roles of the light theme. Source: Design System (Surfaces and lines, Text and actions), Components (Buttons, Forms).",
+  "color": {
+    "$type": "color",
+    "role": {
+      "bg": {
+        "$value": "{color.neutral.25}"
+      },
+      "surface": {
+        "$value": "{color.neutral.0}"
+      },
+      "pressed": {
+        "$value": "{color.neutral.150}"
+      },
+      "line-strong": {
+        "$value": "{color.neutral.200}"
+      },
+      "fg": {
+        "$value": "{color.neutral.850}"
+      },
+      "fg-strong": {
+        "$value": "{color.neutral.950}"
+      },
+      "accent": {
+        "$value": "{color.blue.600}"
+      },
+      "accent-fg": {
+        "$value": "{color.neutral.0}"
+      },
+      "ring": {
+        "$value": "{color.blue.600}"
+      },
+      "raised": {
+        "$value": "{color.neutral.0}",
+        "$description": "Menus, popovers, dialogs, sheets, the round icon button"
+      },
+      "selected": {
+        "$value": "{color.neutral.100}",
+        "$description": "The current item, the secondary button, the hover of a ghost button"
+      },
+      "line": {
+        "$value": "{color.neutral.150}",
+        "$description": "Card rings and button borders"
+      },
+      "field-line": {
+        "$value": "{color.neutral.450}",
+        "$description": "The borders of inputs, checkboxes, and radio buttons"
+      },
+      "fg-2": {
+        "$value": "{color.neutral.600}",
+        "$description": "Secondary text, field labels, icons in a round icon button"
+      },
+      "primary": {
+        "$value": "{color.neutral.925}",
+        "$description": "The fill of the primary button"
+      },
+      "primary-fg": {
+        "$value": "{color.neutral.25}",
+        "$description": "The text on the primary fill"
+      },
+      "primary-hover": {
+        "$value": "{color.neutral.750}",
+        "$description": "The fill of the primary button at hover and pressed"
+      },
+      "accent-text": {
+        "$value": "{color.blue.650}",
+        "$description": "The accent as text: links and the link button"
+      },
+      "danger-text": {
+        "$value": "{color.red.650}",
+        "$description": "The danger as text"
+      },
+      "danger-soft": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.851,
+            0.2275,
+            0.251
+          ],
+          "alpha": 0.1,
+          "hex": "#d93a40"
+        },
+        "$description": "The fill of the destructive button"
+      },
+      "danger-soft-strong": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.851,
+            0.2275,
+            0.251
+          ],
+          "alpha": 0.18,
+          "hex": "#d93a40"
+        },
+        "$description": "The fill of the destructive button at hover and pressed"
+      },
+      "fg-muted": {
+        "$value": "{color.neutral.500}",
+        "$description": "Captions, placeholders, the description of a choice"
+      },
+      "accent-soft": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.1216,
+            0.4353,
+            0.8784
+          ],
+          "alpha": 0.1,
+          "hex": "#1f6fe0"
+        },
+        "$description": "The fill of a selected option card"
+      }
+    },
+    "switch": {
+      "knob-off": {
+        "$value": "{color.neutral.0}"
+      },
+      "knob-on": {
+        "$value": "{color.neutral.0}"
+      }
+    }
+  }
+}

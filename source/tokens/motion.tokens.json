@@ -1,0 +1,114 @@
+{
+  "$description": "Motion. Source: Motion System, Durations, Curves, Springs.",
+  "duration": {
+    "$type": "duration",
+    "slide": {
+      "$value": {
+        "value": 280,
+        "unit": "ms"
+      },
+      "$description": "The switch knob where no spring applies"
+    },
+    "press": {
+      "$value": {
+        "value": 100,
+        "unit": "ms"
+      },
+      "$description": "dur-press: the press scale of buttons"
+    },
+    "fast": {
+      "$value": {
+        "value": 150,
+        "unit": "ms"
+      },
+      "$description": "dur-fast: background, border, and text color"
+    },
+    "spin": {
+      "$value": {
+        "value": 800,
+        "unit": "ms"
+      },
+      "$description": "One turn of the spinner of a loading button"
+    }
+  },
+  "easing": {
+    "$type": "cubicBezier",
+    "out": {
+      "$value": [
+        0.3,
+        0.7,
+        0.2,
+        1
+      ],
+      "$description": "ease-out: entrances and all moves into place"
+    },
+    "standard": {
+      "$value": [
+        0.25,
+        0.1,
+        0.25,
+        1
+      ],
+      "$description": "ease: the press scale and the change of color"
+    }
+  },
+  "spring": {
+    "$type": "transition",
+    "control": {
+      "$value": {
+        "duration": {
+          "value": 248,
+          "unit": "ms"
+        },
+        "delay": {
+          "value": 0,
+          "unit": "ms"
+        },
+        "timingFunction": [
+          0.3,
+          0.7,
+          0.2,
+          1
+        ]
+      },
+      "$description": "spring-control: switch knob, checkbox mark, segmented pill, tab indicator, slider thumb. The transition value is the fallback: the settle time and ease-out.",
+      "$extensions": {
+        "dev.monorithm": {
+          "spring": {
+            "stiffness": 900,
+            "damping": 60,
+            "mass": 1
+          }
+        }
+      }
+    },
+    "quick": {
+      "$value": {
+        "duration": {
+          "value": 186,
+          "unit": "ms"
+        },
+        "delay": {
+          "value": 0,
+          "unit": "ms"
+        },
+        "timingFunction": [
+          0.3,
+          0.7,
+          0.2,
+          1
+        ]
+      },
+      "$description": "spring-quick: keyboard and TV focus, the radio indicator with the keyboard. The transition value is the fallback: the settle time and ease-out.",
+      "$extensions": {
+        "dev.monorithm": {
+          "spring": {
+            "stiffness": 1600,
+            "damping": 80,
+            "mass": 1
+          }
+        }
+      }
+    }
+  }
+}

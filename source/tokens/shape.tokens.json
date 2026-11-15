@@ -1,0 +1,89 @@
+{
+  "$description": "Shape, state, focus, and press. Source: Foundations (radius, motion), Components (states, focus), Forms (switch knob).",
+  "radius": {
+    "$type": "dimension",
+    "full": {
+      "$value": {
+        "value": 999,
+        "unit": "px"
+      }
+    }
+  },
+  "opacity": {
+    "$type": "number",
+    "disabled": {
+      "$value": 0.4,
+      "$description": "A disabled control: 40 % opacity"
+    },
+    "link-pressed": {
+      "$value": 0.8,
+      "$description": "A link button at pointer down: no scale"
+    }
+  },
+  "focus": {
+    "$type": "dimension",
+    "ring-width": {
+      "$value": {
+        "value": 2,
+        "unit": "px"
+      }
+    },
+    "ring-offset": {
+      "$value": {
+        "value": 2,
+        "unit": "px"
+      }
+    }
+  },
+  "shadow": {
+    "$type": "shadow",
+    "knob": {
+      "$value": {
+        "color": {
+          "colorSpace": "srgb",
+          "components": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "alpha": 0.35,
+          "hex": "#000000"
+        },
+        "offsetX": {
+          "value": 0,
+          "unit": "px"
+        },
+        "offsetY": {
+          "value": 1,
+          "unit": "px"
+        },
+        "blur": {
+          "value": 2,
+          "unit": "px"
+        },
+        "spread": {
+          "value": 0,
+          "unit": "px"
+        }
+      }
+    }
+  },
+  "font-weight": {
+    "$type": "fontWeight",
+    "strong": {
+      "$value": 500,
+      "$description": "The label of the primary and the destructive button"
+    }
+  },
+  "scale": {
+    "$type": "number",
+    "press": {
+      "$value": 0.97,
+      "$description": "A button at pointer down"
+    },
+    "press-icon": {
+      "$value": 0.96,
+      "$description": "An icon button at pointer down"
+    }
+  }
+}

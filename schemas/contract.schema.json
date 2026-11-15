@@ -1,0 +1,260 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/monorithm/design/schemas/contract.schema.json",
+  "title": "The contract of a component (layer 1: the language)",
+  "description": "A contract tells the language only. No field names a stack, a package, an element of a stack, a canvas board, or a private ID.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "name",
+    "status",
+    "class",
+    "purpose",
+    "anatomy",
+    "states",
+    "axes",
+    "tokens",
+    "geometry",
+    "moments",
+    "clauses"
+  ],
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9-]*$"
+    },
+    "name": {
+      "type": "string"
+    },
+    "status": {
+      "enum": [
+        "draft",
+        "accepted",
+        "stable",
+        "deprecated"
+      ]
+    },
+    "class": {
+      "enum": [
+        "S",
+        "M",
+        "L"
+      ],
+      "description": "The size class of the list of version 1"
+    },
+    "purpose": {
+      "type": "string"
+    },
+    "variants": {
+      "type": "array",
+      "minItems": 2,
+      "description": "The variants of the component, when it has more than one look. A variant has a name and a text that tells when to use it.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "name",
+          "use"
+        ],
+        "properties": {
+          "name": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9-]*$"
+          },
+          "use": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "anatomy": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "part",
+          "role"
+        ],
+        "properties": {
+          "part": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9-]*$"
+          },
+          "role": {
+            "type": "string"
+          },
+          "optional": {
+            "type": "boolean"
+          }
+        }
+      }
+    },
+    "states": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "enum": [
+          "default",
+          "off",
+          "on",
+          "hover",
+          "focus",
+          "pressed",
+          "selected",
+          "disabled",
+          "loading",
+          "error",
+          "mixed"
+        ]
+      }
+    },
+    "axes": {
+      "type": "array",
+      "items": {
+        "enum": [
+          "theme",
+          "density",
+          "direction",
+          "motion",
+          "contrast"
+        ]
+      }
+    },
+    "tokens": {
+      "type": "object",
+      "description": "A part and its property, mapped to a token path of the source.",
+      "additionalProperties": {
+        "type": "string",
+        "pattern": "^[a-z][a-z0-9-]*(\\.[a-z0-9][a-z0-9-]*)+$"
+      }
+    },
+    "geometry": {
+      "type": "object",
+      "description": "A measure as a multiple of a token, or a fixed value in px.",
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "value"
+        ],
+        "properties": {
+          "value": {
+            "type": "number"
+          },
+          "of": {
+            "type": "string"
+          },
+          "unit": {
+            "enum": [
+              "px"
+            ]
+          }
+        }
+      }
+    },
+    "moments": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "moment",
+          "when"
+        ],
+        "properties": {
+          "moment": {
+            "enum": [
+              "press",
+              "toggle",
+              "select",
+              "drag-start",
+              "threshold",
+              "snap",
+              "open",
+              "close",
+              "success",
+              "warning",
+              "error",
+              "notify",
+              "send"
+            ]
+          },
+          "variants": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "when": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "clauses": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "level",
+          "text"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9-]*/[a-z][a-z0-9-]*$"
+          },
+          "level": {
+            "enum": [
+              "MUST",
+              "SHOULD",
+              "NEVER"
+            ]
+          },
+          "text": {
+            "type": "string"
+          },
+          "inputs": {
+            "type": "array",
+            "items": {
+              "enum": [
+                "pointer",
+                "touch",
+                "keyboard",
+                "screen-reader",
+                "voice",
+                "switch-access",
+                "remote"
+              ]
+            }
+          },
+          "classes": {
+            "type": "array",
+            "items": {
+              "enum": [
+                "phone",
+                "foldable",
+                "tablet",
+                "laptop",
+                "desktop",
+                "tv",
+                "car",
+                "watch",
+                "xr"
+              ]
+            }
+          }
+        }
+      }
+    }
+  }
+}

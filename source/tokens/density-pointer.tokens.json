@@ -1,0 +1,82 @@
+{
+  "$description": "The pointer density (compact): web, laptop, desktop. Source: Foundations (Web and phones), Components (Buttons, Forms).",
+  "size": {
+    "$type": "dimension",
+    "control-unit": {
+      "$value": {
+        "value": 16,
+        "unit": "px"
+      },
+      "$description": "The unit of the small controls: the switch knob, the checkbox box"
+    },
+    "target-min": {
+      "$value": {
+        "value": 24,
+        "unit": "px"
+      },
+      "$description": "WCAG 2.5.8"
+    },
+    "control-sm": {
+      "$value": {
+        "value": 28,
+        "unit": "px"
+      },
+      "$description": "The height of a small button: tables and dense toolbars"
+    },
+    "control-md": {
+      "$value": {
+        "value": 32,
+        "unit": "px"
+      },
+      "$description": "The height of a medium button: most actions"
+    },
+    "control-lg": {
+      "$value": {
+        "value": 40,
+        "unit": "px"
+      },
+      "$description": "The height of a large button: a primary action on its own"
+    },
+    "icon": {
+      "$value": {
+        "value": 16,
+        "unit": "px"
+      },
+      "$description": "The size of an icon in a control"
+    }
+  },
+  "radius": {
+    "$type": "dimension",
+    "md": {
+      "$value": {
+        "value": 8,
+        "unit": "px"
+      },
+      "$description": "Buttons, inputs, items"
+    },
+    "lg": {
+      "$value": {
+        "value": 12,
+        "unit": "px"
+      },
+      "$description": "Cards, dialogs, menus, option cards"
+    }
+  },
+  "font-size": {
+    "$type": "dimension",
+    "body": {
+      "$value": {
+        "value": 14,
+        "unit": "px"
+      },
+      "$description": "Text and control labels"
+    },
+    "small": {
+      "$value": {
+        "value": 13,
+        "unit": "px"
+      },
+      "$description": "The label of a small button"
+    }
+  }
+}
