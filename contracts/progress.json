@@ -1,0 +1,353 @@
+{
+  "$schema": "../schemas/contract.schema.json",
+  "id": "progress",
+  "name": "Progress and skeleton",
+  "status": "draft",
+  "class": "S",
+  "purpose": "Progress and skeleton show that the system works on a task. A bar shows how much of the task is done. A spinner shows a short wait. A skeleton shows the layout of content that loads.",
+  "variants": [
+    {
+      "name": "bar",
+      "use": "A task with a known amount, for example an upload. It shows a label and a percentage. When the system does not know the amount, the bar is indeterminate."
+    },
+    {
+      "name": "spinner",
+      "use": "A short wait. Use it only inside a button, or for a wait of less than 2 s."
+    },
+    {
+      "name": "skeleton",
+      "use": "Content that the app loads. The shapes have the layout of the content, with a shimmer."
+    }
+  ],
+  "anatomy": [
+    {
+      "part": "track",
+      "role": "Bar: the full length. It shows the range from the minimum to the maximum"
+    },
+    {
+      "part": "fill",
+      "role": "Bar: the part of the track that shows the value. It grows from the start side"
+    },
+    {
+      "part": "label",
+      "role": "Bar: the task, for example Uploading 3 photos"
+    },
+    {
+      "part": "value",
+      "role": "Bar: the percentage at the end side, for example 64%. An indeterminate bar has no value",
+      "optional": true
+    },
+    {
+      "part": "spinner",
+      "role": "Spinner: the loading icon. It turns while the task continues"
+    },
+    {
+      "part": "region",
+      "role": "Skeleton: the area that loads. It holds the shapes"
+    },
+    {
+      "part": "shape",
+      "role": "Skeleton: a placeholder with the size, the position, and the radius of one item of content"
+    },
+    {
+      "part": "shimmer",
+      "role": "Skeleton: a band of light that moves across the shapes",
+      "optional": true
+    }
+  ],
+  "states": [
+    "loading"
+  ],
+  "axes": [
+    "theme",
+    "density",
+    "direction",
+    "motion"
+  ],
+  "tokens": {
+    "track.color": "color.role.selected",
+    "track.radius": "radius.full",
+    "fill.color": "color.role.accent",
+    "fill.radius": "radius.full",
+    "fill.motion": "spring.control",
+    "indeterminate.duration": "duration.shimmer",
+    "indeterminate.easing": "easing.linear",
+    "label.color": "color.role.fg",
+    "label.size": "font-size.small",
+    "value.color": "color.role.fg-muted",
+    "value.size": "font-size.small",
+    "spinner.size": "size.icon",
+    "spinner.turn": "duration.spin",
+    "spinner.easing": "easing.linear",
+    "spinner.delay": "duration.spinner-delay",
+    "spinner.motion.reduced": "duration.pulse",
+    "shape.color": "color.role.selected",
+    "shape.radius": "radius.sm",
+    "shimmer.color": "color.skeleton.shimmer",
+    "shimmer.duration": "duration.shimmer",
+    "shimmer.easing": "easing.linear",
+    "shimmer.limit": "duration.shimmer-limit"
+  },
+  "geometry": {
+    "track.height": {
+      "value": 6,
+      "unit": "px"
+    },
+    "label.gap": {
+      "value": 8,
+      "unit": "px"
+    }
+  },
+  "moments": [],
+  "clauses": [
+    {
+      "id": "progress/role",
+      "level": "MUST",
+      "inputs": [
+        "screen-reader"
+      ],
+      "text": "The accessibility tree shows the bar as a progress bar, with its name, the current value, the minimum, and the maximum. The default range is 0 to 100."
+    },
+    {
+      "id": "progress/name",
+      "level": "MUST",
+      "inputs": [
+        "screen-reader"
+      ],
+      "text": "The name of a bar is its label, for example Uploading 3 photos. The name of a region that loads tells the content, for example Loading products."
+    },
+    {
+      "id": "progress/value-text",
+      "level": "MUST",
+      "inputs": [
+        "screen-reader"
+      ],
+      "text": "When the value is not a percentage, the value text tells it, for example 96 of 240 KB."
+    },
+    {
+      "id": "progress/indeterminate",
+      "level": "MUST",
+      "inputs": [
+        "screen-reader"
+      ],
+      "text": "When the system does not know the amount of the task, the bar is indeterminate. It has no current value, and its label shows no percentage."
+    },
+    {
+      "id": "progress/spinner-name",
+      "level": "MUST",
+      "inputs": [
+        "screen-reader"
+      ],
+      "text": "Assistive technology does not read the spinner. A text tells the activity, for example Saving."
+    },
+    {
+      "id": "progress/skeleton-busy",
+      "level": "MUST",
+      "inputs": [
+        "screen-reader"
+      ],
+      "text": "The region that loads tells assistive technology that it is busy. Assistive technology does not read the shapes. When the content shows, the region is not busy."
+    },
+    {
+      "id": "progress/announce-once",
+      "level": "MUST",
+      "inputs": [
+        "screen-reader"
+      ],
+      "text": "When a load starts, the polite announcer tells the loading text one time. The screen reader does not hear each change of the value or each cycle of the motion. At the end, the announcer tells the result one time, for example Saved."
+    },
+    {
+      "id": "progress/keyboard",
+      "level": "MUST",
+      "inputs": [
+        "keyboard"
+      ],
+      "text": "The bar, the spinner, and the skeleton have no keyboard action. Tab does not stop on them."
+    },
+    {
+      "id": "progress/focus",
+      "level": "MUST",
+      "inputs": [
+        "keyboard",
+        "switch-access"
+      ],
+      "text": "No part gets the focus or shows the focus ring. A loading button keeps its focus and its ring: 2 px in the ring color, 2 px from the container."
+    },
+    {
+      "id": "progress/target",
+      "level": "MUST",
+      "inputs": [
+        "pointer",
+        "touch"
+      ],
+      "text": "No part is a target. A press on the bar, the spinner, or a shape does nothing. A loading button keeps its target: 24 px or more for pointer, 44 px or more for touch."
+    },
+    {
+      "id": "progress/size",
+      "level": "MUST",
+      "text": "The loading state does not change the size of the component or the layout. A skeleton has the size of the content that it replaces."
+    },
+    {
+      "id": "progress/bar",
+      "level": "MUST",
+      "text": "The track is 6 px high, with the full radius and the selected color. The fill has the full radius and the accent color."
+    },
+    {
+      "id": "progress/label",
+      "level": "MUST",
+      "text": "A bar shows its label and its percentage on one line, 8 px above the track, for example Uploading 3 photos 64%. The label is at the start side. The percentage is at the end side, with tabular figures."
+    },
+    {
+      "id": "progress/value-sign",
+      "level": "MUST",
+      "text": "The length of the fill and the percentage text show the value. Color is not the only sign of the value."
+    },
+    {
+      "id": "progress/density",
+      "level": "MUST",
+      "text": "The track is 6 px high in the two densities. The label and the percentage have the small text size of the density: 13 px for pointer, 14 px for touch."
+    },
+    {
+      "id": "progress/done",
+      "level": "NEVER",
+      "text": "The bar shows 100 % before the system confirms the end of the task. The same rule applies to each sign of a completed task, for example a payment or a sent message."
+    },
+    {
+      "id": "progress/direction",
+      "level": "MUST",
+      "text": "In a right-to-left layout, the fill grows from the start side, the right side. The label is at the right, and the percentage is at the left, in the digits of the locale."
+    },
+    {
+      "id": "progress/media-timeline",
+      "level": "MUST",
+      "text": "A media timeline is not a progress bar. It fills from the left in each language."
+    },
+    {
+      "id": "progress/spinner-direction",
+      "level": "MUST",
+      "text": "The spinner does not mirror. It turns clockwise in each language."
+    },
+    {
+      "id": "progress/shimmer-direction",
+      "level": "SHOULD",
+      "text": "The shimmer moves from the start edge to the end edge, in the reading direction. In a right-to-left layout, it moves from the right to the left."
+    },
+    {
+      "id": "progress/bar-motion",
+      "level": "MUST",
+      "text": "The fill follows each larger value with spring-control. A smaller value jumps. The fill changes its horizontal scale, not its width."
+    },
+    {
+      "id": "progress/indeterminate-motion",
+      "level": "MUST",
+      "text": "An indeterminate fill moves from the start edge to the end edge in a loop of 1,500 ms, with the linear curve."
+    },
+    {
+      "id": "progress/spinner-use",
+      "level": "MUST",
+      "text": "A spinner shows only inside a button, or for a wait of less than 2 s. For a longer wait, show a bar, or a skeleton for content that loads."
+    },
+    {
+      "id": "progress/spinner-delay",
+      "level": "MUST",
+      "text": "A spinner shows only after a wait of 400 ms. A task that ends in less than 400 ms shows no spinner."
+    },
+    {
+      "id": "progress/spinner",
+      "level": "MUST",
+      "text": "The spinner is the loading icon at the icon size of the density, in the color of the text next to it. It turns one time in each 1,000 ms, with the linear curve, while the task continues."
+    },
+    {
+      "id": "progress/skeleton-use",
+      "level": "MUST",
+      "text": "A skeleton shows only for content that the app loads. Its shapes have the layout of the real content, for example the layout of the real product card."
+    },
+    {
+      "id": "progress/skeleton-shape",
+      "level": "MUST",
+      "text": "A shape has the selected color. A shape for a line of text has the small radius, 6 px. A shape for an image or an avatar has the radius of the real image or avatar."
+    },
+    {
+      "id": "progress/shimmer",
+      "level": "MUST",
+      "text": "The shimmer moves across the shapes in a loop of 1,500 ms, with the linear curve. Its color is white at 5 % opacity in the dark theme, and black at 4 % opacity in the light theme."
+    },
+    {
+      "id": "progress/shimmer-stop",
+      "level": "MUST",
+      "text": "After 5 s, the shimmer stops and a status text shows."
+    },
+    {
+      "id": "progress/animate",
+      "level": "MUST",
+      "text": "The motion of the bar, the spinner, and the shimmer changes only the opacity and the transform."
+    },
+    {
+      "id": "progress/motion",
+      "level": "MUST",
+      "text": "With reduced motion, no part moves or scales. The skeleton has no shimmer, and the bar jumps to each value. The spinner does not turn. It pulses its opacity from 1 to 0.4 in a cycle of 2,000 ms. An indeterminate fill does not move, and it pulses as the spinner. The changes of color stay."
+    },
+    {
+      "id": "progress/moment",
+      "level": "MUST",
+      "text": "The bar, the spinner, and the skeleton emit no moment. The component that shows the result emits the moment, for example an alert or a toast with success or error."
+    },
+    {
+      "id": "progress/no-direct-feedback",
+      "level": "NEVER",
+      "text": "The bar, the spinner, or the skeleton starts a haptic or a sound directly."
+    },
+    {
+      "id": "progress/no-disabled",
+      "level": "NEVER",
+      "text": "The bar, the spinner, or the skeleton has a disabled state or the disabled opacity."
+    },
+    {
+      "id": "progress/failure",
+      "level": "SHOULD",
+      "text": "If a task does not complete, the screen removes the indicator. A text tells the result and gives one action, for example Message not sent and Try again."
+    },
+    {
+      "id": "progress/always-on",
+      "level": "MUST",
+      "classes": [
+        "watch"
+      ],
+      "text": "On the always-on display of a watch, the spinner, the skeleton, and the shimmer do not show. The screen shows the last value with its time."
+    },
+    {
+      "id": "progress/tv",
+      "level": "SHOULD",
+      "classes": [
+        "tv"
+      ],
+      "text": "On a TV, skeletons and bars stay. Their motion changes only the opacity and the transform, because many TV processors are slow."
+    },
+    {
+      "id": "progress/car",
+      "level": "SHOULD",
+      "classes": [
+        "car"
+      ],
+      "text": "On a car display, the app does not draw a skeleton. The app gives the data to the template when it gets the data."
+    },
+    {
+      "id": "progress/xr",
+      "level": "MUST",
+      "classes": [
+        "xr"
+      ],
+      "text": "On an XR headset, skeletons show on the glass material. No part moves toward the user."
+    },
+    {
+      "id": "progress/use",
+      "level": "SHOULD",
+      "text": "Show a bar with a value when the time of the task is known."
+    },
+    {
+      "id": "progress/steps",
+      "level": "SHOULD",
+      "text": "For a status with steps, for example an order, a booking, or a request, show a timeline, not a bar. Each step shows its date. A step that is not done shows the expected date."
+    }
+  ]
+}

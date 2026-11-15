@@ -18,7 +18,7 @@ This repository holds the source of the Monorithm Experience Language. The sourc
 | `compiler/` | The compiler. It examines the source against the schemas and writes the intermediate form |
 | `ir/<version>/` | The intermediate form of each released language version |
 
-The layout grows in the order of the plan. At this time it has the list of the components of version 1 and the contracts of the first ten components. It also has the tokens that these components use. Read the build order in `contracts/v1-components.md`.
+The layout grows in the order of the plan. At this time it has the list of the components of version 1 and the contracts of the first 14 components. It also has the tokens that these components use. Read the build order in `contracts/v1-components.md`.
 
 ## Build and check
 

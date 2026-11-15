@@ -355,6 +355,34 @@
         },
         "$description": "The warning text of the light theme"
       }
+    },
+    "green": {
+      "300": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.1843,
+            0.7804,
+            0.6118
+          ],
+          "alpha": 1,
+          "hex": "#2fc79c"
+        },
+        "$description": "The success text of the dark theme"
+      },
+      "650": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.0314,
+            0.4627,
+            0.3451
+          ],
+          "alpha": 1,
+          "hex": "#087658"
+        },
+        "$description": "The success text of the light theme"
+      }
     }
   }
 }

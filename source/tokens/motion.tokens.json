@@ -25,10 +25,10 @@
     },
     "spin": {
       "$value": {
-        "value": 800,
+        "value": 1000,
         "unit": "ms"
       },
-      "$description": "One turn of the spinner of a loading button"
+      "$description": "One turn of a spinner: 1,000 ms"
     },
     "base": {
       "$value": {
@@ -36,6 +36,34 @@
         "unit": "ms"
       },
       "$description": "dur-base: the text color of a segment, and the opacity of rows."
+    },
+    "shimmer": {
+      "$value": {
+        "value": 1500,
+        "unit": "ms"
+      },
+      "$description": "One cycle of the shimmer of a skeleton, and one cycle of an indeterminate bar."
+    },
+    "shimmer-limit": {
+      "$value": {
+        "value": 5000,
+        "unit": "ms"
+      },
+      "$description": "The shimmer stops after this time, and a status text shows."
+    },
+    "spinner-delay": {
+      "$value": {
+        "value": 400,
+        "unit": "ms"
+      },
+      "$description": "A spinner shows only after a wait of this time."
+    },
+    "pulse": {
+      "$value": {
+        "value": 2000,
+        "unit": "ms"
+      },
+      "$description": "One cycle of the opacity pulse of the spinner with reduced motion, from 1 to 0.4 and back."
     }
   },
   "easing": {
@@ -66,6 +94,24 @@
         1
       ],
       "$description": "ease-in: exits, for example the exit of a menu or a select list."
+    },
+    "in-out": {
+      "$value": [
+        0.65,
+        0,
+        0.35,
+        1
+      ],
+      "$description": "ease-in-out: a move from one position to a different position, and expand and collapse"
+    },
+    "linear": {
+      "$value": [
+        0,
+        0,
+        1,
+        1
+      ],
+      "$description": "linear: progress that follows time, the turn of the spinner, and the loops of the shimmer."
     }
   },
   "spring": {

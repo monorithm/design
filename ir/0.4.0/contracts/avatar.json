@@ -1,0 +1,400 @@
+{
+  "id": "avatar",
+  "name": "Avatar",
+  "status": "draft",
+  "class": "S",
+  "purpose": "An avatar shows a person or an organization with a photo, or with the initials when there is no photo. A group shows a few avatars and a count. An avatar button opens the account menu.",
+  "variants": [
+    {
+      "name": "person",
+      "use": "A person, for example a buyer or a follower. The shape is round."
+    },
+    {
+      "name": "organization",
+      "use": "An organization, for example a shop, a team, or a channel. The shape is a rounded square."
+    },
+    {
+      "name": "button",
+      "use": "The account control in the header. It opens the account menu. The shape is round."
+    }
+  ],
+  "anatomy": [
+    {
+      "part": "container",
+      "role": "The shape, the fill, and the ring. The size sets its width and its height"
+    },
+    {
+      "part": "photo",
+      "role": "The photo of the person or of the organization. It fills the container",
+      "optional": true
+    },
+    {
+      "part": "initials",
+      "role": "One or two letters of the name. They show when there is no photo",
+      "optional": true
+    },
+    {
+      "part": "group",
+      "role": "A row of avatars that overlap, then the count",
+      "optional": true
+    },
+    {
+      "part": "count",
+      "role": "The last item of a group. It gives the number of the other persons, for example +3",
+      "optional": true
+    }
+  ],
+  "states": [
+    "default",
+    "hover",
+    "focus",
+    "pressed",
+    "disabled"
+  ],
+  "axes": [
+    "theme",
+    "density",
+    "direction",
+    "motion"
+  ],
+  "tokens": {
+    "xs.size": "size.avatar-xs",
+    "sm.size": "size.avatar-sm",
+    "md.size": "size.avatar-md",
+    "lg.size": "size.avatar-lg",
+    "person.radius": "radius.full",
+    "container.fill": "color.role.selected",
+    "container.ring": "color.avatar.ring",
+    "initials.color": "color.role.fg-2",
+    "initials.weight": "font-weight.strong",
+    "group.ring": "color.role.surface",
+    "count.fill": "color.role.pressed",
+    "count.color": "color.role.fg-2",
+    "seller.name.size": "font-size.small",
+    "seller.name.weight": "font-weight.strong",
+    "seller.name.color": "color.role.fg",
+    "seller.handle.size": "font-size.caption",
+    "seller.handle.color": "color.role.fg-muted",
+    "button.size": "size.control-md",
+    "button.target": "size.target-min",
+    "button.radius": "radius.full",
+    "button.fill": "color.role.bg",
+    "button.ring": "color.avatar.ring",
+    "button.ring.hover": "color.role.line-strong",
+    "button.initials.size": "font-size.caption",
+    "button.initials.color": "color.role.fg-2",
+    "disabled.opacity": "opacity.disabled",
+    "focus.width": "focus.ring-width",
+    "focus.offset": "focus.ring-offset",
+    "focus.color": "color.role.ring",
+    "press.scale": "scale.press-icon",
+    "press.duration": "duration.press",
+    "press.easing": "easing.standard",
+    "color.duration": "duration.fast"
+  },
+  "geometry": {
+    "xs.initials.size": {
+      "value": 10,
+      "unit": "px"
+    },
+    "sm.initials.size": {
+      "value": 12,
+      "unit": "px"
+    },
+    "md.initials.size": {
+      "value": 14,
+      "unit": "px"
+    },
+    "lg.initials.size": {
+      "value": 18,
+      "unit": "px"
+    },
+    "xs.organization.radius": {
+      "value": 0.28,
+      "of": "size.avatar-xs"
+    },
+    "sm.organization.radius": {
+      "value": 0.28,
+      "of": "size.avatar-sm"
+    },
+    "md.organization.radius": {
+      "value": 0.28,
+      "of": "size.avatar-md"
+    },
+    "lg.organization.radius": {
+      "value": 0.28,
+      "of": "size.avatar-lg"
+    },
+    "initials.tracking": {
+      "value": 0,
+      "unit": "px"
+    },
+    "ring": {
+      "value": 1,
+      "unit": "px"
+    },
+    "group.ring": {
+      "value": 2,
+      "unit": "px"
+    },
+    "group.overlap": {
+      "value": 8,
+      "unit": "px"
+    },
+    "photo.width": {
+      "value": 160,
+      "unit": "px"
+    },
+    "seller.gap": {
+      "value": 8,
+      "unit": "px"
+    },
+    "button.ring": {
+      "value": 1,
+      "unit": "px"
+    }
+  },
+  "moments": [
+    {
+      "moment": "press",
+      "when": "Only the avatar button: when the user releases the pointer on it, or presses Enter or Space. Not at pointer down"
+    }
+  ],
+  "clauses": [
+    {
+      "id": "avatar/role",
+      "level": "MUST",
+      "inputs": [
+        "screen-reader"
+      ],
+      "text": "The accessibility tree shows an avatar as an image, with the name of the person or of the organization as its name."
+    },
+    {
+      "id": "avatar/name",
+      "level": "MUST",
+      "inputs": [
+        "screen-reader",
+        "voice"
+      ],
+      "text": "The alternative text of an avatar is the name, for example Ama Mensah. The initials are not the name."
+    },
+    {
+      "id": "avatar/decorative",
+      "level": "MUST",
+      "inputs": [
+        "screen-reader"
+      ],
+      "text": "An avatar next to a name that the user can see is decorative, for example in a table row or in a seller line. Assistive technology does not read it. Thus, it reads the name one time."
+    },
+    {
+      "id": "avatar/shape",
+      "level": "MUST",
+      "text": "The avatar of a person is round. The avatar of an organization is a rounded square, with a radius of 28% of its size. The shape, not the color, shows the type."
+    },
+    {
+      "id": "avatar/size",
+      "level": "MUST",
+      "text": "An avatar has one of four sizes: 24 px, 32 px, 40 px, or 56 px. Its width is the same as its height."
+    },
+    {
+      "id": "avatar/density",
+      "level": "MUST",
+      "text": "The density does not change the size of an avatar or of its initials. Only the avatar button changes with the density."
+    },
+    {
+      "id": "avatar/photo",
+      "level": "MUST",
+      "text": "The photo has the ratio 1 : 1. It fills the shape with a crop, and it does not stretch. The avatar loads the thumbnail size of the photo, 160 px wide."
+    },
+    {
+      "id": "avatar/fallback",
+      "level": "MUST",
+      "text": "If there is no photo, or if the photo does not load, the avatar shows the initials of the name on the selected fill."
+    },
+    {
+      "id": "avatar/initials",
+      "level": "MUST",
+      "text": "The initials are one or two capital letters: the first letter of the first word and of the last word of the name. A name with one word gives one letter."
+    },
+    {
+      "id": "avatar/initials-style",
+      "level": "MUST",
+      "text": "The initials are at the center, in the secondary text color, with the strong weight and no letter tracking. For the avatar sizes 24, 32, 40, and 56 px, the initials are 10, 12, 14, and 18 px."
+    },
+    {
+      "id": "avatar/ring",
+      "level": "MUST",
+      "text": "Each avatar has a ring of 1 px in the avatar ring color. This color is white at 12% in the dark theme and black at 10% in the light theme."
+    },
+    {
+      "id": "avatar/group",
+      "level": "MUST",
+      "text": "A group shows three avatars or less, then a count item, for example +3. The count is the number of the persons that the group does not show. All the items have the same size."
+    },
+    {
+      "id": "avatar/group-overlap",
+      "level": "MUST",
+      "text": "In a group, each item after the first overlaps the item before it by 8 px, at its start side. On each item, a ring of 2 px in the surface color replaces the avatar ring."
+    },
+    {
+      "id": "avatar/count",
+      "level": "MUST",
+      "text": "The count item has the shape, the size, and the initials style of an avatar, on the pressed fill."
+    },
+    {
+      "id": "avatar/group-name",
+      "level": "MUST",
+      "inputs": [
+        "screen-reader"
+      ],
+      "text": "The accessibility tree shows a group as one image. Its name gives the names that show and the count, for example Kwame, Efua, Yaw, and 3 more followers. Assistive technology does not read each avatar."
+    },
+    {
+      "id": "avatar/seller-line",
+      "level": "MUST",
+      "text": "A seller line has the avatar, the name, and the handle, in this sequence, with a gap of 8 px. The name has the small text size and the strong weight. The handle has the caption size and the muted text color."
+    },
+    {
+      "id": "avatar/not-a-control",
+      "level": "MUST",
+      "inputs": [
+        "keyboard"
+      ],
+      "text": "An avatar is not a control. It does not get the focus, and it has no hover state and no pressed state. Only the avatar button is a control."
+    },
+    {
+      "id": "avatar/in-a-control",
+      "level": "SHOULD",
+      "inputs": [
+        "pointer",
+        "touch"
+      ],
+      "text": "When an avatar is a part of a larger control, for example a row or a shop switcher, the full control is the target."
+    },
+    {
+      "id": "avatar/button",
+      "level": "MUST",
+      "text": "An avatar button opens the account menu. It is round, with the background fill and the avatar ring. Its width and its height are those of a medium button: 32 px for pointer, 44 px for touch."
+    },
+    {
+      "id": "avatar/button-initials",
+      "level": "MUST",
+      "text": "The initials of an avatar button have the caption size: 12 px for pointer, 13 px for touch."
+    },
+    {
+      "id": "avatar/button-role",
+      "level": "MUST",
+      "inputs": [
+        "screen-reader",
+        "voice"
+      ],
+      "text": "The accessibility tree shows the avatar button as a button with the name Account. The initials are not the name."
+    },
+    {
+      "id": "avatar/keyboard",
+      "level": "MUST",
+      "inputs": [
+        "keyboard"
+      ],
+      "text": "Tab moves the focus to the avatar button. Enter and Space open the account menu. Escape closes the menu and moves the focus back to the avatar button."
+    },
+    {
+      "id": "avatar/target",
+      "level": "MUST",
+      "inputs": [
+        "pointer",
+        "touch"
+      ],
+      "text": "On each axis, the target of the avatar button is the minimum target of the density or more. This is 24 px for pointer and 44 px for touch."
+    },
+    {
+      "id": "avatar/hover",
+      "level": "MUST",
+      "inputs": [
+        "pointer"
+      ],
+      "text": "Only a device with hover shows the hover state. At hover, the ring of the avatar button changes to the strong line color in 150 ms."
+    },
+    {
+      "id": "avatar/press",
+      "level": "MUST",
+      "inputs": [
+        "pointer",
+        "touch"
+      ],
+      "text": "At pointer down, the avatar button scales to 0.96 in 100 ms."
+    },
+    {
+      "id": "avatar/focus",
+      "level": "MUST",
+      "inputs": [
+        "keyboard",
+        "switch-access"
+      ],
+      "text": "Keyboard focus shows the focus ring of the language on the avatar button: 2 px in the ring color, 2 px from the button. A pointer press shows no ring."
+    },
+    {
+      "id": "avatar/state-sign",
+      "level": "MUST",
+      "text": "Color is not the only sign of a state. The focus state has the ring, the pressed state has the scale, and the disabled state has the opacity."
+    },
+    {
+      "id": "avatar/disabled",
+      "level": "MUST",
+      "text": "A disabled avatar button has the disabled opacity and does not open the menu. It stays in the focus order, and its description tells assistive technology why the menu does not open."
+    },
+    {
+      "id": "avatar/direction",
+      "level": "MUST",
+      "text": "In a right-to-left layout, the start side is the right side. A group starts at the right, and the count is at the left end. In a seller line, the avatar is at the right of the name."
+    },
+    {
+      "id": "avatar/initials-direction",
+      "level": "MUST",
+      "text": "The initials of a name keep the direction of the script of the name, also in a layout of the other direction."
+    },
+    {
+      "id": "avatar/motion",
+      "level": "MUST",
+      "text": "With reduced motion, the avatar button does not scale at pointer down. The change of the ring color stays."
+    },
+    {
+      "id": "avatar/moment",
+      "level": "MUST",
+      "text": "The avatar button emits the moment press when the user releases the pointer on it, or presses Enter or Space. The account menu that it opens emits the moment open. An avatar that is not a button emits no moment, and a disabled avatar button emits none."
+    },
+    {
+      "id": "avatar/no-direct-feedback",
+      "level": "NEVER",
+      "text": "The avatar or the avatar button starts a haptic or a sound directly."
+    },
+    {
+      "id": "avatar/header",
+      "level": "SHOULD",
+      "text": "Put the avatar button at the end of the header, after the search button."
+    },
+    {
+      "id": "avatar/menu",
+      "level": "SHOULD",
+      "text": "Open the account menu 4 px from the avatar button. On a phone, open the account menu as a bottom sheet."
+    },
+    {
+      "id": "avatar/surfaces",
+      "level": "SHOULD",
+      "classes": [
+        "tv",
+        "watch",
+        "xr"
+      ],
+      "text": "On a TV, on a watch, and in an XR headset, avatars stay, with the same rules."
+    },
+    {
+      "id": "avatar/car",
+      "level": "SHOULD",
+      "classes": [
+        "car"
+      ],
+      "text": "In a car, an avatar is a small image that can show in the driving state. It becomes the image of a list row of the template."
+    }
+  ]
+}

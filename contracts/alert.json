@@ -1,0 +1,437 @@
+{
+  "$schema": "../schemas/contract.schema.json",
+  "id": "alert",
+  "name": "Alert and banner",
+  "status": "draft",
+  "class": "S",
+  "purpose": "An alert gives a message about the page, the account, a section, or a field. Its tone tells the type of the message: info, success, warning, or danger. A banner can also have the neutral tone.",
+  "variants": [
+    {
+      "name": "inline",
+      "use": "In a section or in a form. The message is about one section or one field, for example a changed fee or an expired quote. It stays until the section changes."
+    },
+    {
+      "name": "banner",
+      "use": "Below the header of a page or the app bar of a screen. The message is about the page or the account, for example offline, a limited account, or a payment that did not complete."
+    }
+  ],
+  "anatomy": [
+    {
+      "part": "container",
+      "role": "The area of the alert. The soft fill of the tone shows the area"
+    },
+    {
+      "part": "icon",
+      "role": "The sign of the tone. Assistive technology does not read it"
+    },
+    {
+      "part": "title",
+      "role": "The result of the message, for example \"Payment failed\""
+    },
+    {
+      "part": "text",
+      "role": "The details of the message and the step for the user"
+    },
+    {
+      "part": "second-line",
+      "role": "A second line of text in a banner",
+      "optional": true
+    },
+    {
+      "part": "action",
+      "role": "One small button that solves the problem",
+      "optional": true
+    },
+    {
+      "part": "close",
+      "role": "A small icon button that closes a banner",
+      "optional": true
+    }
+  ],
+  "states": [
+    "default",
+    "hover",
+    "focus",
+    "pressed"
+  ],
+  "axes": [
+    "theme",
+    "density",
+    "direction",
+    "motion"
+  ],
+  "tokens": {
+    "inline.radius": "radius.lg",
+    "title.size": "font-size.body",
+    "title.weight": "font-weight.strong",
+    "title.color": "color.role.fg-strong",
+    "inline.text.size": "font-size.small",
+    "inline.text.color": "color.role.fg-2",
+    "banner.text.size": "font-size.body",
+    "banner.text.color": "color.role.fg",
+    "second-line.size": "font-size.small",
+    "second-line.color": "color.role.fg-2",
+    "icon.size": "size.icon",
+    "info.fill": "color.role.accent-soft",
+    "info.icon": "color.role.accent-text",
+    "success.fill": "color.role.success-soft",
+    "success.icon": "color.role.success-text",
+    "warning.fill": "color.role.warning-soft",
+    "warning.icon": "color.role.warning-text",
+    "danger.fill": "color.role.danger-soft",
+    "danger.icon": "color.role.danger-text",
+    "neutral.fill": "color.role.selected",
+    "neutral.icon": "color.role.fg-2",
+    "action.height": "size.control-sm",
+    "action.target": "size.target-min",
+    "action.press.scale": "scale.press",
+    "close.size": "size.control-sm",
+    "close.radius": "radius.md",
+    "close.target": "size.target-min",
+    "close.icon.size": "size.icon",
+    "close.icon.color": "color.role.fg-2",
+    "close.icon.hover": "color.role.fg-strong",
+    "close.fill.hover": "color.role.hover-on-fill",
+    "close.press.scale": "scale.press-icon",
+    "press.duration": "duration.press",
+    "press.easing": "easing.standard",
+    "color.duration": "duration.fast",
+    "disabled.opacity": "opacity.disabled",
+    "focus.width": "focus.ring-width",
+    "focus.offset": "focus.ring-offset",
+    "focus.color": "color.role.ring",
+    "expand.duration": "duration.base",
+    "expand.easing": "easing.in-out",
+    "fade.duration": "duration.fast",
+    "fade.easing": "easing.standard",
+    "reduced.in": "duration.fast",
+    "reduced.out": "duration.press"
+  },
+  "geometry": {
+    "inline.padding-block": {
+      "value": 12,
+      "unit": "px"
+    },
+    "inline.padding-inline": {
+      "value": 16,
+      "unit": "px"
+    },
+    "banner.padding-block": {
+      "value": 12,
+      "unit": "px"
+    },
+    "banner.padding-start": {
+      "value": 16,
+      "unit": "px"
+    },
+    "banner.padding-end": {
+      "value": 12,
+      "unit": "px"
+    },
+    "banner.radius": {
+      "value": 10,
+      "unit": "px"
+    },
+    "icon.gap": {
+      "value": 12,
+      "unit": "px"
+    },
+    "title.gap": {
+      "value": 2,
+      "unit": "px"
+    },
+    "actions.gap": {
+      "value": 4,
+      "unit": "px"
+    }
+  },
+  "moments": [
+    {
+      "moment": "success",
+      "when": "When a success alert or a success banner shows. At the first frame of its entrance"
+    },
+    {
+      "moment": "warning",
+      "when": "When a warning alert or a warning banner shows. At the first frame of its entrance"
+    },
+    {
+      "moment": "error",
+      "when": "When a danger alert or a danger banner shows. At the first frame of its entrance"
+    }
+  ],
+  "clauses": [
+    {
+      "id": "alert/role",
+      "level": "MUST",
+      "inputs": [
+        "screen-reader"
+      ],
+      "text": "The accessibility tree shows a danger alert and a danger banner with the alert role. It shows the other alerts and banners with the status role."
+    },
+    {
+      "id": "alert/announce",
+      "level": "MUST",
+      "inputs": [
+        "screen-reader"
+      ],
+      "text": "When an alert shows, the screen reader speaks its title and its text one time. A danger alert stops the current speech. The other tones wait until the current speech ends."
+    },
+    {
+      "id": "alert/danger-use",
+      "level": "SHOULD",
+      "text": "Use the danger tone only when the user must do an action."
+    },
+    {
+      "id": "alert/title",
+      "level": "MUST",
+      "text": "The title starts with the result, for example \"Payment failed\" or \"Message not sent\". The title is never only the word Error."
+    },
+    {
+      "id": "alert/tone-sign",
+      "level": "MUST",
+      "text": "Color is not the only sign of the tone. Each tone has its icon, and the title tells the result."
+    },
+    {
+      "id": "alert/icon",
+      "level": "MUST",
+      "text": "The info tone has the icon info, the success tone has success, the warning tone has warning, and the danger tone has error. A neutral banner has the icon of its message, for example offline."
+    },
+    {
+      "id": "alert/icon-style",
+      "level": "MUST",
+      "text": "The icon has the icon size of the density and the text color of the tone. It aligns with the first line of the title. Assistive technology does not read the icon."
+    },
+    {
+      "id": "alert/fill",
+      "level": "MUST",
+      "text": "The fill is the soft color of the tone. A neutral banner has the fill of a selected item. An alert has no ring and no shadow."
+    },
+    {
+      "id": "alert/contrast",
+      "level": "MUST",
+      "text": "In the two themes, the icon, the title, and the text have a contrast of 4.5 : 1 or more on the fill of the tone."
+    },
+    {
+      "id": "alert/density",
+      "level": "MUST",
+      "text": "The title has the body size and the strong weight. The text of an inline alert has the small size. The text of a banner has the body size."
+    },
+    {
+      "id": "alert/density-values",
+      "level": "MUST",
+      "text": "Pointer: body 14 px, small 13 px, icon 16 px. Touch: body 16 px, small 14 px, icon 20 px."
+    },
+    {
+      "id": "alert/text-color",
+      "level": "MUST",
+      "text": "The title has the strong text color. The text of an inline alert and the second line of a banner have the secondary text color. The text of a banner has the text color."
+    },
+    {
+      "id": "alert/shape",
+      "level": "MUST",
+      "text": "An inline alert has the radius of a card: 12 px for pointer, 14 px for touch. A banner has a radius of 10 px."
+    },
+    {
+      "id": "alert/padding",
+      "level": "MUST",
+      "text": "An inline alert has a padding of 12 px at the top and the bottom, and 16 px at the sides. A banner has a padding of 12 px, and 16 px at the start side."
+    },
+    {
+      "id": "alert/gaps",
+      "level": "MUST",
+      "text": "The gap between the icon and the text is 12 px. The gap between the title and the text is 2 px. The gap between the action and the close button is 4 px."
+    },
+    {
+      "id": "alert/direction",
+      "level": "MUST",
+      "text": "In a right-to-left layout, the start side is the right side. The icon is at the right, and the action and the close button are at the left."
+    },
+    {
+      "id": "alert/no-focus-move",
+      "level": "NEVER",
+      "inputs": [
+        "keyboard",
+        "screen-reader",
+        "switch-access",
+        "remote"
+      ],
+      "text": "An alert or a banner moves the focus when it shows."
+    },
+    {
+      "id": "alert/keyboard",
+      "level": "MUST",
+      "inputs": [
+        "keyboard",
+        "remote"
+      ],
+      "text": "The action and the close button are in the focus order of the page, at the position of the alert. Tab moves the focus to them. Enter and Space press them."
+    },
+    {
+      "id": "alert/focus",
+      "level": "MUST",
+      "inputs": [
+        "keyboard",
+        "switch-access",
+        "remote"
+      ],
+      "text": "Keyboard focus shows the focus ring of the language on the action and on the close button. The ring is 2 px in the ring color, 2 px from the button."
+    },
+    {
+      "id": "alert/target",
+      "level": "MUST",
+      "inputs": [
+        "pointer",
+        "touch"
+      ],
+      "text": "On each axis, the target of the action and of the close button is 24 px or more for pointer. For touch, it is 44 px or more."
+    },
+    {
+      "id": "alert/action",
+      "level": "MUST",
+      "text": "An alert has one action or no action. The action is a small button. Its label tells the step for the user, for example Try again or Update stock."
+    },
+    {
+      "id": "alert/action-solves",
+      "level": "SHOULD",
+      "text": "Give a warning alert and a danger alert the one action that solves the problem."
+    },
+    {
+      "id": "alert/close",
+      "level": "MUST",
+      "inputs": [
+        "pointer",
+        "touch",
+        "keyboard"
+      ],
+      "text": "A banner that the user can close has a close button at the end side. The close button is a small ghost icon button. A press on it closes the banner."
+    },
+    {
+      "id": "alert/close-name",
+      "level": "MUST",
+      "inputs": [
+        "screen-reader",
+        "voice"
+      ],
+      "text": "The close button has an accessible name that tells the action, for example Close. The icon is not the name."
+    },
+    {
+      "id": "alert/blocking",
+      "level": "NEVER",
+      "text": "A banner about a blocking problem has a close button."
+    },
+    {
+      "id": "alert/time",
+      "level": "MUST",
+      "text": "An alert does not close after a time. A banner stays until the problem stops or the user closes it. An inline alert has no close button, and it stays until its section changes."
+    },
+    {
+      "id": "alert/hover",
+      "level": "MUST",
+      "inputs": [
+        "pointer"
+      ],
+      "text": "Only a device with hover shows the hover state of the close button. At hover, the close button gets the hover fill, and its icon changes from the secondary text color to the strong text color."
+    },
+    {
+      "id": "alert/press",
+      "level": "MUST",
+      "inputs": [
+        "pointer",
+        "touch"
+      ],
+      "text": "At pointer down, the close button scales to 0.96 and the action scales to 0.97, in 100 ms."
+    },
+    {
+      "id": "alert/disabled",
+      "level": "MUST",
+      "text": "An alert has no disabled state. A disabled action has the disabled opacity, and the text of the alert tells why the action is not possible."
+    },
+    {
+      "id": "alert/in-flow",
+      "level": "MUST",
+      "text": "An alert is in the flow of the page. When an alert shows, the content below it moves down."
+    },
+    {
+      "id": "alert/no-cover",
+      "level": "NEVER",
+      "text": "A banner or an inline alert covers the content."
+    },
+    {
+      "id": "alert/banner-position",
+      "level": "SHOULD",
+      "text": "Put a banner below the header of the page or below the app bar. Give it the width of the content."
+    },
+    {
+      "id": "alert/banner-max",
+      "level": "SHOULD",
+      "text": "Show a maximum of two banners. Show them in this sequence: danger, warning, info, neutral, and success."
+    },
+    {
+      "id": "alert/show-again",
+      "level": "SHOULD",
+      "text": "When the user closes all the banners that have a close button, show a message about this. Give it the action Show all banners again. The banners about blocking problems stay."
+    },
+    {
+      "id": "alert/use",
+      "level": "SHOULD",
+      "text": "Use a banner for the page or the account, and an inline alert for one section or one field. For the result of an action, use a toast. For a change that the user did not start, use a notification."
+    },
+    {
+      "id": "alert/motion",
+      "level": "MUST",
+      "text": "A banner and an inline warning alert expand in 200 ms with ease-in-out, and the content below them moves down. A banner that closes goes back in the same time. An inline danger alert fades in 150 ms and does not shake."
+    },
+    {
+      "id": "alert/reduced-motion",
+      "level": "MUST",
+      "text": "With reduced motion, the alert does not expand and does not slide. It fades in 150 ms and fades out in 100 ms. The content moves to its new position immediately."
+    },
+    {
+      "id": "alert/moment",
+      "level": "MUST",
+      "text": "At the first frame of its entrance, an alert emits the moment of its tone: success for success, warning for warning, and error for danger. An info alert and a neutral banner emit no moment."
+    },
+    {
+      "id": "alert/button-moment",
+      "level": "MUST",
+      "text": "The action and the close button emit the moment press, as each button does."
+    },
+    {
+      "id": "alert/no-direct-feedback",
+      "level": "NEVER",
+      "text": "The alert starts a haptic or a sound directly."
+    },
+    {
+      "id": "alert/phone",
+      "level": "MUST",
+      "classes": [
+        "phone"
+      ],
+      "text": "On a phone, a banner is below the app bar, and its action goes below the text."
+    },
+    {
+      "id": "alert/car",
+      "level": "MUST",
+      "classes": [
+        "car"
+      ],
+      "text": "In a car, a banner becomes an alert of the platform, with the actions that the car accepts. The car can read the message aloud."
+    },
+    {
+      "id": "alert/watch",
+      "level": "SHOULD",
+      "classes": [
+        "watch"
+      ],
+      "text": "On a watch, a banner is one short line at the top of the list, with one action."
+    },
+    {
+      "id": "alert/xr",
+      "level": "MUST",
+      "classes": [
+        "xr"
+      ],
+      "text": "On an XR headset, a banner is at the top of the window, inside the window. It does not move with the head."
+    }
+  ]
+}

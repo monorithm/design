@@ -1,0 +1,25 @@
+{
+  "language": "0.4.0",
+  "compiler": "0.3.0",
+  "schemas": [
+    "contract.schema.json"
+  ],
+  "files": {
+    "axes.json": "af2793e4449b6aa03ed24b4a92c172dfc1bc04801e1278836faffd8192005da4",
+    "canonical.json": "a481d1b8a5af52a4f9a2f5c11d9912ce8a364bab5af1458bbfcad8ac9669be4e",
+    "contracts/alert.json": "ea6ffe47a6de05652806e79efb915df3ea7cb43bacb7fa1882cbb5dc713e9457",
+    "contracts/avatar.json": "308fde7e1ec485589ee742ce96d3ac9054025ab2cc3f5d41e0dfb28a038cd2eb",
+    "contracts/button.json": "fa36004592c7e477f8292536e0ca45d54a715fb9f581daf89dc650bdce81cd39",
+    "contracts/card.json": "212ba2e4a03ba85d0c82eadf19b93a4a75f6b18b12acc2e08d0ab5c213635721",
+    "contracts/checkbox.json": "0a2fbeeb7c257c46f79ee765f87c0f31ce6913683c71450fbbf8fdde928dd628",
+    "contracts/chip.json": "328ecfb7591508e751fc19304f7f6631aa5fa33179a12d1c4dfc8491676f4f47",
+    "contracts/code-entry.json": "c4641781e295c2cbc5eedf61e9547783b5509bd1431df69c0677f6ae8367d107",
+    "contracts/icon-button.json": "131af826f7a521011c2cfc5e45eb300c55bde70834728a4c6d56244c73d67c8a",
+    "contracts/progress.json": "88d8bf7e0a1ca838e2ca0e9d82d1eba7f692d1f972c16957de060ed24ef6b3a3",
+    "contracts/radio-group.json": "5b4d6b316607e872889d42ad896181b8f92d8f52c190271a19a851d140ff9eac",
+    "contracts/segmented-control.json": "59442845c04e994a0dcb3ba9b28f6660abea1a3c926948465700d287abc91db7",
+    "contracts/select.json": "5bba76163a200a8b0702344659a69233ba89ff49a16bfff31555c8f969d79044",
+    "contracts/switch.json": "cf368dfc435407cda8f841b7b0c0b9c232ff78b8086421d055dc1700a7d1253b",
+    "contracts/text-field.json": "8bd8fd5ee61921287ca055ecdfbc1c26be5f07c894bd7d6d29d72d19b553b3c1"
+  }
+}

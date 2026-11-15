@@ -1,0 +1,416 @@
+{
+  "id": "card",
+  "name": "Card",
+  "status": "draft",
+  "class": "S",
+  "purpose": "A card is a surface that holds the content of one item, for example a value, a chart, or a product. It has a ring of 1 px and the large radius. An interactive card is one link or one button.",
+  "variants": [
+    {
+      "name": "basic",
+      "use": "A header with the title and the actions, a body, and a footer. The default."
+    },
+    {
+      "name": "stat",
+      "use": "A label above a value, and a change with its period. Use it for an amount, for example total sales."
+    },
+    {
+      "name": "chart",
+      "use": "A chart title, an info icon, and the legend on one line, above the chart."
+    },
+    {
+      "name": "content",
+      "use": "A photo, the title, the owner, and the most important value. Example: a product with its price."
+    }
+  ],
+  "anatomy": [
+    {
+      "part": "container",
+      "role": "The surface: the fill, the ring, and the radius. In an interactive card, it is the target"
+    },
+    {
+      "part": "media",
+      "role": "The photo of a content card, at the top edge, with a photo counter",
+      "optional": true
+    },
+    {
+      "part": "header",
+      "role": "The title and the actions, on one line",
+      "optional": true
+    },
+    {
+      "part": "title",
+      "role": "The name of the card, as a heading. In a stat card, the label is the title"
+    },
+    {
+      "part": "action",
+      "role": "A button, an icon button, or a menu at the end side of the header. It is a separate target",
+      "optional": true
+    },
+    {
+      "part": "body",
+      "role": "The content: a value, a chart, a list, or text"
+    },
+    {
+      "part": "footer",
+      "role": "The last part: actions or a summary, for example a total",
+      "optional": true
+    }
+  ],
+  "states": [
+    "default",
+    "hover",
+    "focus",
+    "pressed",
+    "disabled",
+    "loading"
+  ],
+  "axes": [
+    "theme",
+    "density",
+    "direction",
+    "motion"
+  ],
+  "tokens": {
+    "container.fill": "color.role.surface",
+    "container.ring": "color.role.line",
+    "container.radius": "radius.lg",
+    "container.padding": "space.4",
+    "large.padding": "space.5",
+    "section.gap": "space.6",
+    "group.gap": "space.4",
+    "title.size": "font-size.title-3",
+    "title.weight": "font-weight.strong",
+    "title.color": "color.role.fg-strong",
+    "body.size": "font-size.body",
+    "body.color": "color.role.fg",
+    "stat.label.size": "font-size.small",
+    "stat.label.color": "color.role.fg-2",
+    "stat.value.size": "font-size.title-2",
+    "stat.value.weight": "font-weight.strong",
+    "stat.value.color": "color.role.fg-strong",
+    "stat.period.color": "color.role.fg-muted",
+    "hover.ring": "color.role.line-strong",
+    "pressed.ring": "color.role.line-strong",
+    "nested.target": "size.target-min",
+    "disabled.opacity": "opacity.disabled",
+    "focus.width": "focus.ring-width",
+    "focus.offset": "focus.ring-offset",
+    "focus.color": "color.role.ring",
+    "press.scale": "scale.press",
+    "press.duration": "duration.press",
+    "press.easing": "easing.standard",
+    "color.duration": "duration.fast",
+    "tv.focus.scale": "scale.tv-focus",
+    "tv.focus.motion": "spring.quick"
+  },
+  "geometry": {
+    "ring": {
+      "value": 1,
+      "unit": "px"
+    },
+    "header.gap": {
+      "value": 12,
+      "unit": "px"
+    },
+    "actions.gap": {
+      "value": 8,
+      "unit": "px"
+    },
+    "tv.focus.width": {
+      "value": 4,
+      "unit": "px"
+    },
+    "tv.focus.offset": {
+      "value": 4,
+      "unit": "px"
+    }
+  },
+  "moments": [
+    {
+      "moment": "press",
+      "when": "Only for an interactive card. When the user releases the pointer on the card, or presses Enter. Space also presses a button card. Not at pointer down"
+    }
+  ],
+  "clauses": [
+    {
+      "id": "card/role",
+      "level": "MUST",
+      "inputs": [
+        "screen-reader"
+      ],
+      "text": "The accessibility tree shows an interactive card as one link or one button, with the title as its name. A card that is not a link or a button is not a control."
+    },
+    {
+      "id": "card/link-or-button",
+      "level": "MUST",
+      "text": "A card that opens a page is a link. A card that starts an action on the same screen is a button."
+    },
+    {
+      "id": "card/name",
+      "level": "MUST",
+      "inputs": [
+        "screen-reader",
+        "voice"
+      ],
+      "text": "The name of an interactive card is its title, for example the name of the product. The name does not include the other text of the card."
+    },
+    {
+      "id": "card/static",
+      "level": "MUST",
+      "text": "A card that is not a link or a button has no focus stop, no hover state, and no pressed state. Its title is a heading."
+    },
+    {
+      "id": "card/heading-level",
+      "level": "SHOULD",
+      "inputs": [
+        "screen-reader"
+      ],
+      "text": "The screen sets the heading level of the card title. Use the level after the heading of the section that holds the card."
+    },
+    {
+      "id": "card/keyboard",
+      "level": "MUST",
+      "inputs": [
+        "keyboard"
+      ],
+      "text": "Tab moves the focus to an interactive card. Enter opens a link card. Enter and Space press a button card."
+    },
+    {
+      "id": "card/one-target",
+      "level": "MUST",
+      "inputs": [
+        "pointer",
+        "touch"
+      ],
+      "text": "An interactive card has one target: the full card. A press on the card, but not on a control in the card, starts the action of the card."
+    },
+    {
+      "id": "card/nested-control",
+      "level": "MUST",
+      "inputs": [
+        "pointer",
+        "touch",
+        "keyboard",
+        "screen-reader"
+      ],
+      "text": "A button or a link in an interactive card stays a separate target. It has its name and its focus stop, after the focus stop of the card. A press on it does not start the action of the card."
+    },
+    {
+      "id": "card/nested-target",
+      "level": "MUST",
+      "inputs": [
+        "pointer",
+        "touch"
+      ],
+      "text": "A control in a card has a target of the minimum size of the density or more on each axis. This is 24 px for pointer and 44 px for touch."
+    },
+    {
+      "id": "card/surface",
+      "level": "MUST",
+      "text": "The card has the surface fill and a ring of 1 px in the line color, on the inner side of its edge. The ring does not change the size of the card. This is elevation level 1."
+    },
+    {
+      "id": "card/no-shadow",
+      "level": "NEVER",
+      "text": "A card has a shadow."
+    },
+    {
+      "id": "card/density",
+      "level": "MUST",
+      "text": "The radius follows the density: 12 px for pointer, 14 px for touch. The padding and the gaps are the same in the two densities."
+    },
+    {
+      "id": "card/padding",
+      "level": "MUST",
+      "text": "The padding is 16 px on each side. A large card has a padding of 20 px."
+    },
+    {
+      "id": "card/inner-radius",
+      "level": "MUST",
+      "text": "The radius of a part in the card is the card radius minus the padding. A photo at the edge of the card has the card radius at the corners on that edge."
+    },
+    {
+      "id": "card/sections",
+      "level": "MUST",
+      "text": "The gap between two sections in a card is 24 px."
+    },
+    {
+      "id": "card/gap",
+      "level": "SHOULD",
+      "text": "Put a gap of 16 px between two cards."
+    },
+    {
+      "id": "card/header",
+      "level": "MUST",
+      "text": "The header puts the title at the start side and the actions at the end side, on one line. The gap between the title and the actions is 12 px or more. The gap between two actions is 8 px."
+    },
+    {
+      "id": "card/title",
+      "level": "MUST",
+      "text": "The title uses title-3 in the strong text color, with weight 500 and tracking −0.01em. The size and the line height are 16 / 20 px for pointer and 17 / 22 px for touch."
+    },
+    {
+      "id": "card/hover",
+      "level": "MUST",
+      "inputs": [
+        "pointer"
+      ],
+      "text": "Only a device with hover shows the hover state. At hover, the ring of an interactive card changes to the strong line color in 150 ms."
+    },
+    {
+      "id": "card/press",
+      "level": "MUST",
+      "inputs": [
+        "pointer",
+        "touch"
+      ],
+      "text": "At pointer down, an interactive card scales to 0.97 in 100 ms, and its ring changes to the strong line color."
+    },
+    {
+      "id": "card/focus",
+      "level": "MUST",
+      "inputs": [
+        "keyboard",
+        "switch-access"
+      ],
+      "text": "Keyboard focus shows the focus ring of the language on the full card. The ring is 2 px in the ring color, 2 px from the edge of the card. It follows the radius of the card. A pointer press shows no ring."
+    },
+    {
+      "id": "card/state-sign",
+      "level": "MUST",
+      "text": "Color is not the only sign of a state. The focus ring shows the focus, the scale shows the press, and a text tells why a card is disabled."
+    },
+    {
+      "id": "card/disabled",
+      "level": "MUST",
+      "text": "A disabled interactive card has the disabled opacity and does not start its action. It stays in the focus order, and its description tells assistive technology why the action is not possible."
+    },
+    {
+      "id": "card/loading",
+      "level": "MUST",
+      "text": "A loading card shows a skeleton with the layout of the real card. The size of the card does not change."
+    },
+    {
+      "id": "card/direction",
+      "level": "MUST",
+      "text": "In a right-to-left layout, the start side is the right side. The title is at the right of the header, the actions are at the left, and the photo counter is at the top right corner."
+    },
+    {
+      "id": "card/motion",
+      "level": "MUST",
+      "text": "With reduced motion, the card does not scale at the press or at the focus, and the skeleton has no shimmer. The change of the ring color stays."
+    },
+    {
+      "id": "card/moment",
+      "level": "MUST",
+      "text": "A press on an interactive card emits the moment press when the user releases the pointer on the card, or presses Enter. A disabled card emits no moment. A card that is not a link or a button emits no moment."
+    },
+    {
+      "id": "card/nested-moment",
+      "level": "MUST",
+      "text": "A press on a control in a card emits the moment of that control only. The card emits no moment."
+    },
+    {
+      "id": "card/no-direct-feedback",
+      "level": "NEVER",
+      "text": "The card starts a haptic or a sound directly."
+    },
+    {
+      "id": "card/stat",
+      "level": "MUST",
+      "text": "A stat card puts the label above the value. The label has the small size and the secondary text color."
+    },
+    {
+      "id": "card/stat-value",
+      "level": "MUST",
+      "text": "The value of a stat card uses title-2 with tabular figures and weight 500. The size and the line height are 20 / 24 px for pointer and 22 / 28 px for touch."
+    },
+    {
+      "id": "card/stat-change",
+      "level": "MUST",
+      "text": "A stat card shows a change only with its period, for example compared to the last 30 days."
+    },
+    {
+      "id": "card/chart",
+      "level": "MUST",
+      "inputs": [
+        "screen-reader"
+      ],
+      "text": "A chart card puts the chart title, an info icon, and the legend on one line. The chart has a text alternative with the same values."
+    },
+    {
+      "id": "card/content",
+      "level": "MUST",
+      "text": "A content card shows the photo, the title, the owner, and the most important value, for example the price of a product."
+    },
+    {
+      "id": "card/content-counter",
+      "level": "MUST",
+      "text": "A content card has a photo counter, for example Photo 1 of 4, and a stock badge with text. Color is not the only sign of the stock."
+    },
+    {
+      "id": "card/availability",
+      "level": "NEVER",
+      "text": "A content card shows an item that is not available as available."
+    },
+    {
+      "id": "card/large-text",
+      "level": "SHOULD",
+      "text": "From a text size of 160 %, put stat cards in one column, not in two columns. Do not change the reading order."
+    },
+    {
+      "id": "card/tv-focus",
+      "level": "MUST",
+      "inputs": [
+        "remote"
+      ],
+      "classes": [
+        "tv"
+      ],
+      "text": "On a TV, each card is a focus target in a row. The focused card goes from scale 1 to 1.06 with spring-quick. It gets a ring of 4 px with a gap of 4 px on the layout area."
+    },
+    {
+      "id": "card/tv-press",
+      "level": "MUST",
+      "inputs": [
+        "remote"
+      ],
+      "classes": [
+        "tv"
+      ],
+      "text": "On a TV, a press changes the scale of the focused card to 1.03 in 100 ms. This value is 1.06 × 0.97."
+    },
+    {
+      "id": "card/tv-title",
+      "level": "MUST",
+      "classes": [
+        "tv"
+      ],
+      "text": "On a TV, a card title has 2 lines maximum. The detail page shows the full title."
+    },
+    {
+      "id": "card/car",
+      "level": "MUST",
+      "classes": [
+        "car"
+      ],
+      "text": "On a car display, a card becomes a row of a list. Its badge, avatar, or image becomes the text or the image of the row."
+    },
+    {
+      "id": "card/watch",
+      "level": "SHOULD",
+      "classes": [
+        "watch"
+      ],
+      "text": "On a watch, show one card in each row of one column, with the most important value first."
+    },
+    {
+      "id": "card/xr",
+      "level": "MUST",
+      "classes": [
+        "xr"
+      ],
+      "text": "On an XR headset, cards are on a glass material in a window. The system hover shows on each card that opens."
+    }
+  ]
+}
