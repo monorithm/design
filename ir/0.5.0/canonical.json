@@ -1,15 +1,15 @@
 {
-  "breakpoint.lg": {
+  "breakpoint.desktop": {
     "type": "dimension",
-    "description": "From this width, the layout is the layout of a desktop",
+    "description": "Desktop: from 1,024 px",
     "value": {
       "value": 1024,
       "unit": "px"
     }
   },
-  "breakpoint.md": {
+  "breakpoint.tablet": {
     "type": "dimension",
-    "description": "Below this width, the layout is the layout of a phone: a dialog becomes a bottom sheet",
+    "description": "Tablet: from 768 px. Below this width, the layout is the layout of a phone, and a dialog becomes a bottom sheet",
     "value": {
       "value": 768,
       "unit": "px"
