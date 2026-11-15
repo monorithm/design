@@ -1,0 +1,298 @@
+{
+  "$schema": "../schemas/contract.schema.json",
+  "id": "chip",
+  "name": "Chip",
+  "status": "draft",
+  "class": "S",
+  "purpose": "A chip is a filter. The user can select more than one chip at the same time. A filter chip is a toggle button. A menu chip opens a menu of values for one filter.",
+  "variants": [
+    {
+      "name": "filter",
+      "use": "A toggle that turns one filter on or off. The default."
+    },
+    {
+      "name": "menu",
+      "use": "A chip that opens a menu of values for one filter, for example a category. Its label shows the value that applies."
+    }
+  ],
+  "anatomy": [
+    {
+      "part": "container",
+      "role": "The target, the fill, and the border. It has the full radius"
+    },
+    {
+      "part": "label",
+      "role": "The name of the filter. A menu chip also shows the value that applies"
+    },
+    {
+      "part": "check",
+      "role": "The sign of a filter chip that is on, at the start side of the label",
+      "optional": true
+    },
+    {
+      "part": "chevron",
+      "role": "The sign of a menu chip, at the end side of the label",
+      "optional": true
+    }
+  ],
+  "states": [
+    "off",
+    "on",
+    "hover",
+    "focus",
+    "pressed",
+    "disabled"
+  ],
+  "axes": [
+    "theme",
+    "density",
+    "direction",
+    "motion"
+  ],
+  "tokens": {
+    "container.height": "size.control-md",
+    "container.radius": "radius.full",
+    "container.target": "size.target-min",
+    "off.border": "color.role.line",
+    "off.label": "color.role.fg-2",
+    "hover.fill": "color.role.hover",
+    "hover.label": "color.role.fg",
+    "on.fill": "color.role.accent-soft",
+    "on.label": "color.role.accent-text",
+    "on.weight": "font-weight.strong",
+    "label.size": "font-size.small",
+    "icon.size": "size.icon",
+    "disabled.opacity": "opacity.disabled",
+    "focus.width": "focus.ring-width",
+    "focus.offset": "focus.ring-offset",
+    "focus.color": "color.role.ring",
+    "press.scale": "scale.press",
+    "press.duration": "duration.press",
+    "press.easing": "easing.standard",
+    "color.duration": "duration.fast",
+    "color.easing": "easing.standard",
+    "tv.focus.motion": "spring.quick"
+  },
+  "geometry": {
+    "container.padding-inline": {
+      "value": 12,
+      "unit": "px"
+    },
+    "border": {
+      "value": 1,
+      "unit": "px"
+    },
+    "icon.gap": {
+      "value": 6,
+      "unit": "px"
+    },
+    "set.gap": {
+      "value": 8,
+      "unit": "px"
+    },
+    "menu.offset": {
+      "value": 4,
+      "unit": "px"
+    }
+  },
+  "moments": [
+    {
+      "moment": "select",
+      "variants": [
+        "on",
+        "off"
+      ],
+      "when": "At the change of the state, when the user turns a filter chip on or off. Not at pointer down"
+    }
+  ],
+  "clauses": [
+    {
+      "id": "chip/role",
+      "level": "MUST",
+      "inputs": [
+        "screen-reader"
+      ],
+      "text": "The accessibility tree shows a filter chip as a toggle button, with the label as its name. Its state is pressed when the chip is on, and not pressed when the chip is off."
+    },
+    {
+      "id": "chip/menu-role",
+      "level": "MUST",
+      "inputs": [
+        "screen-reader"
+      ],
+      "text": "The accessibility tree shows a menu chip as a button that opens a menu, with the label as its name. Its expanded state tells if the menu is open. When a value applies, its state is pressed."
+    },
+    {
+      "id": "chip/name",
+      "level": "MUST",
+      "inputs": [
+        "screen-reader",
+        "voice"
+      ],
+      "text": "Each chip has a label that the user can see. The label names the filter, for example On sale. A menu chip names the filter and the value that applies, for example Size: Medium."
+    },
+    {
+      "id": "chip/use",
+      "level": "SHOULD",
+      "text": "Use chips for filters that the user can select together. For one value from two to five, use a segmented control."
+    },
+    {
+      "id": "chip/keyboard",
+      "level": "MUST",
+      "inputs": [
+        "keyboard"
+      ],
+      "text": "Tab moves the focus to each chip. Enter and Space turn a filter chip on or off, and open the menu of a menu chip."
+    },
+    {
+      "id": "chip/menu",
+      "level": "MUST",
+      "text": "A press on a menu chip opens its menu, 4 px from the chip. On a phone, the menu opens as a bottom sheet. Escape closes the menu, and the focus goes back to the chip."
+    },
+    {
+      "id": "chip/density",
+      "level": "MUST",
+      "text": "The density sets the height, the text size, and the icon size. Pointer: 32 px, 13 px, and 16 px. Touch: 44 px, 14 px, and 20 px."
+    },
+    {
+      "id": "chip/shape",
+      "level": "MUST",
+      "text": "A chip has the full radius, a border of 1 px, and 12 px of padding at the start side and at the end side."
+    },
+    {
+      "id": "chip/target",
+      "level": "MUST",
+      "inputs": [
+        "pointer",
+        "touch"
+      ],
+      "text": "On each axis, the target is the minimum target of the density or more: 24 px for pointer, 44 px for touch. A chip that is smaller than the minimum extends its target past its edges."
+    },
+    {
+      "id": "chip/off-sign",
+      "level": "MUST",
+      "text": "A chip that is off has no fill, a border in the line color, and the label in the secondary text color."
+    },
+    {
+      "id": "chip/on-sign",
+      "level": "MUST",
+      "text": "A selected chip is on. It has the accent tint fill, and its label has the accent text color and the strong weight. A filter chip that is on also shows a check. Color is not the only sign of the state."
+    },
+    {
+      "id": "chip/on-border",
+      "level": "MUST",
+      "text": "The border of a chip that is on has no color. The border stays, thus the size of the chip does not change."
+    },
+    {
+      "id": "chip/menu-value",
+      "level": "MUST",
+      "text": "A menu chip with a value is on, and its label shows the value. It shows the chevron, not a check. When no value applies, the menu chip is off."
+    },
+    {
+      "id": "chip/icon",
+      "level": "MUST",
+      "text": "The check and the chevron have the icon size of the density and the color of the label. The gap to the label is 6 px. Assistive technology does not read them."
+    },
+    {
+      "id": "chip/hover",
+      "level": "MUST",
+      "inputs": [
+        "pointer"
+      ],
+      "text": "Only a device with hover shows the hover state. At hover, a chip that is off has the hover fill and the label in the body text color. A chip that is on keeps its colors."
+    },
+    {
+      "id": "chip/press",
+      "level": "MUST",
+      "inputs": [
+        "pointer",
+        "touch"
+      ],
+      "text": "At pointer down, the chip scales to 0.97 in 100 ms. On a phone, the chip shows only the pressed state, with no hover."
+    },
+    {
+      "id": "chip/focus",
+      "level": "MUST",
+      "inputs": [
+        "keyboard",
+        "switch-access"
+      ],
+      "text": "Keyboard focus shows the focus ring of the language on the container: 2 px in the ring color, 2 px from the container. The ring has the full radius. A pointer press shows no ring."
+    },
+    {
+      "id": "chip/disabled",
+      "level": "MUST",
+      "text": "A disabled chip has the disabled opacity, and its state does not change. It stays in the focus order, and its description tells assistive technology why the filter is not available."
+    },
+    {
+      "id": "chip/direction",
+      "level": "MUST",
+      "text": "In a right-to-left layout, the start side is the right side. The check is at the right of the label, and the chevron is at the left. The chips of a set go from right to left."
+    },
+    {
+      "id": "chip/chevron-direction",
+      "level": "MUST",
+      "text": "The chevron points down in the two directions. It does not change in a right-to-left layout."
+    },
+    {
+      "id": "chip/motion",
+      "level": "MUST",
+      "text": "The fill, the border, and the label color change in 150 ms with ease. With reduced motion, the press has no scale, and the colors change with no transition. The change of color stays."
+    },
+    {
+      "id": "chip/moment",
+      "level": "MUST",
+      "text": "A filter chip emits the moment select at the change of the state, when the user turns it on or off. The variant is on or off. A disabled chip emits no moment."
+    },
+    {
+      "id": "chip/menu-moment",
+      "level": "MUST",
+      "text": "A menu chip emits no moment. The menu emits open, select, and close. A change from a Clear filters action emits no moment of a chip."
+    },
+    {
+      "id": "chip/no-direct-feedback",
+      "level": "NEVER",
+      "text": "The chip starts a haptic or a sound directly."
+    },
+    {
+      "id": "chip/gap",
+      "level": "SHOULD",
+      "text": "Put a gap of 8 px between the chips of a set."
+    },
+    {
+      "id": "chip/clear",
+      "level": "SHOULD",
+      "text": "Give a set of chips a Clear filters action. It removes all the filters: each filter chip goes off, and each menu chip goes off with no value."
+    },
+    {
+      "id": "chip/tv",
+      "level": "MUST",
+      "inputs": [
+        "remote"
+      ],
+      "classes": [
+        "tv"
+      ],
+      "text": "On a TV, each chip is a focus target with the large size and a label of 24 px at weight 500. The chip with the focus grows from scale 1 to 1.06 with spring-quick, and gets the focus ring."
+    },
+    {
+      "id": "chip/tv-keys",
+      "level": "MUST",
+      "inputs": [
+        "remote"
+      ],
+      "classes": [
+        "tv"
+      ],
+      "text": "On a TV, up, down, left, and right move the focus. Select turns a filter chip on or off with the pressed scale 1.03."
+    },
+    {
+      "id": "chip/xr",
+      "level": "MUST",
+      "classes": [
+        "xr"
+      ],
+      "text": "In an XR headset, each chip has a region of 60 pt or more and the hover effect of the system. The pinch is the press."
+    }
+  ]
+}

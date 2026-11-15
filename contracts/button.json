@@ -86,7 +86,7 @@
     "outline.border": "color.role.line",
     "outline.border.hover": "color.role.line-strong",
     "outline.fill.hover": "color.role.selected",
-    "ghost.fill.hover": "color.role.selected",
+    "ghost.fill.hover": "color.role.hover",
     "pressed.fill": "color.role.pressed",
     "destructive.fill": "color.role.danger-soft",
     "destructive.fill.hover": "color.role.danger-soft-strong",

@@ -112,6 +112,18 @@
           "hex": "#1f6fe0"
         },
         "$description": "The fill of a selected option card"
+      },
+      "danger": {
+        "$value": "{color.red.600}",
+        "$description": "The danger fill: the border of a field with an error."
+      },
+      "hover": {
+        "$value": "{color.neutral.50}",
+        "$description": "The hover fill of rows, items, and chips that are off."
+      },
+      "warning-text": {
+        "$value": "{color.amber.800}",
+        "$description": "The warning as text, for example the warning of a field"
       }
     },
     "switch": {
@@ -121,6 +133,169 @@
       "knob-on": {
         "$value": "{color.neutral.0}"
       }
+    },
+    "segment": {
+      "pill": {
+        "$value": "{color.neutral.0}",
+        "$description": "The pill of the selected segment."
+      },
+      "track": {
+        "$value": "{color.neutral.75}",
+        "$description": "The track of a segmented control."
+      }
+    }
+  },
+  "shadow": {
+    "$type": "shadow",
+    "overlay": {
+      "$value": [
+        {
+          "color": {
+            "colorSpace": "srgb",
+            "components": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "alpha": 0.06,
+            "hex": "#000000"
+          },
+          "offsetX": {
+            "value": 0,
+            "unit": "px"
+          },
+          "offsetY": {
+            "value": 0,
+            "unit": "px"
+          },
+          "blur": {
+            "value": 0,
+            "unit": "px"
+          },
+          "spread": {
+            "value": 1,
+            "unit": "px"
+          }
+        },
+        {
+          "color": {
+            "colorSpace": "srgb",
+            "components": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "alpha": 0.05,
+            "hex": "#000000"
+          },
+          "offsetX": {
+            "value": 0,
+            "unit": "px"
+          },
+          "offsetY": {
+            "value": 2,
+            "unit": "px"
+          },
+          "blur": {
+            "value": 4,
+            "unit": "px"
+          },
+          "spread": {
+            "value": 0,
+            "unit": "px"
+          }
+        },
+        {
+          "color": {
+            "colorSpace": "srgb",
+            "components": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "alpha": 0.12,
+            "hex": "#000000"
+          },
+          "offsetX": {
+            "value": 0,
+            "unit": "px"
+          },
+          "offsetY": {
+            "value": 12,
+            "unit": "px"
+          },
+          "blur": {
+            "value": 32,
+            "unit": "px"
+          },
+          "spread": {
+            "value": 0,
+            "unit": "px"
+          }
+        }
+      ],
+      "$description": "sh-overlay: the shadow of the overlay level. Menus, popovers, select lists, dialogs, and sheets. A ring of 1 px and two shadows."
+    },
+    "raised": {
+      "$value": [
+        {
+          "color": {
+            "colorSpace": "srgb",
+            "components": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "alpha": 0.06,
+            "hex": "#000000"
+          },
+          "offsetX": {
+            "value": 0,
+            "unit": "px"
+          },
+          "offsetY": {
+            "value": 0,
+            "unit": "px"
+          },
+          "blur": {
+            "value": 0,
+            "unit": "px"
+          },
+          "spread": {
+            "value": 1,
+            "unit": "px"
+          }
+        },
+        {
+          "color": {
+            "colorSpace": "srgb",
+            "components": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "alpha": 0.08,
+            "hex": "#000000"
+          },
+          "offsetX": {
+            "value": 0,
+            "unit": "px"
+          },
+          "offsetY": {
+            "value": 1,
+            "unit": "px"
+          },
+          "blur": {
+            "value": 2,
+            "unit": "px"
+          },
+          "spread": {
+            "value": 0,
+            "unit": "px"
+          }
+        }
+      ],
+      "$description": "sh-raised: the elevation level 2, for the segment pill and the switch knob."
     }
   }
 }

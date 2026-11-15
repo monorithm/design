@@ -1,0 +1,287 @@
+{
+  "id": "segmented-control",
+  "name": "Segmented control",
+  "status": "draft",
+  "class": "M",
+  "purpose": "A segmented control selects one value from two to five exclusive options, for example a period or a view. The pill moves to the segment that the user selects.",
+  "anatomy": [
+    {
+      "part": "track",
+      "role": "The container of the segments. The group has a name, for example Period"
+    },
+    {
+      "part": "segment",
+      "role": "The target of one option. It has a label, an icon, or the two"
+    },
+    {
+      "part": "pill",
+      "role": "The sign of the selected segment. It moves to the segment that the user selects"
+    },
+    {
+      "part": "label",
+      "role": "The name of the option, for example 30d",
+      "optional": true
+    },
+    {
+      "part": "icon",
+      "role": "An icon at the start side of the label, or an icon with no label. The accessible name tells the option",
+      "optional": true
+    }
+  ],
+  "states": [
+    "default",
+    "selected",
+    "hover",
+    "focus",
+    "disabled"
+  ],
+  "axes": [
+    "theme",
+    "density",
+    "direction",
+    "motion"
+  ],
+  "tokens": {
+    "track.height": "size.control-md",
+    "track.height.tv": "size.control-lg",
+    "track.fill": "color.segment.track",
+    "segment.target": "size.target-min",
+    "pill.fill": "color.segment.pill",
+    "pill.shadow": "shadow.raised",
+    "pill.radius": "radius.sm",
+    "label.size": "font-size.body",
+    "label.color": "color.role.fg-muted",
+    "label.color.hover": "color.role.fg",
+    "selected.label.color": "color.role.fg-strong",
+    "selected.label.weight": "font-weight.strong",
+    "icon.size": "size.icon",
+    "disabled.opacity": "opacity.disabled",
+    "focus.width": "focus.ring-width",
+    "focus.offset": "focus.ring-offset",
+    "focus.color": "color.role.ring",
+    "pill.motion": "spring.control",
+    "pill.motion.keyboard": "spring.quick",
+    "pill.duration": "duration.slide",
+    "pill.easing": "easing.out",
+    "label.duration": "duration.base",
+    "label.easing": "easing.standard"
+  },
+  "geometry": {
+    "track.radius": {
+      "value": 8,
+      "unit": "px"
+    },
+    "track.inset": {
+      "value": 2,
+      "unit": "px"
+    },
+    "segment.gap": {
+      "value": 2,
+      "unit": "px"
+    },
+    "segment.padding-inline": {
+      "value": 10,
+      "unit": "px"
+    },
+    "icon.gap": {
+      "value": 6,
+      "unit": "px"
+    }
+  },
+  "moments": [
+    {
+      "moment": "select",
+      "when": "At the change of the selection, not at the end of the pill motion"
+    }
+  ],
+  "clauses": [
+    {
+      "id": "segmented-control/role",
+      "level": "MUST",
+      "inputs": [
+        "screen-reader"
+      ],
+      "text": "The accessibility tree shows a group of exclusive options with its name. Each segment is a radio button, with its label or its accessible name as its name, and its state."
+    },
+    {
+      "id": "segmented-control/name",
+      "level": "MUST",
+      "inputs": [
+        "screen-reader",
+        "voice"
+      ],
+      "text": "The group has a name, for example Period or View."
+    },
+    {
+      "id": "segmented-control/use",
+      "level": "SHOULD",
+      "text": "Use a segmented control for one value from a small set. Examples are a period, a view, and a status filter. For filters that the user can select together, use chips."
+    },
+    {
+      "id": "segmented-control/count",
+      "level": "MUST",
+      "text": "A segmented control has two to five segments. One segment is selected."
+    },
+    {
+      "id": "segmented-control/keyboard",
+      "level": "MUST",
+      "inputs": [
+        "keyboard"
+      ],
+      "text": "Tab moves the focus into the group, to the selected segment, and out of the group. The arrow keys move the focus and the selection to the next or the previous segment."
+    },
+    {
+      "id": "segmented-control/target",
+      "level": "MUST",
+      "inputs": [
+        "pointer",
+        "touch"
+      ],
+      "text": "Each segment is a target with the full height of the track. On each axis, the target is the minimum target of the density or more: 24 px for pointer, 44 px for touch."
+    },
+    {
+      "id": "segmented-control/focus",
+      "level": "MUST",
+      "inputs": [
+        "keyboard",
+        "switch-access"
+      ],
+      "text": "Keyboard focus shows the focus ring of the language on the segment: 2 px in the ring color, 2 px from the segment. A pointer press shows no ring."
+    },
+    {
+      "id": "segmented-control/selected-sign",
+      "level": "MUST",
+      "text": "The selected segment has the pill: the pill fill with the raised shadow. Its label has the strong text color and the strong weight. Color is not the only sign of the state."
+    },
+    {
+      "id": "segmented-control/pill",
+      "level": "MUST",
+      "text": "The pill fills the selected segment, 2 px from the edges of the track. The gap between two segments is 2 px."
+    },
+    {
+      "id": "segmented-control/radius",
+      "level": "MUST",
+      "text": "The radius of the track is 8 px. The radius of the pill is the radius of the track minus the inset: 6 px."
+    },
+    {
+      "id": "segmented-control/density",
+      "level": "MUST",
+      "text": "The track is 32 px high for pointer and 44 px high for touch. The label is 14 px for pointer and 16 px for touch. An icon is 16 px for pointer and 20 px for touch."
+    },
+    {
+      "id": "segmented-control/segment",
+      "level": "MUST",
+      "text": "The content of a segment is at its center, with a padding of 10 px at the start side and at the end side. An icon is at the start side of the label, with a gap of 6 px."
+    },
+    {
+      "id": "segmented-control/icon",
+      "level": "MUST",
+      "inputs": [
+        "screen-reader",
+        "voice"
+      ],
+      "text": "Each segment with an icon has an accessible name that tells the option, for example Grid or List. The icon is not the name. Assistive technology does not read the icon."
+    },
+    {
+      "id": "segmented-control/full-width",
+      "level": "MUST",
+      "classes": [
+        "phone"
+      ],
+      "text": "On a phone, the segmented control fills the width of its container. Each segment has the same width."
+    },
+    {
+      "id": "segmented-control/hover",
+      "level": "MUST",
+      "inputs": [
+        "pointer"
+      ],
+      "text": "Only a device with hover shows the hover state. At hover, the label of a segment that is not selected changes to the body text color."
+    },
+    {
+      "id": "segmented-control/direction",
+      "level": "MUST",
+      "text": "In a right-to-left layout, the first segment is at the right, and the motion of the pill mirrors. An icon is at the right of its label."
+    },
+    {
+      "id": "segmented-control/direction-keys",
+      "level": "MUST",
+      "inputs": [
+        "keyboard",
+        "remote"
+      ],
+      "text": "An arrow key moves the selection in the direction of the key, also in a right-to-left layout. The left arrow key selects the segment at the left."
+    },
+    {
+      "id": "segmented-control/motion",
+      "level": "MUST",
+      "text": "The pill moves to the selected segment with spring-control. Where no spring applies, the pill moves in 280 ms with ease-out. The label color changes in 200 ms."
+    },
+    {
+      "id": "segmented-control/motion-keyboard",
+      "level": "MUST",
+      "inputs": [
+        "keyboard",
+        "remote"
+      ],
+      "text": "When the keyboard or a remote moves the selection, the pill moves with spring-quick."
+    },
+    {
+      "id": "segmented-control/reduced-motion",
+      "level": "MUST",
+      "text": "With reduced motion, the pill goes to the selected segment with no movement and no scale. The change of color stays."
+    },
+    {
+      "id": "segmented-control/content",
+      "level": "SHOULD",
+      "text": "When the selection changes the view below the control, the content does not slide. The content changes with a cross-fade of 150 ms."
+    },
+    {
+      "id": "segmented-control/moment",
+      "level": "MUST",
+      "text": "A change of the selection emits the moment select, at the change. A press on the selected segment emits no moment. A disabled segment emits no moment."
+    },
+    {
+      "id": "segmented-control/no-direct-feedback",
+      "level": "NEVER",
+      "text": "The segmented control starts a haptic or a sound directly."
+    },
+    {
+      "id": "segmented-control/disabled",
+      "level": "MUST",
+      "text": "A disabled segment has the disabled opacity, and the user cannot select it. Its description tells assistive technology why it is not available, for example Not possible in this view."
+    },
+    {
+      "id": "segmented-control/disabled-cause",
+      "level": "SHOULD",
+      "text": "The screen shows the cause of a disabled segment near the segmented control."
+    },
+    {
+      "id": "segmented-control/tv",
+      "level": "MUST",
+      "inputs": [
+        "remote"
+      ],
+      "classes": [
+        "tv"
+      ],
+      "text": "On a TV, each segment is a focus target, and the control has the large size. Left and right on the remote move the selection."
+    },
+    {
+      "id": "segmented-control/watch",
+      "level": "MUST",
+      "classes": [
+        "watch"
+      ],
+      "text": "On a watch, the segmented control changes to a list of choices."
+    },
+    {
+      "id": "segmented-control/xr",
+      "level": "MUST",
+      "classes": [
+        "xr"
+      ],
+      "text": "In an XR headset, each segment has a hit region of 60 pt or more and the hover effect of the system. The pinch selects the segment."
+    }
+  ]
+}

@@ -99,3 +99,11 @@ test('a released IR does not change: each file of each ir/<version>/ matches the
     }
   }
 })
+
+test('a shadow with many layers keeps each layer, with the plain form of its color', () => {
+  const canonical = JSON.parse(compile().get('canonical.json') as string)
+  const overlay = canonical['shadow.overlay'].values['theme=dark']
+  assert.ok(Array.isArray(overlay) && overlay.length === 3)
+  assert.deepEqual(Object.keys(overlay[0].color).sort(), ['alpha', 'hex', 'srgb'])
+  assert.equal(canonical['shadow.knob'].value.color.hex, '#000000')
+})
