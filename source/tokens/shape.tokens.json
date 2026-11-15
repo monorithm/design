@@ -244,19 +244,19 @@
   },
   "breakpoint": {
     "$type": "dimension",
-    "md": {
+    "tablet": {
       "$value": {
         "value": 768,
         "unit": "px"
       },
-      "$description": "Below this width, the layout is the layout of a phone: a dialog becomes a bottom sheet"
+      "$description": "Tablet: from 768 px. Below this width, the layout is the layout of a phone, and a dialog becomes a bottom sheet"
     },
-    "lg": {
+    "desktop": {
       "$value": {
         "value": 1024,
         "unit": "px"
       },
-      "$description": "From this width, the layout is the layout of a desktop"
+      "$description": "Desktop: from 1,024 px"
     }
   }
 }
